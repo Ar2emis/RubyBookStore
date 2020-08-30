@@ -8,6 +8,7 @@ gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'faker'
 gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -30,7 +31,6 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails'
 end
 
