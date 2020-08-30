@@ -1,9 +1,10 @@
 require:
+  - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.8
+  TargetRubyVersion: 2.7.1
   NewCops: enable
   Exclude:
     - 'db/**/*'
@@ -18,10 +19,6 @@ Layout/LineLength:
 
 Style/Documentation:
   Enabled: false
-
-Security/Eval:
-  Exclude:
-    - 'spec/spec_helper.rb'
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'guard']

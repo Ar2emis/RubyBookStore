@@ -1,3 +1,7 @@
 class HomeController < ApplicationController
-  def index; end
+  LATEST_BOOKS_AMOUNT = 3
+
+  def index
+    @latest_books = Book.latest.limit(LATEST_BOOKS_AMOUNT)
+  end
 end

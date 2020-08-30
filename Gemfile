@@ -7,8 +7,8 @@ gem 'aasm'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mini_magick'
@@ -28,6 +28,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
 end
 
@@ -55,8 +58,10 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
+  gem 'simplecov'
   gem 'site_prism'
   gem 'webdrivers'
 end
