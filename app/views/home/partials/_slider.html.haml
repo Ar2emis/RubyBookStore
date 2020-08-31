@@ -19,7 +19,7 @@
               %p.lead.small
                 = book.authors_names
               .general-align
-                %a.btn.btn-primary.btn-buy-now-slider{href: cart_items_path(cart_item: { book_id: book.id, quantity: 1 }), 'data-method': :post} Buy now
+                %a.btn.btn-primary.btn-buy-now-slider{href: '#'} Buy now
   - if @latest_books.count > 1
     %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
       %span.icon-prev{'aria-hidden': "true"}

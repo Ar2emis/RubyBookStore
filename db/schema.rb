@@ -92,21 +92,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_100250) do
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
-  create_table "cart_items", force: :cascade do |t|
-    t.integer "quantity", null: false
-    t.bigint "book_id", null: false
-    t.bigint "cart_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_cart_items_on_book_id"
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
