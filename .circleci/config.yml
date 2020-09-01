@@ -19,6 +19,11 @@ jobs:
     docker:
       - image: cimg/ruby:2.7-node
     steps:
+      - checkout 
+      - ruby/install-deps 
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       - run: 
           name: rubocop
           command: bundle exec rubocop
