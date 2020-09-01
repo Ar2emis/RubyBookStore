@@ -14,6 +14,14 @@ jobs:
       - node/install-packages: 
           pkg-manager: yarn
           cache-key: "yarn.lock"
+
+  lintering:
+    docker:
+      - image: cimg/ruby:2.7-node
+    steps:
+      - run: 
+          name: rubocop
+          command: bundle exec rubocop
           
   test:
     docker:
@@ -55,6 +63,9 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - lintering:
+        requires:
+          - build
       - test:
-          requires:
-            - build
+        requires:
+          - build
