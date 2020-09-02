@@ -14,12 +14,12 @@
 
 # Array extra: Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/extras/array
-require 'pagy/extras/array'
+# require 'pagy/extras/array'
 
 # Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/extras/countless
-require 'pagy/extras/countless'
-Pagy::VARS[:cycle] = false    # default
+# require 'pagy/extras/countless'
+# Pagy::VARS[:cycle] = false    # default
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
@@ -27,7 +27,7 @@ Pagy::VARS[:cycle] = false    # default
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
-require 'pagy/extras/searchkick'
+# require 'pagy/extras/searchkick'
 
 
 # Frontend Extras
@@ -111,7 +111,7 @@ require 'pagy/extras/bootstrap'
 
 # Instance variables
 # See https://ddnexus.github.io/pagy/api/pagy#instance-variables
-Pagy::VARS[:items] = 20                                   # default
+# Pagy::VARS[:items] = 20                                   # default
 
 
 # Other Variables
@@ -140,7 +140,7 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 #
 # Examples:
 # load the "de" built-in locale:
-Pagy::I18n.load(locale: 'en')
+# Pagy::I18n.load(locale: 'en')
 #
 # load the "de" locale defined in the custom file at :filepath:
 # Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
@@ -167,4 +167,4 @@ Pagy::I18n.load(locale: 'en')
 # require 'pagy/extras/i18n'
 
 # Default i18n key
-Pagy::VARS[:i18n_key] = 'pagy.item_name'   # default
+# Pagy::VARS[:i18n_key] = 'pagy.item_name'   # default

@@ -1,4 +1,5 @@
 en:
+  currency: €
   layouts:
     title: BookStore
     shop_name: BookStore
@@ -9,8 +10,31 @@ en:
     sign_up: Sign up
     orders: Orders
     settings: Settings
-  catalog:
+  categories:
     all_books: All books
+    all: All
+  books:
+    catalog: Catalog
+    buy_now: Buy now
+    filter_by_category: Filter by category
+    back_to_results: Back to results
+    description: Description
+    add_to_cart: Add to Cart
+    show_more: Show more
+    hide: Hide
+    year_of_publication: Year of publication
+    dimensions: Dimensions
+    h: H
+    w: W
+    d: D
+    materials: Materials
+    sort:
+      sort_by: Sort by
+      cheap: 'Price: Low to hight'
+      expensive: 'Price: Hight to low'
+      newest: Newest first
+      atoz: 'Title: A - Z'
+      ztoa: 'Title: Z - A'
   home:
     welcome: Welcome to our amazing Bookstore!
     description: |

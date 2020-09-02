@@ -5,5 +5,5 @@
     %h2.h1= t('home.welcome')
     .mb-res-50
       %p= t('home.description')
-    %a.btn.btn-default{href: '#'}= t('home.get_started')
+    %a.btn.btn-default{href: books_path}= t('home.get_started')
   = render partial: 'home/partials/best_sellers'

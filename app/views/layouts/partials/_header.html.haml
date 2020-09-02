@@ -25,8 +25,9 @@
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
               = t('layouts.shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              %li
-                %a.collapse-link(href="#")= t('catalog.all_books')
+              %li= link_to t('categories.all_books'), books_path, class: 'collapse-link'
+              - @categories.each do |category|
+                %li= link_to category.name, books_path(category: category.id), class: 'collapse-link'
           %li
             %a{href: "#"}= t('layouts.my_account')
       .hidden-xs
@@ -37,8 +38,9 @@
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
               = t('layouts.shop')
             %ul.dropdown-menu
-              %li
-                %a.collapse-link(href="#")= t('catalog.all_books')
+              %li= link_to t('shop.all_books'), books_path, class: 'collapse-link'
+              - @categories.each do |category|
+                %li= link_to category.name, books_path(category: category.id), class: 'collapse-link'
           %li
             %a(href="#")= t('layouts.log_in')
           %li

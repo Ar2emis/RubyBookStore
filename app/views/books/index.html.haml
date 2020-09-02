@@ -1,0 +1,37 @@
+%main.container
+  %h1.general-title-margin= t('books.catalog')
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = render partial: 'books/partials/sorting'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        = link_to books_path(query_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if params[:category].nil?}" do
+          = t('categories.all')
+          %span.badge.general-badge
+            = Book.all.count
+      - @categories.each do |category|
+        %li.mr-35
+          = link_to books_path(query_params(category: category.id)), class: "filter-link #{'def-color-chosen-category' if params[:category].to_i == category.id}" do
+            = category.name
+            %span.badge.general-badge= category.books.count
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10= t('books.filter_by_category')
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        = t(current_category)
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: books_path(query_params(category: nil))}= t('categories.all')
+        - @categories.each do |category|
+          %li
+            %a{href: books_path(query_params(category: category.id))}= category.name
+    %p.lead.small.mb-10= t('books.sort.sort_by')
+    .dropdown
+      = render partial: 'books/partials/sorting'
+  .mb-120
+    .row
+      = render partial: 'books/partials/books'
+    .text-center
+      = link_to 'View More', books_path(query_params(count: next_count)), class: 'btn btn-primary', 'data-turbolinks-scroll': false
