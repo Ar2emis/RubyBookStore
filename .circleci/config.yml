@@ -44,9 +44,10 @@ jobs:
       BOOK_STORE_DATABASE_PASSWORD: "book_store"
       RAILS_ENV: test
     steps:
-      - browser-tools/install-browser-tools
       - checkout 
       - ruby/install-deps 
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
