@@ -6,9 +6,5 @@ class Book < ApplicationRecord
   has_many :authors, through: :author_books
   belongs_to :category
 
-  scope :latest, -> { includes([:authors]).order(created_at: :desc) }
-
-  def authors_names
-    authors.map(&:full_name).join(', ')
-  end
+  scope :with_authors, -> { includes([:authors]) }
 end
