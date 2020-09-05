@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.0 
   node: circleci/node@2
+  browser-tools: circleci/browser-tools@1.0.1
 
 jobs:
   build:
@@ -45,6 +46,8 @@ jobs:
     steps:
       - checkout 
       - ruby/install-deps 
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
@@ -56,12 +59,7 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       - run: 
           name: run specs
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec --format progress \
-                              --out /tmp/test-results/rspec.xml \
-                              $TEST_FILES
+          command: bundle exec rspec
 
 workflows:
   version: 2

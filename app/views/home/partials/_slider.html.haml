@@ -1,32 +1,27 @@
 #slider.carousel.slide{'data-ride': "carousel"}
-  - unless @latest_books.empty?
-    %ol.carousel-indicators
-      - @latest_books.each_with_index do |book, index|
-        %li{'class': "#{'active' if index.zero?}", 'data-target': "#slider", 'data-slide-to': "#{index}"}
+  %ol.carousel-indicators
+    - @latest_books.count.times do |index|
+      %li{'class': "#{'active' if index.zero?}", 'data-target': "#slider", 'data-slide-to': "#{index}"}
   .carousel-inner{role: "listbox"}
     - @latest_books.each_with_index do |book, index|
-      - present(book) do |present_book|
-        .item.carousel-item{'class': "#{'active' if index.zero?}"}
-          .row
-            .col-sm-5
-              .general-img-wrap
-                %img.img-shadow.general-thumbnail-img{src: image_url("default_book.png"), alt: "design-book"}
-            .col-sm-7
-              .mb-60
-                = link_to book do
-                  %h1.book_name 
-                    = present_book.title
-                %p.lead
-                  = present_book.description
-                %p.lead.small
-                  = present_book.authors_names
-                .general-align
-                  %a.btn.btn-primary.btn-buy-now-slider{href: '#'}
-                    = t('books.buy_now')
-  - if @latest_books.count > 1
-    %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
-      %span.icon-prev{'aria-hidden': "true"}
-      %span.sr-only Previous
-    %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
-      %span.icon-next{'aria-hidden': "true"}
-      %span.sr-only Next
+      .item.carousel-item{'class': "#{'active' if index.zero?}"}
+        .row
+          .col-sm-5
+            .general-img-wrap
+              %img.img-shadow.general-thumbnail-img{src: image_url("default_book.png"), alt: "design-book"}
+          .col-sm-7
+            .mb-60
+              %h1.book_name 
+                = book.title
+              %p.lead
+                = book.description
+              %p.lead.small
+                = book.authors_names
+              .general-align
+                %a.btn.btn-primary.btn-buy-now-slider{href: '#'} Buy now
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only Next
