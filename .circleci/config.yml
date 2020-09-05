@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.0 
   node: circleci/node@2
+  browser-tools: circleci/browser-tools@1.0.1
 
 jobs:
   build:
@@ -43,6 +44,7 @@ jobs:
       BOOK_STORE_DATABASE_PASSWORD: "book_store"
       RAILS_ENV: test
     steps:
+      - browser-tools/install-browser-tools
       - checkout 
       - ruby/install-deps 
       - node/install-packages:
