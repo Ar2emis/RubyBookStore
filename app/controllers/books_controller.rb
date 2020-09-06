@@ -1,22 +1,25 @@
 class BooksController < ApplicationController
+  include Rectify::ControllerHelpers
   BOOKS_AMOUNT = 12
 
   def index
-    @books = prepared_books
+    present BooksPresenter.new(books: prepared_books, categories: @categories)
   end
 
   def show
-    @book = Book.find(book_param)
+    present BookPresenter.new(book: Book.find(book_param).decorate)
   end
 
   private
 
   def prepared_books
-    Book.with_authors.where(category_param).limit(books_amount).ordered(sort_param)
+    books = FilteredAndSortedBooks.new(category: category_param, sort: sort_param, amount: books_amount).to_a
+    BookDecorator.decorate_collection(books)
   end
 
   def books_amount
-    helpers.next_count * BOOKS_AMOUNT
+    count = params[:count].to_i
+    count.positive? ? count * BOOKS_AMOUNT : BOOKS_AMOUNT
   end
 
   def sort_param
@@ -24,7 +27,7 @@ class BooksController < ApplicationController
   end
 
   def category_param
-    params.permit(:category)
+    params[:category]
   end
 
   def book_param

@@ -2,12 +2,6 @@ class HomeController < ApplicationController
   LATEST_BOOKS_AMOUNT = 3
 
   def index
-    @latest_books = BookDecorator.decorate_collection(latest_books)
-  end
-
-  private
-
-  def latest_books
-    Book.with_authors.last(LATEST_BOOKS_AMOUNT)
+    @latest_books = BookDecorator.decorate_collection(LatestBooks.new(amount: LATEST_BOOKS_AMOUNT).to_a)
   end
 end

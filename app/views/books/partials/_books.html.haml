@@ -1,19 +1,18 @@
-- @books.each do |book|
-  - present(book) do |present_book|
-    .col-xs-6.col-sm-3
-      .general-thumb-wrap
-        .thumbnail.general-thumbnail
-          %img.img-shadow.general-thumbnail-img{src: image_url("default_book.png"), alt: "design-book"}
-          .thumb-hover
-            .general-thumb-link-wrap
-              = link_to book, class: 'thumb-hover-link' do
-                %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-              %a.thumb-hover-link{href: "#"}
-                %i.fa.fa-shopping-cart.thumb-icon
-      .general-thumb-info
-        %p.title.text_overflow-hidden
-          = present_book.title
-        %p.font-16.in-gold-500 #{t(:currency)}#{present_book.price}
-        %span.divider-sm
-        %p.lead.small.text_overflow-hidden
-          = present_book.authors_names
+- presenter.books.each do |book|
+  .col-xs-6.col-sm-3
+    .general-thumb-wrap
+      .thumbnail.general-thumbnail
+        %img.img-shadow.general-thumbnail-img{src: image_url("default_book.png"), alt: "design-book"}
+        .thumb-hover
+          .general-thumb-link-wrap
+            = link_to book, class: 'thumb-hover-link' do
+              %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+            %a.thumb-hover-link{href: "#"}
+              %i.fa.fa-shopping-cart.thumb-icon
+    .general-thumb-info
+      %p.title.text_overflow-hidden
+        = book.title
+      %p.font-16.in-gold-500 #{t(:currency)}#{book.price}
+      %span.divider-sm
+      %p.lead.small.text_overflow-hidden
+        = book.authors_names

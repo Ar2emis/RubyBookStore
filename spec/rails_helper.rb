@@ -7,6 +7,8 @@ SimpleCov.start 'rails' do
               'app/channels/application_cable',
               'app/admin']
   add_group 'Decorators', 'app/decorators'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Queries', 'app/queries'
 end
 
 ENV['RAILS_ENV'] ||= 'test'

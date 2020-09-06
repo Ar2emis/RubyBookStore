@@ -28,6 +28,7 @@ en:
     w: W
     d: D
     materials: Materials
+    view_more: View more
     sort:
       sort_by: Sort by
       cheap: 'Price: Low to hight'
