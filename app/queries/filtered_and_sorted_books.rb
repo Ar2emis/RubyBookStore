@@ -1,5 +1,5 @@
 class FilteredAndSortedBooks < Rectify::Query
-  def initialize(category: nil, sort: nil, amount:)
+  def initialize(category: nil, sort: nil, amount: nil)
     @category = category
     @sort = sort
     @amount = amount
@@ -10,6 +10,7 @@ class FilteredAndSortedBooks < Rectify::Query
     books = Book.with_authors.where(nil)
     books = books.where(category: @category) if @category.present?
     books = books.ordered(@sort) if @sort.present?
-    books.limit(@amount)
+    books = books.limit(@amount) if @amount.present?
+    books
   end
 end

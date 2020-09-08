@@ -13,8 +13,7 @@ class BooksController < ApplicationController
   private
 
   def prepared_books
-    books = FilteredAndSortedBooks.new(category: category_param, sort: sort_param, amount: books_amount).to_a
-    BookDecorator.decorate_collection(books)
+    books = FilteredAndSortedBooks.new(category: category_param, sort: sort_param, amount: books_amount).query.decorate
   end
 
   def books_amount

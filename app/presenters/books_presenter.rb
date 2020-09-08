@@ -18,7 +18,7 @@ class BooksPresenter < Rectify::Presenter
   end
 
   def all_books_showed?
-    category_param = params.permit(:category)
+    category_param = params[:category].present? ? params.permit(:category) : nil
     books.count == Book.where(category_param).count
   end
 
@@ -45,8 +45,7 @@ class BooksPresenter < Rectify::Presenter
   end
 
   def current_sort
-    sort_key = params[:sort].present? ? params[:sort].to_sym : STANDARD_SORT
-    SORT_PARAMETERS.fetch(sort_key, STANDARD_SORT)
+    params[:sort].present? ? SORT_PARAMETERS.fetch(params[:sort].to_sym, :newest) : SORT_PARAMETERS[:newest]
   end
 
   def all_books_count
