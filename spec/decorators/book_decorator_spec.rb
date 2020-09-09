@@ -6,7 +6,7 @@ RSpec.describe BookDecorator do
   let(:book) { build(:book) }
 
   describe '#authors_names' do
-    it 'returns authors name as string' do
+    it 'returns authors names as string' do
       authors_names = book.authors.map { |author| "#{author.first_name} #{author.last_name}" }.join(', ')
       expect(decorator.authors_names).to eq authors_names
     end
