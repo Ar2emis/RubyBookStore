@@ -274,6 +274,7 @@ GEM
       oauth2 (~> 1.4)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
+    pagy (3.8.3)
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
@@ -509,6 +510,7 @@ DEPENDENCIES
   mini_magick
   omniauth
   omniauth-facebook
+  pagy
   pg (>= 0.18, < 2.0)
   poltergeist
   puma (~> 3.11)
