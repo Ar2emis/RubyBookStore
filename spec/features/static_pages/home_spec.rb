@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Home', type: :feature do
   context 'with slider' do
-    let!(:books) { BookDecorator.decorate_collection(create_list(:book, HomeController::LATEST_BOOKS_AMOUNT)) }
+    let!(:books) { BookDecorator.decorate_collection(create_list(:book, StaticPagesController::LATEST_BOOKS_AMOUNT)) }
 
     before do
       visit root_path
     end
 
-    it "has #{HomeController::LATEST_BOOKS_AMOUNT} books indicators" do
+    it "has #{StaticPagesController::LATEST_BOOKS_AMOUNT} books indicators" do
       within('ol.carousel-indicators') { expect(page).to have_selector('li', count: books.count) }
     end
 
