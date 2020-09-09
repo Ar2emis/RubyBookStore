@@ -1,0 +1,9 @@
+%main.container.mt-4
+  = render partial: 'static_pages/partials/slider'
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= t('home.welcome')
+    .mb-res-50
+      %p= t('home.description')
+    %a.btn.btn-default{href: '#'}= t('home.get_started')
+  = render partial: 'static_pages/partials/best_sellers'

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Home', type: :request do
-  describe 'GET /index' do
+RSpec.describe 'StaticPages', type: :request do
+  describe 'GET /home' do
     before do
-      create_list(:book, HomeController::LATEST_BOOKS_AMOUNT)
+      create_list(:book, StaticPagesController::LATEST_BOOKS_AMOUNT)
       get root_path
     end
 
@@ -12,7 +12,7 @@ RSpec.describe 'Home', type: :request do
     end
 
     it 'renders a home index template' do
-      expect(response).to render_template(:index)
+      expect(response).to render_template(:home)
     end
   end
 end
