@@ -1,0 +1,18 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t('passwords.set_new_password')
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form', method: :put }) do |f|
+    = f.hidden_field :reset_password_token
+    .form-group.mb-30{class: "#{'has-error' if resource.errors[:password].any?}"}
+      %label.control-label.input-label{for: "password"}= t('passwords.type_a_new_password')
+      = f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: t('passwords.type_a_new_password')
+      %span.help-block
+        - resource.errors[:password].each do |message|
+          %li= message
+    .form-group.mb-40{class: "#{'has-error' if resource.errors[:password_confirmation].any?}"}
+      %label.control-label.input-label{for: "confirmPassword"}= t('passwords.confirm_password')
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: t('passwords.confirm_password')
+      %span.help-block
+        - resource.errors[:password_confirmation].each do |message|
+          %li= message
+    = f.submit t('passwords.change'), class: 'btn btn-default center-block mb-20'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -12,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '6b149839a8453ea0b96aeee8a8a0a607cc4f272fa46cdd7b02a1c8f1d234746848398aa6819fe748bc5f61fd21611a2ba6aa1deeb6566397a25b3e1d192b4829'
+  # config.secret_key = 'd00a6006bfdba659f4d3df5f81604abd4aeb1767c67f256d133237938ccb54fd047b10ea00316ffa39dd7557a5a08d0debe4e867839d45ce186b573e16ca89a9'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -22,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = ENV['GMAIL_USERNAME']
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -124,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'a8eb5782a6756a6e8447e578608be90b7baa00f3ab24858a8208521f248075cf4ea9dc0cefe23886b989ce6cebe14ded18b094fe9b0bab625c3a9a648064f69e'
+  # config.pepper = 'b54b7afa043166af1b9be59d33297bb940652d04670db1d1d61411332fa84dcca0bba37dfdc3c73c3ec820e52f31e43cdef4f4695f041ae1eef6f2b8754a377f'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -176,7 +178,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 8..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -270,6 +272,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

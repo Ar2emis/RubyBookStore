@@ -1,0 +1,13 @@
+%main.container.general-main-wrap
+  .text-center
+    %h1.mb-30= t('passwords.forgot_password')
+    %p.general-password-text= t('passwords.we_will_email_you')
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form', method: :post }) do |f|
+    .form-group.mb-25{class: "#{'has-error' if resource.errors[:email].any?}"}
+      = f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: t('passwords.enter_your_email')
+      %span.help-block
+        - resource.errors[:email].each do |message|
+          %li= message
+    = f.submit t('passwords.email_instructions'), class: 'btn btn-default center-block mb-20'
+    .text-center
+      %a.in-gold-500.mb-20{href: new_user_session_path}= t('passwords.cancel')
