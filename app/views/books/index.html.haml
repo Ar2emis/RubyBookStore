@@ -32,8 +32,6 @@
       = render partial: 'books/partials/sorting'
   .mb-120
     .row#books_list
-      = render partial: 'books/partials/books'
+      = render 'books/partials/books'
     #div_next_link.text-center
-      -# - unless presenter.all_books_showed?
-      -#   = link_to t('books.view_more'), books_path(presenter.display_params(count: presenter.next_count)), class: 'btn btn-primary', 'data-turbolinks-scroll': false
       = render partial: 'books/partials/next_link'
