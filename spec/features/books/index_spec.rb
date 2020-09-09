@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe 'books', type: :feature do
+RSpec.describe 'books#index', type: :feature do
   context 'with books filtering' do
     let!(:category) { create(:category) }
     let(:category_books_amount) { 3 }

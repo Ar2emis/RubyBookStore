@@ -14,7 +14,7 @@ class BooksController < ApplicationController
   private
 
   def prepared_books
-    FilteredAndSortedBooks.new(category: category_param, sort: sort_param).query.decorate
+    FilteredAndSortedBooks.query(category: category_param, sort: sort_param).decorate
   end
 
   def sort_param
