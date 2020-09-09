@@ -6,13 +6,13 @@
         = render partial: 'books/partials/sorting'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
-        = link_to books_path(presenter.display_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if presenter.no_category_chosen?}" do
+        = link_to books_path(presenter.display_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if params[:category].nil?}" do
           = t('categories.all')
           %span.badge.general-badge
-            = presenter.all_books_count
+            = Book.all.count
       - presenter.categories.each do |category|
         %li.mr-35
-          = link_to books_path(presenter.display_params(category: category)), class: "filter-link #{'def-color-chosen-category' if presenter.current_category?(category)}" do
+          = link_to books_path(presenter.display_params(category: category)), class: "filter-link #{'def-color-chosen-category' if params[:category].to_i == category.id}" do
             = category.name
             %span.badge.general-badge= category.books.count
   .dropdowns.mb-25.visible-xs
@@ -31,8 +31,7 @@
     .dropdown
       = render partial: 'books/partials/sorting'
   .mb-120
-    .row
-      = render partial: 'books/partials/books'
-    .text-center
-      - unless presenter.all_books_showed?
-        = link_to t('books.view_more'), books_path(presenter.display_params(count: presenter.next_count)), class: 'btn btn-primary', 'data-turbolinks-scroll': false
+    .row#books_list
+      = render 'books/partials/books'
+    #div_next_link.text-center
+      = render partial: 'books/partials/next_link'

@@ -18,13 +18,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'pundit'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'rails', '6.0.2'
 gem 'rectify'
 gem 'sassc-rails'
 gem 'shrine'
 gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'bullet'
@@ -42,6 +40,7 @@ group :development do
   gem 'guard-livereload'
   gem 'lefthook'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pagy'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
@@ -49,7 +48,6 @@ group :development do
   gem 'solargraph'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do

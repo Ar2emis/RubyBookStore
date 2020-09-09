@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root 'home#index'
+  root 'static_pages#home'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
  

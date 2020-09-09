@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Books', type: :request do
   describe 'GET /books' do
-    let(:books_amount) { 3 }
-
     before do
-      create_list(:book, books_amount)
       get books_path
     end
 
