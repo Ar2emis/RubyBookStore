@@ -15,11 +15,11 @@
           %a.img-link{href: "#"}
             %img{src: image_url('default_book.png')}
     .col-sm-6
-      %h1.mt-res-0= presenter.book.title
-      %p.lead.small= presenter.book.authors_names
+      %h1.mt-res-0= @presenter.book.title
+      %p.lead.small= @presenter.book.authors_names
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10 #{t('currency')}#{presenter.book.price}
+          %p.h1.in-gold-500.mt-10 #{t('currency')}#{@presenter.book.price}
         .col-xs-5.col-md-3
           .input-group.general-position
             %a.input-link.b-n.pt-7#minus
@@ -33,24 +33,24 @@
         %p= t('books.description')
         %p.lead.small.line-height-2
           %span#short_text
-            = presenter.short_description
-          - if presenter.description_long?
+            = @presenter.short_description
+          - if @presenter.description_long?
             %span#more_text.d-n
-              = presenter.book.description
+              = @presenter.book.description
             %a.b-n.in-gold-500.ml-10#btn_read_more= t('books.show_more')
             %a.b-n.in-gold-500.ml-10#hide_read_more.d-n= t('books.hide')
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.year_of_publication')
-          %p.lead.small.pull-right= presenter.book.publication_year
+          %p.lead.small.pull-right= @presenter.book.publication_year
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.dimensions')
-          %p.lead.small.pull-right #{t('books.h')}:#{presenter.book.height}" x #{t('books.w')}: #{presenter.book.width}" x #{t('books.d')}: #{presenter.book.depth}"
+          %p.lead.small.pull-right #{t('books.h')}:#{@presenter.book.height}" x #{t('books.w')}: #{@presenter.book.width}" x #{t('books.d')}: #{@presenter.book.depth}"
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.materials')
-          %p.lead.small.pull-right= presenter.book.materials
+          %p.lead.small.pull-right= @presenter.book.materials
   .mb-80
     %h3 Write a Review
     %p.general-info-text Score

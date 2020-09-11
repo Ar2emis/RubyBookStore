@@ -6,27 +6,27 @@
         = render partial: 'books/partials/sorting'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
-        = link_to books_path(presenter.display_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if params[:category].nil?}" do
+        = link_to books_path(@presenter.display_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if params[:category].nil?}" do
           = t('categories.all')
           %span.badge.general-badge
             = Book.all.count
-      - presenter.categories.each do |category|
+      - @presenter.categories.each do |category|
         %li.mr-35
-          = link_to books_path(presenter.display_params(category: category)), class: "filter-link #{'def-color-chosen-category' if params[:category].to_i == category.id}" do
+          = link_to books_path(@presenter.display_params(category: category)), class: "filter-link #{'def-color-chosen-category' if params[:category].to_i == category.id}" do
             = category.name
             %span.badge.general-badge= category.books.count
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10= t('books.filter_by_category')
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        = presenter.current_category
+        = @presenter.current_category
         %i.fa.fa-angle-down.dropdown-icon.pull-right
       %ul.dropdown-menu
         %li
-          %a{href: books_path(presenter.display_params(category: nil))}= t('categories.all')
-        - presenter.categories.each do |category|
+          %a{href: books_path(@presenter.display_params(category: nil))}= t('categories.all')
+        - @presenter.categories.each do |category|
           %li
-            %a{href: books_path(presenter.display_params(category: category))}= category.name
+            %a{href: books_path(@presenter.display_params(category: category))}= category.name
     %p.lead.small.mb-10= t('books.sort.sort_by')
     .dropdown
       = render partial: 'books/partials/sorting'

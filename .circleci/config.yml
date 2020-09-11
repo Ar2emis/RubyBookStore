@@ -6,16 +6,6 @@ orbs:
   browser-tools: circleci/browser-tools@1.0.1
 
 jobs:
-  build:
-    docker:
-      - image: cimg/ruby:2.7-node
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages: 
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-
   lintering:
     docker:
       - image: cimg/ruby:2.7-node
@@ -63,12 +53,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  lint_and_test:
     jobs:
-      - build
-      - lintering:
-          requires:
-            - build
-      - test:
-          requires:
-            - build
+      - lintering
+      - test
