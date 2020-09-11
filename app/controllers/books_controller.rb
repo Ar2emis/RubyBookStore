@@ -1,14 +1,14 @@
 class BooksController < ApplicationController
   include Pagy::Backend
-  include Rectify::ControllerHelpers
 
   def show
-    present BookPresenter.new(book: Book.find(book_param).decorate)
+    book = Book.find_by(book_param)
+    book.nil? ? redirect_to(books_path) : @presenter = BookPresenter.new(book: book.decorate)
   end
 
   def index
     @pagy, books = pagy_countless(prepared_books, link_extra: 'data-remote="true"')
-    present BooksPresenter.new(books: books, categories: @categories)
+    @presenter = BooksPresenter.new(books: books, categories: @categories, params: params)
   end
 
   private
@@ -26,6 +26,6 @@ class BooksController < ApplicationController
   end
 
   def book_param
-    params[:id]
+    params.permit(:id)
   end
 end
