@@ -23,6 +23,7 @@ gem 'rectify'
 gem 'sassc-rails'
 gem 'shrine'
 gem 'turbolinks', '~> 5'
+gem 'uglifier'
 
 group :development, :test do
   gem 'bullet'

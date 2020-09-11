@@ -463,6 +463,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
     uniform_notifier (1.13.0)
     virtus (1.0.5)
@@ -538,6 +540,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
+  uglifier
   webdrivers
 
 RUBY VERSION
