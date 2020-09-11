@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  include Sortable
+
   validates :title, :price, presence: true
   validates :price, numericality: { greater_than: 0.0 }
 
