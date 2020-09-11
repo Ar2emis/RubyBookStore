@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  validates :password, format: { with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/ }, if: :present?
+  validates :password, format: { with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/ }, unless: :blank?
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

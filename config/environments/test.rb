@@ -36,6 +36,11 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.raise_delivery_errors = false
+
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
@@ -44,9 +49,13 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  OmniAuth.config.test_mode = true
+
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
     Bullet.raise = true
   end
+
+  config.factory_bot.definition_file_paths = ["spec/support/factories"]
 end

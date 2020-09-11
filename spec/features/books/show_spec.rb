@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'books#show', type: :feature do
   let(:book) { create(:book) }
 

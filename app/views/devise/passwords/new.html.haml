@@ -4,7 +4,7 @@
     %p.general-password-text= t('passwords.we_will_email_you')
   = form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form', method: :post }) do |f|
     .form-group.mb-25{class: "#{'has-error' if resource.errors[:email].any?}"}
-      = f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: t('passwords.enter_your_email')
+      = f.text_field :email, autocomplete: "email", class: 'form-control', placeholder: t('passwords.enter_your_email')
       %span.help-block
         - resource.errors[:email].each do |message|
           %li= message
