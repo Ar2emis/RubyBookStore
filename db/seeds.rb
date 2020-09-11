@@ -1,6 +1,9 @@
 email = 'admin@example.com'
 password = 'password'
-AdminUser.create!(email: email, password: password, password_confirmation: password) unless AdminUser.exists?(email: email)
+AdminUser.first_or_create!(email: email) do |admin|
+  admin.password = password
+  admin.password_confirmation = password
+end
 author = Author.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
 category = Category.create!(name: Faker::Book.genre)
 (1..3).each do
