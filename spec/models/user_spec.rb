@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'validations' do
+  context 'with validations' do
     context 'with password' do
       subject(:user) { build(:user) }
 
@@ -25,11 +25,18 @@ RSpec.describe User, type: :model do
         'abcdefg1' => 'without at least 1 uppercase letter',
         'ABCDEFG1' => 'without at least 1 downcase letter',
         'Abcdefgh' => 'without at least 1 digit'
-      }.each do |password, message|
+      }.each do |invalid_password, message|
         it "doesn't allow password #{message}" do
-          expect(user).not_to allow_value(password).for(:password)
+          expect(user).not_to allow_value(invalid_password).for(:password)
         end
       end
     end
+  end
+
+  context 'with model fields' do
+    it { is_expected.to have_db_column(:email) }
+    it { is_expected.to have_db_column(:encrypted_password) }
+    it { is_expected.to have_db_column(:provider) }
+    it { is_expected.to have_db_column(:uid) }
   end
 end
