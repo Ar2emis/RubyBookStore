@@ -32,6 +32,7 @@ RSpec.describe 'OmniauthCallbacks', type: :request do
 
     context 'when callback fails' do
       before do
+        OmniAuth.config.logger = Rails.logger
         allow(OmniAuth.logger).to receive(:info)
         OmniAuth.config.mock_auth[:facebook] = :invalid_credencials
         post user_facebook_omniauth_callback_path(callback)
