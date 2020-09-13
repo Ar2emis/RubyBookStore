@@ -14,15 +14,11 @@ class BooksController < ApplicationController
   private
 
   def prepared_books
-    FilteredAndSortedBooksQuery.call(category: category_param, sort: sort_param).decorate
+    FilteredAndSortedBooksQuery.call(display_params).decorate
   end
 
-  def sort_param
-    params[:sort]
-  end
-
-  def category_param
-    params[:category]
+  def display_params
+    params.permit(:sort, :category).to_h.symbolize_keys
   end
 
   def book_param
