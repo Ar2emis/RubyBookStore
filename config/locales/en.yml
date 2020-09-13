@@ -66,6 +66,18 @@ en:
     already_have_an_account: Already have an Account?
     sign_in: Sign in
     or: or
+    settings: Settings
+    address: Address
+    privacy: Privacy
+    billing_address: Billing Address
+    shipping_address: Shipping Address
+    save: Save
+    email: Email
+    old_password: Old Password
+    new_password: New Password
+    remove_account: Remove Account
+    remove_my_account: Remove my Account
+    i_understand: I understand that all data will be lost
   sessions:
     sign_in: Sign in
     enter_email: Enter Email

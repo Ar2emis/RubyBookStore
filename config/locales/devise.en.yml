@@ -1,5 +1,3 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
 en:
   devise:
     confirmations:
@@ -63,12 +61,3 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
-  activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            email:
-              invalid: has invalid format.
-            password:
-              invalid: must contain at least 1 uppercase, at least 1 lowercase, at least 1 number.
