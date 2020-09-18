@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   include Sortable
 
   validates :title, :price, presence: true
-  validates :price, numericality: { greater_than: 0.0 }
+  validates :price, numericality: { greater_than_or_equal_to: 0.0 }
 
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
