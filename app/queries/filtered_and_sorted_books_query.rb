@@ -3,6 +3,6 @@ class FilteredAndSortedBooksQuery
     books = Book.where(nil)
     books = books.where(category: category) if category.present?
     books = books.ordered(sort) if sort.present?
-    books
+    books.with_authors
   end
 end

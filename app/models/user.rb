@@ -1,9 +1,17 @@
 class User < ApplicationRecord
+  PASSWORD_FORMAT = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.freeze
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
-  validates :password, format: { with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/ }, if: :password_required?
+  belongs_to :billing_address, class_name: 'Address', optional: true
+  belongs_to :shipping_address, class_name: 'Address', optional: true
+
+  validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
+
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -13,11 +21,5 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
-  end
-
-  private
-
-  def password_required?
-    !(@skip_password_validation || persisted? || password.nil? || password_confirmation.nil?)
   end
 end

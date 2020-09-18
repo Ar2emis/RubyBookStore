@@ -35,7 +35,7 @@
                 %li
                   %a{href: "#"}= t('layouts.orders')
                 %li
-                  %a{href: "#"}= t('layouts.settings')
+                  %a{href: edit_user_registration_path}= t('layouts.settings')
                 %li.divider{role: "separator"}
                 %li
                   %a{href: destroy_user_session_path, 'data-method': :delete}= t('layouts.log_out')
@@ -57,12 +57,12 @@
                 %li= link_to category.name, books_path(category: category.id), class: 'collapse-link'
           - if user_signed_in?
             %li.dropdown
-              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Account
+              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('layouts.account')
               %ul.dropdown-menu
                 %li
                   %a{href: "#"}= t('layouts.orders')
                 %li
-                  %a{href: "#"}= t('layouts.settings')
+                  %a{href: edit_user_registration_path}= t('layouts.settings')
                 %li.divider{role: "separator"}
                 %li
                   %a{href: destroy_user_session_path, 'data-method': :delete}= t('layouts.log_out')

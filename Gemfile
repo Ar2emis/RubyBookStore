@@ -7,6 +7,7 @@ gem 'aasm'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
+gem 'countries'
 gem 'devise'
 gem 'draper'
 gem 'faker'
