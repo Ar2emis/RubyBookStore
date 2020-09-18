@@ -9,8 +9,8 @@ class BooksPresenter < BasePresenter
     ztoa: 'books.sort.ztoa'
   }.freeze
 
-  def initialize(books:, categories:, params:)
-    super()
+  def initialize(view:, books:, categories:, params:)
+    super(view: view)
     @books = books
     @categories = categories
     @params = params
