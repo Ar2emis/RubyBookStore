@@ -3,8 +3,8 @@ class BookPresenter < BasePresenter
 
   SHORT_DESCRIPTION_MAX_LENGTH = 250
 
-  def initialize(book:)
-    super()
+  def initialize(view:, book:)
+    super(view: view)
     @book = book
   end
 
@@ -13,6 +13,6 @@ class BookPresenter < BasePresenter
   end
 
   def short_description
-    view.truncate(@book.description, length: SHORT_DESCRIPTION_MAX_LENGTH)
+    @view.truncate(@book.description, length: SHORT_DESCRIPTION_MAX_LENGTH)
   end
 end

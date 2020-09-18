@@ -1,7 +1,7 @@
 class BasePresenter
   private
 
-  def view
-    @view ||= ActionView::Base.new
+  def initialize(view:)
+    @view = view
   end
 end
