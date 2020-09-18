@@ -3,12 +3,12 @@ class BooksController < ApplicationController
 
   def show
     book = Book.find_by(book_param)
-    book.nil? ? redirect_to(books_path) : @presenter = BookPresenter.new(book: book.decorate)
+    book.nil? ? redirect_to(books_path) : @presenter = BookPresenter.new(view: view_context, book: book.decorate)
   end
 
   def index
     @pagy, books = pagy_countless(prepared_books, link_extra: 'data-remote="true"')
-    @presenter = BooksPresenter.new(books: books, categories: @categories, params: params)
+    @presenter = BooksPresenter.new(view: view_context, books: books, categories: @categories, params: params)
   end
 
   private

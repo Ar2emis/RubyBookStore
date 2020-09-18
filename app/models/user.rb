@@ -8,10 +8,11 @@ class User < ApplicationRecord
   belongs_to :billing_address, class_name: 'Address', optional: true
   belongs_to :shipping_address, class_name: 'Address', optional: true
 
-  validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
-
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
+
+  validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
+  validates :email, presence: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
