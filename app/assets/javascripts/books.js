@@ -9,10 +9,8 @@ $(document).on('turbolinks:load', function(){
 
   $('#plus').click(function(e){
     var current_value = $('.input-count-book').val();
-    if (current_value < 10) {
-      var new_value = Number(current_value) + 1;
-      $('.input-count-book').val(new_value);
-    }
+    var new_value = Number(current_value) + 1;
+    $('.input-count-book').val(new_value);
   })
 
   $('#btn_read_more').click(function () {

@@ -4,8 +4,10 @@ ActiveAdmin.register Author do
 
   index do
     selectable_column
-    column :name do |author|
-      link_to author.full_name, resource_path(author)
+    column :first_name
+    column :last_name
+    column :description do |author|
+      truncate(author.description, length: 100)
     end
     actions
   end
