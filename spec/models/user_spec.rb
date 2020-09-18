@@ -11,6 +11,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'with validations' do
+    it { is_expected.to validate_presence_of(:email) }
+
     context 'with password' do
       subject(:user) { build(:user) }
 

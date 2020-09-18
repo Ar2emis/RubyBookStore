@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
+  validates :email, presence: true
   validates :password, format: { with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/ }, unless: :blank?
 
   def self.from_omniauth(auth)
