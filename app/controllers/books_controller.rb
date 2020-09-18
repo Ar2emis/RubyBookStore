@@ -8,7 +8,7 @@ class BooksController < ApplicationController
 
   def index
     @pagy, books = pagy_countless(prepared_books, link_extra: 'data-remote="true"')
-    @presenter = BooksPresenter.new(view: view_context, books: books, categories: @categories, params: params)
+    @presenter = BooksPresenter.new(view: view_context, books: books, categories: @book_categories, params: params)
   end
 
   private

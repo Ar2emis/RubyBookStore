@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :categories
+  before_action :book_categories
 
   private
 
-  def categories
-    @categories = Category.all
+  def book_categories
+    @book_categories = Category.all
   end
 end
