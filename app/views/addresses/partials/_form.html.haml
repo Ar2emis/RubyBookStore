@@ -1,5 +1,5 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: { id: "#{type}-address" }) do |f|
-  = fields_for "user[#{type}_address_attributes]", type == Address::BILLING_TYPE ? resource.billing_address : resource.shipping_address do |fa|
+  = fields_for "user[#{type}_address_attributes]", type == :billing ? resource.billing_address : resource.shipping_address do |fa|
     = fa.hidden_field :address_type, value: type
     %h3.general-subtitle.mt-0= t("addresses.#{type}") + ' ' + t('addresses.address')
     .form-group{class: "#{'has-error' if f.object.errors[:"#{type}_address.first_name"].any?}"}

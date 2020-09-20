@@ -1,0 +1,45 @@
+= form_with model: @review_form, scope: 'review', url: reviews_path, class: 'row' do |f|
+  %h3 Write a Review
+  %p.general-info-text Score
+  .mb-15#stars
+    %i.fa.fa-star.rate-star.rate-empty{'data-value': '1'}
+    %i.fa.fa-star.rate-star.rate-empty{'data-value': '2'}
+    %i.fa.fa-star.rate-star.rate-empty{'data-value': '3'}
+    %i.fa.fa-star.rate-star.rate-empty{'data-value': '4'}
+    %i.fa.fa-star.rate-star.rate-empty{'data-value': '5'}
+    = f.hidden_field :book_rate
+  = f.hidden_field :book_id, value: book_id
+  .col-md-8
+    .mb-40
+      .form-group
+        %label.control-label.input-label.in-grey-600{for: "title"} Title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        %label.control-label.input-label.in-grey-600{for: "review"} Review
+        = f.text_area :body, class: 'form-control'
+    .text-right
+      %button.btn.mb-20 Post
+
+
+
+-# = simple_form_for :review, url: reviews_path, remote: true, html: { class: 'row' } do |f|
+-#   %h3 Write a Review
+-#   %p.general-info-text Score
+-#   .mb-15#stars
+-#     %i.fa.fa-star.rate-star.rate-empty{'data-value': '1'}
+-#     %i.fa.fa-star.rate-star.rate-empty{'data-value': '2'}
+-#     %i.fa.fa-star.rate-star.rate-empty{'data-value': '3'}
+-#     %i.fa.fa-star.rate-star.rate-empty{'data-value': '4'}
+-#     %i.fa.fa-star.rate-star.rate-empty{'data-value': '5'}
+-#     = f.input :book_rate, as: :hidden
+-#   = f.input :book_id, as: :hidden, value: book_id
+-#   .col-md-8
+-#     .mb-40
+-#       .form-group
+-#         -# %label.control-label.input-label.in-grey-600{for: "title"} Title
+-#         = f.input :title, class: 'form-control'
+-#       .form-group
+-#         %label.control-label.input-label.in-grey-600{for: "review"} Review
+-#         = f.input :body, as: :text, class: 'form-control'
+-#     .text-right
+-#       = f.button :submit, 'Post', class: 'btn mb-20'

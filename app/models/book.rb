@@ -6,6 +6,7 @@ class Book < ApplicationRecord
 
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
+  has_many :reviews, dependent: :destroy
   belongs_to :category
 
   scope :with_authors, -> { includes([:authors]) }

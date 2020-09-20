@@ -23,6 +23,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '6.0.2'
 gem 'sassc-rails'
 gem 'shrine'
+gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier'
 

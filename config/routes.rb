@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reviews/create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -7,4 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
 
   resources :books, only: [:index, :show]
+  resources :reviews, only: [:create]
+
+  match '*path' => redirect('/'), via: [:get]
 end

@@ -1,5 +1,5 @@
 RSpec.describe 'Edit', type: :feature do
-  [Address::BILLING_TYPE, Address::SHIPPING_TYPE].each do |type|
+  Address.address_types.each_key do |type|
     context "with #{type} address" do
       let(:address_data) { attributes_for(:address) }
       let(:user) { create(:user) }

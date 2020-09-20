@@ -1,11 +1,12 @@
 class BookPresenter < BasePresenter
-  attr_reader :book
+  attr_reader :book, :reviews
 
   SHORT_DESCRIPTION_MAX_LENGTH = 250
 
   def initialize(view:, book:)
     super(view: view)
     @book = book
+    @reviews = @book.reviews.where(status: :approved)
   end
 
   def description_long?

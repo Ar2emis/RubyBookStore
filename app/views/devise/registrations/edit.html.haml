@@ -9,9 +9,9 @@
     #address.tab-pane.fade.in.active.general-main-wrap{role: "tabpanel"}
       .row
         .col-md-5.mb-40
-          = render 'addresses/partials/form', countries: @countries, type: Address::BILLING_TYPE
+          = render 'addresses/partials/form', countries: @countries, type: :billing
         .col-md-5.col-md-offset-1.mb-25
-          = render 'addresses/partials/form', countries: @countries, type: Address::SHIPPING_TYPE
+          = render 'addresses/partials/form', countries: @countries, type: :shipping
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5

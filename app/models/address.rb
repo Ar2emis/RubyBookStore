@@ -1,6 +1,5 @@
 class Address < ApplicationRecord
-  BILLING_TYPE = 'billing'.freeze
-  SHIPPING_TYPE = 'shipping'.freeze
+  enum address_type: { billing: 0, shipping: 1 }
 
   ONLY_LETTERS_FORMAT = /\A[A-Za-z\s]+\z/.freeze
   ADDRESS_FORMAT = /\A[a-zA-Z0-9\s,\-]+\z/.freeze

@@ -3,7 +3,9 @@ class BooksController < ApplicationController
 
   def show
     book = Book.find_by(book_param)
-    book.nil? ? redirect_to(books_path) : @presenter = BookPresenter.new(view: view_context, book: book.decorate)
+    return redirect_to(books_path) if book.nil?
+
+    @presenter = BookPresenter.new(view: view_context, book: book.decorate)
   end
 
   def index
