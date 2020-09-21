@@ -1,4 +1,5 @@
 ActiveAdmin.register Review do
+  includes :book, :user
   actions :index, :show
   permit_params :book_id, :title, :body, :date, :user_id, :status
 

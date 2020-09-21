@@ -1,13 +1,17 @@
 RSpec.describe Book, type: :model do
   context 'with validations' do
-    it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:price) }
+    %i[title price].each do |property|
+      it { is_expected.to validate_presence_of(property) }
+    end
+
     it { is_expected.to validate_numericality_of(:price) }
   end
 
   context 'with associations' do
-    it { is_expected.to have_many(:authors) }
-    it { is_expected.to have_many(:author_books) }
+    %i[authors author_books reviews].each do |models|
+      it { is_expected.to have_many(models) }
+    end
+
     it { is_expected.to belong_to(:category) }
   end
 

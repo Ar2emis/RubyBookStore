@@ -25,10 +25,12 @@ RSpec.describe User, type: :model do
   end
 
   context 'with associations' do
-    it { is_expected.to belong_to(:billing_address).class_name('Address').optional }
-    it { is_expected.to belong_to(:shipping_address).class_name('Address').optional }
-    it { is_expected.to accept_nested_attributes_for(:billing_address) }
-    it { is_expected.to accept_nested_attributes_for(:shipping_address) }
+    %i[billing_address shipping_address].each do |model|
+      it { is_expected.to belong_to(model).class_name('Address').optional }
+      it { is_expected.to accept_nested_attributes_for(model) }
+    end
+
+    it { is_expected.to have_many(:reviews) }
   end
 
   context 'with model fields' do

@@ -112,10 +112,10 @@ ActiveRecord::Schema.define(version: 2020_09_19_103401) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "book_id"
-    t.integer "book_rate"
-    t.string "title"
-    t.text "body"
+    t.bigint "book_id", null: false
+    t.integer "book_rate", null: false
+    t.string "title", null: false
+    t.text "body", null: false
     t.date "date"
     t.bigint "user_id"
     t.integer "status", default: 0

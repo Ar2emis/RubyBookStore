@@ -99,3 +99,9 @@ en:
     phone: Phone
     phone_example: +xxx xx xxx xxxx
     save: Save
+  reviews:
+    success: Review created successfuly.
+    verified_reviewer: Verified Reviewer
+    write_a_review: Write a Review
+    score: Score
+    post: Post

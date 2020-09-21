@@ -1,16 +1,16 @@
 .general-message-wrap.divider-lg
   .clearfix
-    %img.img-circle.logo-size.inlide-block.pull-left{src: image_url('default_book')}
+    %span.img-circle.logo-size.inlide-block.pull-left.logo-empty=review.user.email.chr.capitalize
     .ml-70
       %div
-        .general-message-date.hidden-xs 11/11/16
+        .general-message-date.hidden-xs= review.date
         .max-240
-          .general-message-verified Verified Reviewer
-          .general-message-name Rita J. Lewis
+          .general-message-verified= t('reviews.verified_reviewer')
+          .general-message-name= review.title
       .mb-15
-        %i.fa.fa-star.rate-star
-        %i.fa.fa-star.rate-star
-        %i.fa.fa-star.rate-star
-        %i.fa.fa-star.rate-star
-        %i.fa.fa-star.rate-star
-      %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
+        - (1..5).each do |index|
+          - if index <= review.book_rate
+            %i.fa.fa-star.rate-star
+          - else
+            %i.fa.fa-star.rate-star.rate-empty
+      %p= review.body

@@ -51,8 +51,9 @@
         .clearfix
           %p.pull-left= t('books.materials')
           %p.lead.small.pull-right= @presenter.book.materials
-  .mb-80
-    = render 'reviews/partials/form', book_id: @presenter.book.id
+  .mb-80#review_form
+    - if user_signed_in?
+      = render 'reviews/partials/form', book_id: @presenter.book.id, review: Review.new
   .mb-80
     %h3.in-gold-500.mb-25 Reviews (#{@presenter.reviews.count})
-    = render partial: 'books/partials/review', collection: @presenter.reviews
+    = render partial: 'books/partials/review', collection: @presenter.reviews, as: :review

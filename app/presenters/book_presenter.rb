@@ -6,7 +6,7 @@ class BookPresenter < BasePresenter
   def initialize(view:, book:)
     super(view: view)
     @book = book
-    @reviews = @book.reviews.where(status: :approved)
+    @reviews = @book.reviews.where(status: :approved).with_user
   end
 
   def description_long?
