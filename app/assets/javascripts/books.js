@@ -26,44 +26,4 @@ $(document).on('turbolinks:load', function(){
     $('#more_text').css('display', 'none');
     $('#short_text').css('display', 'inline');
   });
-
-  $('#stars i').on('mouseover', function(){
-    var onStar = parseInt($(this).data('value'), 10);
-    $(this).parent().children('i.fa-star').each(function(e){
-      if (e < onStar) {
-        $(this).removeClass('rate-empty');
-      }
-      else {
-        if (!$(this).hasClass('selected-star')) {
-          $(this).addClass('rate-empty');
-        }
-      }
-    });
-  }).on('mouseout', function(){
-    $(this).parent().children('i.fa-star').each(function(e){
-      if (!$(this).hasClass('selected-star')) {
-        $(this).addClass('rate-empty');
-      }
-    });
-  });
-
-  $('#stars i').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10);
-    var stars = $(this).parent().children('i.fa-star');
-
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected-star');
-    }
-
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected-star');
-    }
-
-    for (i = onStar; i < stars.length; i++) {
-      $(stars[i]).addClass('rate-empty');
-    }
-
-    var ratingValue = parseInt($('#stars i.selected-star').last().data('value'), 10);
-    $('#review_book_rate').val(ratingValue);
-  });
 })
