@@ -1,0 +1,27 @@
+#slider.carousel.slide{'data-ride': "carousel"}
+  %ol.carousel-indicators
+    - @latest_books.count.times do |index|
+      %li{'class': "#{'active' if index.zero?}", 'data-target': "#slider", 'data-slide-to': "#{index}"}
+  .carousel-inner{role: "listbox"}
+    - @latest_books.each_with_index do |book, index|
+      .item.carousel-item{'class': "#{'active' if index.zero?}"}
+        .row
+          .col-sm-5
+            .general-img-wrap
+              %img.img-shadow.general-thumbnail-img{src: image_url("default_book.png"), alt: "design-book"}
+          .col-sm-7
+            .mb-60
+              %h1.book_name 
+                = book.title
+              %p.lead
+                = book.description
+              %p.lead.small
+                = book.authors_names
+              .general-align
+                %a.btn.btn-primary.btn-buy-now-slider{href: '#'} Buy now
+  %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+    %span.icon-prev{'aria-hidden': "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+    %span.icon-next{'aria-hidden': "true"}
+    %span.sr-only Next

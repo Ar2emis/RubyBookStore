@@ -1,0 +1,6 @@
+- flash.each do |name, msg|
+  %div.mt-60{id: "flash-#{name}"}
+    .alert.alert-dismissible.show{role: "alert", class: "alert-#{name == 'alert' || name == 'error' ? 'warning' : 'success'}"}
+      = msg
+      %button.close{"aria-label" => "Close", 'data-dismiss' => "alert", type: "button"}
+        %span{"aria-hidden" => "true"} &#215;

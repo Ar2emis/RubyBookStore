@@ -1,0 +1,45 @@
+%header.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
+        %span.sr-only
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: root_path()}= t('layouts.shop_name')
+      %a.shop-link.pull-right.visible-xs{href: "#"}
+        %span.shop-icon
+          %span.shop-quantity 3
+    %a.shop-link.pull-right.hidden-xs{href: "#"}
+    %a.shop-link.pull-right.hidden-xs{href: "#"}
+      %span.shop-icon
+        %span.shop-quantity 0
+    #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
+      .visible-xs
+        %button.close{type: "button", 'aria-label': "Close"}
+          %span{'aria-hidden': "true"} &times;
+        %ul.nav.navbar-nav
+          %li
+            %a{href: root_path()}= t('layouts.home')
+          %li
+            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}
+              = t('layouts.shop')
+            %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+              %li
+                %a.collapse-link(href="#")= t('catalog.all_books')
+          %li
+            %a{href: "#"}= t('layouts.my_account')
+      .hidden-xs
+        %ul.nav.navbar-nav
+          %li
+            %a{href: root_path()}= t('layouts.home')
+          %li.dropdown
+            %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+              = t('layouts.shop')
+            %ul.dropdown-menu
+              %li
+                %a.collapse-link(href="#")= t('catalog.all_books')
+          %li
+            %a(href="#")= t('layouts.log_in')
+          %li
+            %a(href="#")= t('layouts.sign_up')
