@@ -38,6 +38,7 @@ en:
       newest: Newest first
       atoz: 'Title: A - Z'
       ztoa: 'Title: Z - A'
+    book_not_found: Book not found.
   home:
     welcome: Welcome to our amazing Bookstore!
     description: |
@@ -45,6 +46,7 @@ en:
       we can find to share with our members.
     get_started: Get Started
     best_sellers: Best Sellers
+    buy_now: Buy now
   flash:
     book_successfuly_added: Book successfully added to your cart
     error: An error has occurred. Please try again later...

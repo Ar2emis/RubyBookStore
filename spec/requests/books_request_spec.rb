@@ -14,18 +14,36 @@ RSpec.describe 'Books', type: :request do
   end
 
   describe 'GET /books/:id' do
-    let(:book) { create(:book) }
+    context 'with valid book id' do
+      let(:book) { create(:book) }
 
-    before do
-      get book_path(book)
+      before do
+        get book_path(book)
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'renders a books index template' do
+        expect(response).to render_template(:show)
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
+    context 'with invalid book id' do
+      let(:invalid_book_id) { -1 }
 
-    it 'renders a books index template' do
-      expect(response).to render_template(:show)
+      before do
+        get book_path(id: invalid_book_id)
+      end
+
+      it 'returns http redirect' do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'renders a books index template' do
+        expect(response).to redirect_to(books_path)
+      end
     end
   end
 end
