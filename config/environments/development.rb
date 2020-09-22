@@ -28,7 +28,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -79,5 +79,6 @@ Rails.application.configure do
     Bullet.add_footer = true
     Bullet.skip_html_injection = false
     Bullet.raise = false
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: "ActiveStorage::Attachment", association: :blob
   end
 end

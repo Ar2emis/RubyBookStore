@@ -55,6 +55,7 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.rails_logger = true
     Bullet.raise = true
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: "ActiveStorage::Attachment", association: :blob
   end
 
   config.factory_bot.definition_file_paths = ["spec/support/factories"]

@@ -13,6 +13,9 @@ RSpec.describe Book, type: :model do
     end
 
     it { is_expected.to belong_to(:category) }
+
+    it { is_expected.to have_one_attached(:title_image) }
+    it { is_expected.to have_many_attached(:images) }
   end
 
   context 'with model fields' do

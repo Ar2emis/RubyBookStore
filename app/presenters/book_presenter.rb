@@ -16,4 +16,8 @@ class BookPresenter < BasePresenter
   def short_description
     @view.truncate(@book.description, length: SHORT_DESCRIPTION_MAX_LENGTH)
   end
+
+  def title_image_url
+    super(@book)
+  end
 end

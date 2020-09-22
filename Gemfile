@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'aasm'
 gem 'activeadmin'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'countries'
@@ -13,6 +14,7 @@ gem 'draper'
 gem 'faker'
 gem 'font-awesome-rails'
 gem 'haml-rails'
+gem 'image_processing', '~> 1.2'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'omniauth'
