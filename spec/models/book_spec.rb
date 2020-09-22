@@ -39,8 +39,8 @@ RSpec.describe Book, type: :model do
       expect(described_class.ordered(sort_symbol).map(&:title)).to eq sorted_by_title_books
     end
 
-    it "doesn't sort if no scope provided in model for passed symbol" do
-      sorted_by_title_books = described_class.all.map(&:title)
+    it 'sorts by newest if no scope provided in model for passed symbol' do
+      sorted_by_title_books = described_class.order(created_at: :desc).map(&:title)
       expect(described_class.ordered(invalid_sort_symbol).map(&:title)).to eq sorted_by_title_books
     end
   end
