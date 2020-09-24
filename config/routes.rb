@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'reviews/create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -9,6 +8,9 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index, :show]
   resources :reviews, only: [:create]
+  resources :cart_items, only: [:create, :destroy]
+  get '/cart', to: 'cart_items#index'
+  post '/coupon', to: 'cart_items#coupon'
 
   match '*path' => redirect('/'), via: [:get]
 end

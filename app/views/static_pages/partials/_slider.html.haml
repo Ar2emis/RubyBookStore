@@ -18,7 +18,7 @@
               %p.lead.small
                 = book.authors_names
               .general-align
-                %a.btn.btn-primary.btn-buy-now-slider{href: '#'} Buy now
+                = link_to t('home.buy_now'), cart_items_path(cart_item: { book_id: book.id, count: 1 }), method: :post, class: 'btn btn-primary btn-buy-now-slider'
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
     %span.sr-only Previous

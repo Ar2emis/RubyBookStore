@@ -7,7 +7,10 @@ class User < ApplicationRecord
 
   belongs_to :billing_address, class_name: 'Address', optional: true
   belongs_to :shipping_address, class_name: 'Address', optional: true
+  has_one :cart, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :user_coupons, dependent: :destroy
+  has_many :coupons, through: :user_coupons
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address

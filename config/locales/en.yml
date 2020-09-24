@@ -45,8 +45,9 @@ en:
       we can find to share with our members.
     get_started: Get Started
     best_sellers: Best Sellers
+    buy_now: Buy now
   flash:
-    book_successfuly_added: Book successfully added to your cart
+    book_successfuly_added: Book successfully added to your cart.
     error: An error has occurred. Please try again later...
   passwords:
     set_new_password: Set new password
@@ -105,3 +106,17 @@ en:
     write_a_review: Write a Review
     score: Score
     post: Post
+  cart:
+    cart: Cart
+    coupon_used: Coupon has already used.
+    invalid_coupon: Invalid coupon code.
+    quantity: Quantity
+    price: Price
+    subtotal: SubTotal
+    product: Product
+    enter_coupon_code: Enter Your Coupon Code
+    apply_coupon: Apply Coupon
+    order_summary: Order Summary
+    coupon: Coupon
+    order_total: Order Total
+    checkout: Checkout
