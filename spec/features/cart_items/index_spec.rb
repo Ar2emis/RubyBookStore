@@ -14,7 +14,7 @@ RSpec.describe 'cart_items#index', type: :feature do
       within 'table.table.table-hover' do
         page.all('a.close.general-cart-close').first.click
       end
-      sleep(0.1)
+      sleep(0.5)
     end
 
     it 'deletes cart item from cart' do
@@ -29,7 +29,7 @@ RSpec.describe 'cart_items#index', type: :feature do
       within 'table.table.table-hover' do
         page.all('i.fa.fa-plus').first.click
       end
-      sleep(0.1)
+      sleep(0.5)
     end
 
     it 'increases book amount by 1' do
@@ -45,7 +45,7 @@ RSpec.describe 'cart_items#index', type: :feature do
         2.times { page.all('i.fa.fa-plus').first.click }
         page.all('i.fa.fa-minus').first.click
       end
-      sleep(0.1)
+      sleep(0.5)
     end
 
     it 'decreases book amount by 1' do
