@@ -54,7 +54,6 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
-    Bullet.raise = true
     Bullet.add_whitelist type: :n_plus_one_query, class_name: "ActiveStorage::Attachment", association: :blob
   end
 

@@ -1,9 +1,9 @@
 class CartDecorator < ApplicationDecorator
   delegate_all
-  decorates_association :cart_items
+  decorates_associations :cart_items
 
   def ordered_cart_items
-    cart_items.includes(book: :title_image_attachment).order(:created_at)
+    cart_items.order(:created_at)
   end
 
   def subtotal_price
@@ -11,7 +11,7 @@ class CartDecorator < ApplicationDecorator
   end
 
   def coupon_sale
-    object.coupon ? object.coupon.sale : 0.0
+    coupon ? coupon.sale : 0.0
   end
 
   def total_price

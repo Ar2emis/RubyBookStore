@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'RegistrationsRequests', type: :request do
   before do
     user = create(:user)

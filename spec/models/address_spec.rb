@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Address, type: :model do
   context 'with validations' do
     let(:address_attributes) { attributes_for(:address) }

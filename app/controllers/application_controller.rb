@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def transfer_shopping_cart_to_user
-    return unless user_signed_in? && session[:shopping_cart].present?
+    return unless user_signed_in? && session[:shopping_cart]
 
     current_cart = Cart.find(session[:shopping_cart])
     current_user.cart = current_cart if current_cart.cart_items.any? || current_user.cart.nil?

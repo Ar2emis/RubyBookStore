@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Review, type: :model do
   context 'with validations' do
     %i[title body book_id book_rate].each do |property|

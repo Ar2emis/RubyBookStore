@@ -30,7 +30,10 @@ RSpec.describe User, type: :model do
       it { is_expected.to accept_nested_attributes_for(model) }
     end
 
+    it { is_expected.to have_one(:cart).dependent(:destroy) }
     it { is_expected.to have_many(:reviews) }
+    it { is_expected.to have_many(:user_coupons) }
+    it { is_expected.to have_many(:coupons).through(:user_coupons) }
   end
 
   context 'with model fields' do
