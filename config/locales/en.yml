@@ -81,8 +81,6 @@ en:
     i_understand: I understand that all data will be lost
   sessions:
     sign_in: Sign in
-    enter_email: Enter Email
-    password: Password
     sign_up: Sign Up
     forgot_password: Forgot password?
     remember_me: Remember me
@@ -121,3 +119,11 @@ en:
     order_total: Order Total
     checkout: Checkout
     enter_coupon_code: Enter Your Coupon Code
+  checkouts:
+    returning_customer: Returning Customer
+    or: or
+    forgot_password: Forgot password?
+    log_in_with_password: Log In with Password
+    you_will_be_able_to_create_password_later: You’ll be able to create password later
+    continue_checkout: Continue to Checkout
+    quick_register: Quik Register

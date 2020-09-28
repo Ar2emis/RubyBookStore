@@ -3,8 +3,8 @@ RSpec.describe 'New', type: :feature do
 
   before do
     visit new_user_session_path
-    fill_in(I18n.t('sessions.enter_email'), with: user_data[:email])
-    fill_in(I18n.t('sessions.password'), with: user_data[:password])
+    fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: user_data[:email])
+    fill_in(I18n.t('simple_form.placeholders.defaults.password'), with: user_data[:password])
   end
 
   context 'with valid input' do
