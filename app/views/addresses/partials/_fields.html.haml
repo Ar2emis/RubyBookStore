@@ -1,0 +1,9 @@
+= f.hidden_field :type, value: type
+%h3.general-subtitle.mt-00= t("addresses.#{type.downcase}")
+= f.input :first_name, autocomplete: 'first_name'
+= f.input :last_name, autocomplete: 'last_name'
+= f.input :address, autocomplete: 'address'
+= f.input :city, autocomplete: 'city'
+= f.input :zip, autocomplete: 'zip'
+= f.input :country, collection: countries, as: :select, prompt: :translate
+= f.input :phone, autocomplete: 'phone'

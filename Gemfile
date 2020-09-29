@@ -7,6 +7,8 @@ gem 'aasm'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 gem 'countries'
 gem 'devise'
 gem 'draper'

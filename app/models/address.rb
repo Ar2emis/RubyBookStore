@@ -1,6 +1,4 @@
 class Address < ApplicationRecord
-  enum address_type: { billing: 0, shipping: 1 }
-
   ONLY_LETTERS_FORMAT = /\A[A-Za-z\s]+\z/.freeze
   ADDRESS_FORMAT = /\A[a-zA-Z0-9\s,\-]+\z/.freeze
   ZIP_FORMAT = /\A[0-9\-]+\z/.freeze
@@ -9,7 +7,7 @@ class Address < ApplicationRecord
   ZIP_LENGTH = 10
   PHONE_LENGTH = 16
 
-  validates :first_name, :last_name, :address, :city, :zip, :country, :phone, :address_type, presence: true
+  validates :first_name, :last_name, :address, :city, :zip, :country, :phone, :type, presence: true
   validates :first_name, :last_name, :address, :city, length: { maximum: FIFTY_LENGTH }
   validates :first_name, :last_name, :city, format: { with: ONLY_LETTERS_FORMAT }
   validates :address, format: { with: ADDRESS_FORMAT }
@@ -17,6 +15,8 @@ class Address < ApplicationRecord
   validates :phone, length: { maximum: PHONE_LENGTH }, format: { with: PHONE_FORMAT }
   validate :country_code_of_the_selected_country, if: -> { phone.present? }
   validate :country_from_the_above, if: -> { country.present? }
+
+  belongs_to :user
 
   private
 

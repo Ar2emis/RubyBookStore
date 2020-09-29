@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :book_categories
+  helper_method :categories, :countries
 
   private
 
-  def book_categories
-    @book_categories = Category.all
+  def categories
+    Category.all
+  end
+
+  def countries
+    ISO3166::Country.all.sort_by(&:name)
   end
 end

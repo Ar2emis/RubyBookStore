@@ -45,14 +45,7 @@ RSpec.describe 'books#show', type: :feature do
         click_button(I18n.t('reviews.post'))
       end
 
-      [
-        I18n.t('activerecord.errors.models.review.attributes.title.invalid'),
-        I18n.t('activerecord.errors.models.review.attributes.body.invalid'),
-        I18n.t('activerecord.errors.models.review.attributes.book_rate.blank'),
-        I18n.t('errors.messages.blank')
-      ].each do |error|
-        it { expect(page).to have_content(error) }
-      end
+      it { expect(page).to have_content(I18n.t('errors.messages.blank')) }
     end
   end
 
