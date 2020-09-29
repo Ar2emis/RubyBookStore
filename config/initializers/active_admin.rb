@@ -5,7 +5,7 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Book Store"
-  config.skip_before_action :book_categories, :transfer_shopping_cart_to_user, :shopping_cart
+  config.skip_before_action :transfer_shopping_cart_to_user, :shopping_cart
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.

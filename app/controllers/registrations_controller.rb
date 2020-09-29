@@ -1,7 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  protect_from_forgery prepend: true
-  before_action :countries, :configure_permitted_parameters
-
   def quick_create
     resource = build_quick_resource
     if resource.persisted?
@@ -29,18 +26,6 @@ class RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update) do |user|
-      user.permit(:email, :current_password, :password, :password_confirmation,
-                  billing_address_attributes: address_attributes,
-                  shipping_address_attributes: address_attributes)
-    end
-  end
-
-  def address_attributes
-    %i[first_name last_name address city zip country phone address_type]
-  end
-
   def build_quick_resource
     password = Devise.friendly_token[0, 20]
     quick_params = sign_up_params.merge(password: password, password_confirmation: password)
@@ -48,9 +33,5 @@ class RegistrationsController < Devise::RegistrationsController
     resource.skip_confirmation!
     resource.save
     resource
-  end
-
-  def countries
-    @countries = ISO3166::Country.all
   end
 end

@@ -16,9 +16,21 @@ en:
         body: Text
     placeholders:
       review:
+        review:
         title: Title
         body: Text
       defaults:
         email: Enter email
         password: Password
+        current_password: Current Password
         password_confirmation: Repeat password
+        first_name: First name
+        last_name: Last name
+        address: Address
+        city: City
+        zip: Zip
+        country: Select country
+        phone: +xxx xx xxx xxxx
+    prompts:
+      defaults:
+        country: Select your country

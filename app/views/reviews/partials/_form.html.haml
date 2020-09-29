@@ -1,10 +1,10 @@
-= simple_form_for review, as: :review, url: reviews_path, remote: true, html: { class: 'row' } do |f|
+= simple_form_for review, as: :review, validate: true, url: reviews_path, remote: true, html: { class: 'row' } do |f|
   %h3= t('reviews.write_a_review')
   %p.general-info-text= t('reviews.score')
   .mb-15#stars
     - (1..5).each do |index|
       %i.fa.fa-star.rate-star.rate-empty{'data-value': index}
-    = f.hidden_field :book_rate, value: ''
+    = f.hidden_field :book_rate, as: :hidden, value: '0'
     %div{class: "#{'has-error' if f.object.errors[:book_rate].any?}"}
       %p= t('reviews.score') + ' ' + f.object.errors[:book_rate].join(' ,')
   = f.hidden_field :book_id, value: book_id

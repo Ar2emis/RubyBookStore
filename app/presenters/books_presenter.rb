@@ -8,6 +8,7 @@ class BooksPresenter < BasePresenter
     atoz: 'books.sort.atoz',
     ztoa: 'books.sort.ztoa'
   }.freeze
+  CHOSEN_CATEGORY_CLASS = 'def-color-chosen-category'.freeze
 
   def initialize(view:, books:, categories:, params:)
     super(view: view)
@@ -31,5 +32,17 @@ class BooksPresenter < BasePresenter
 
   def current_sort
     @params[:sort].present? ? SORT_PARAMETERS.fetch(@params[:sort].to_sym, :newest) : SORT_PARAMETERS[:newest]
+  end
+
+  def no_category_chosen_class
+    CHOSEN_CATEGORY_CLASS if @params[:category].nil?
+  end
+
+  def chosen_category_class(category)
+    CHOSEN_CATEGORY_CLASS if @params[:category].to_i == category.id
+  end
+
+  def all_books_count
+    Book.count(:all)
   end
 end
