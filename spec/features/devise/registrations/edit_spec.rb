@@ -1,6 +1,6 @@
 RSpec.describe 'Edit', type: :feature do
-  [Address::BILLING_TYPE, Address::SHIPPING_TYPE].each do |type|
-    context "with #{type} address" do
+  [BillingAddress.to_s, ShippingAddress.to_s].each do |type|
+    describe type, js: true do
       let(:address_data) { attributes_for(:address) }
       let(:user) { create(:user) }
 
@@ -11,43 +11,32 @@ RSpec.describe 'Edit', type: :feature do
 
       context 'with valid input' do
         before do
-          within "##{type}-address" do
-            fill_in(I18n.t('addresses.first_name'), with: address_data[:first_name])
-            fill_in(I18n.t('addresses.last_name'), with: address_data[:last_name])
-            fill_in(I18n.t('addresses.address'), with: address_data[:address])
-            fill_in(I18n.t('addresses.city'), with: address_data[:city])
-            fill_in(I18n.t('addresses.zip'), with: address_data[:zip])
-            select(address_data[:country], from: "user_#{type}_address_attributes_country")
-            fill_in(I18n.t('addresses.phone_example'), with: address_data[:phone])
+          within "##{type}" do
+            fill_in(I18n.t('simple_form.placeholders.defaults.first_name'), with: address_data[:first_name])
+            fill_in(I18n.t('simple_form.placeholders.defaults.last_name'), with: address_data[:last_name])
+            fill_in(I18n.t('simple_form.placeholders.defaults.address'), with: address_data[:address])
+            fill_in(I18n.t('simple_form.placeholders.defaults.city'), with: address_data[:city])
+            fill_in(I18n.t('simple_form.placeholders.defaults.zip'), with: address_data[:zip])
+            select(address_data[:country], from: 'address_country')
+            fill_in(I18n.t('simple_form.placeholders.defaults.phone'), with: address_data[:phone])
             click_button(I18n.t('addresses.save'))
           end
         end
 
-        it "saves #{type} address" do
-          expect(page).to have_current_path(root_path)
+        it 'stays at address page' do
+          expect(page).to have_current_path(edit_user_registration_path)
         end
       end
 
       context 'with invalid input' do
         before do
-          within "##{type}-address" do
+          within "##{type}" do
             click_button(I18n.t('addresses.save'))
           end
         end
 
-        it 'stays at sign up page' do
-          expect(page).to have_current_path(user_registration_path)
-        end
-
-        [
-          'activerecord.errors.models.address.attributes.first_name.invalid',
-          'activerecord.errors.models.address.attributes.last_name.invalid',
-          'activerecord.errors.models.address.attributes.city.invalid',
-          'activerecord.errors.models.address.attributes.address.invalid',
-          'activerecord.errors.models.address.attributes.zip.invalid',
-          'activerecord.errors.models.address.attributes.phone.invalid'
-        ].freeze.each do |text|
-          it { expect(page).to have_content(I18n.t(text)) }
+        it 'stays at address page' do
+          expect(page).to have_current_path(edit_user_registration_path)
         end
       end
     end
@@ -66,9 +55,9 @@ RSpec.describe 'Edit', type: :feature do
     context 'with valid input' do
       before do
         within '#password-form' do
-          fill_in(I18n.t('registrations.old_password'), with: user_data[:password])
-          fill_in(I18n.t('registrations.new_password'), with: user_data[:password])
-          fill_in(I18n.t('registrations.confirm_password'), with: user_data[:password])
+          fill_in(I18n.t('simple_form.placeholders.defaults.current_password'), with: user_data[:password])
+          fill_in(I18n.t('simple_form.placeholders.defaults.password'), with: user_data[:password])
+          fill_in(I18n.t('simple_form.placeholders.defaults.password_confirmation'), with: user_data[:password])
           click_button(I18n.t('registrations.save'))
         end
       end
@@ -83,8 +72,8 @@ RSpec.describe 'Edit', type: :feature do
 
       before do
         within '#password-form' do
-          fill_in(I18n.t('registrations.old_password'), with: invalid_password)
-          fill_in(I18n.t('registrations.new_password'), with: invalid_password)
+          fill_in(I18n.t('simple_form.placeholders.defaults.current_password'), with: invalid_password)
+          fill_in(I18n.t('simple_form.placeholders.defaults.password'), with: invalid_password)
           click_button(I18n.t('registrations.save'))
         end
       end
@@ -115,7 +104,7 @@ RSpec.describe 'Edit', type: :feature do
 
       before do
         within '#email-form' do
-          fill_in(I18n.t('registrations.enter_email'), with: new_email)
+          fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: new_email)
           click_button(I18n.t('registrations.save'))
         end
       end
@@ -130,7 +119,7 @@ RSpec.describe 'Edit', type: :feature do
 
       it 'displays invalid format message' do
         within '#email-form' do
-          fill_in(I18n.t('registrations.enter_email'), with: invalid_email)
+          fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: invalid_email)
           click_button(I18n.t('registrations.save'))
         end
         expect(page).to have_content(I18n.t('activerecord.errors.models.user.attributes.email.invalid'))
