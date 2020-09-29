@@ -6,13 +6,13 @@
         = render partial: 'books/partials/sorting'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
-        = link_to books_path(@presenter.display_params(category: nil)), class: "filter-link #{'def-color-chosen-category' if params[:category].nil?}" do
+        = link_to books_path(@presenter.display_params(category: nil)), class: "filter-link #{@presenter.no_category_chosen_class}" do
           = t('categories.all')
           %span.badge.general-badge
-            = Book.all.count
+            = @presenter.all_books_count
       - @presenter.categories.each do |category|
         %li.mr-35
-          = link_to books_path(@presenter.display_params(category: category)), class: "filter-link #{'def-color-chosen-category' if params[:category].to_i == category.id}" do
+          = link_to books_path(@presenter.display_params(category: category)), class: "filter-link #{@presenter.chosen_category_class(category)}" do
             = category.name
             %span.badge.general-badge= category.books.count
   .dropdowns.mb-25.visible-xs

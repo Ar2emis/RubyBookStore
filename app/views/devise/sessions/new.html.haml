@@ -2,25 +2,21 @@
   .text-center
     %h3.general-login-title= t('sessions.sign_in')
     %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
-      %i.fa.fa-facebook-official
+      %i.fa.fa-facebook-official.facebook-icon
     %p.general-login-text= t('sessions.or')
-  = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'general_form width-370 center-form' }) do |f|
-    .form-group.mb-30
-      %label.control-label.input-label{for: "email"}= t('sessions.enter_email')
-      = f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: t('sessions.enter_email')
-    .form-group.mb-30
-      %label.control-label.input-label{for: "password"}= t('sessions.password')
-      = f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: t('sessions.password')
-      %a.help-block.in-gold-500{href: new_user_password_path}= t('sessions.forgot_password')
-    .form-group.checkbox.text-center.mb-30
-      - if devise_mapping.rememberable?
-        %label.checkbox-label
-          = f.check_box :remember_me, class: 'checkbox-input', hidden: true
-          %span.checkbox-icon
-            %i.fa.fa-check
-          %span.checkbox-text= t('sessions.remember_me')
-    .text-center
-      = f.submit t('sessions.sign_in'), class: 'btn btn-default mb-20'
-  %p.general-sign-text.text-center
-    = t('sessions.dont_have_an_account')
-    %a.in-gold-500{href: new_user_registration_path}= t('sessions.sign_up')
+  %div.general-form
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.input :email, required: false, autocomplete: "email"
+      = f.input :password, autocomplete: "current-password", hint: link_to(t('sessions.forgot_password'), new_user_password_path, class: 'in-gold-500')
+      .form-group.checkbox.text-center.mb-30
+        - if devise_mapping.rememberable?
+          %label.checkbox-label
+            = f.check_box :remember_me, class: 'checkbox-input', hidden: true
+            %span.checkbox-icon
+              %i.fa.fa-check
+            %span.checkbox-text= t('sessions.remember_me')
+      .text-center
+        = f.button :submit, t('sessions.sign_in')
+    %p.general-sign-text.text-center
+      = t('sessions.dont_have_an_account')
+      %a.in-gold-500{href: new_user_registration_path}= t('sessions.sign_up')

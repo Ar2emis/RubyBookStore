@@ -2,8 +2,10 @@ class BooksController < ApplicationController
   include Pagy::Backend
 
   def show
-    book = Book.find_by(book_param)
-    book.nil? ? redirect_to(books_path) : @presenter = BookPresenter.new(view: view_context, book: book.decorate)
+    book = Book.find_by(id: params[:id])
+    return @presenter = BookPresenter.new(view: view_context, book: book.decorate) if book.present?
+
+    redirect_to(books_path, alert: I18n.t('books.book_not_found'))
   end
 
   def index
@@ -14,14 +16,6 @@ class BooksController < ApplicationController
   private
 
   def prepared_books
-    FilteredAndSortedBooksQuery.call(display_params).decorate
-  end
-
-  def display_params
-    params.permit(:sort, :category).to_h.symbolize_keys
-  end
-
-  def book_param
-    params.permit(:id)
+    FilteredAndSortedBooksQuery.call(category: params[:category], sort: params[:sort]).decorate
   end
 end
