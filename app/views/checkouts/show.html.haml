@@ -1,0 +1,4 @@
+- unless user_signed_in?
+  = render partial: 'checkouts/partials/auth'
+- else
+  = render partial: "checkouts/partials/#{@state_view}"

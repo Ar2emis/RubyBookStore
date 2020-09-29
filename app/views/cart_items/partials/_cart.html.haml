@@ -44,6 +44,6 @@
             %td
               %strong.font-18 #{t('currency')}#{shopping_cart.total_price}
         - if shopping_cart.cart_items.any?
-          %a.btn.btn-default.mb-20.visible-xs-inline-block{href: checkout_path}= t('cart.checkout')
+          %a.btn.btn-default.mb-20.visible-xs-inline-block{href: checkouts_path}= t('cart.checkout')
 - if shopping_cart.cart_items.any?
-  %a.btn.btn-default.mb-20.hidden-xs.center-block.checkout-btn{href: checkout_path}= t('cart.checkout')
+  %a.btn.btn-default.mb-20.hidden-xs.center-block.checkout-btn{href: checkouts_path}= t('cart.checkout')

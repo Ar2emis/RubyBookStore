@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
   resources :reviews, only: [:create]
   resources :cart_items, only: [:create, :destroy]
-  get '/checkout', to: 'checkouts#index'
+  resource :checkouts, only: [:show]
+  # get '/checkout', to: 'checkouts#index'
   get '/cart', to: 'cart_items#index'
   post '/coupon', to: 'cart_items#coupon'
 
