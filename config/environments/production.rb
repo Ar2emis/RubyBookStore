@@ -102,6 +102,6 @@ Rails.application.configure do
     password:ENV["GMAIL_PASSWORD"]
   }
 
-config.action_mailer.default_url_options = { host: 'ruby-book-store.herokuapp.com' }
+config.action_mailer.default_url_options = { host: ENV['HOST'] }
 
 end

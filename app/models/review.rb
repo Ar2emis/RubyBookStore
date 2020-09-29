@@ -10,19 +10,11 @@ class Review < ApplicationRecord
   validates :title, :book_rate, :body, :book_id, presence: true
   validates :title, format: { with: TEXT_FORMAT }, length: { maximum: TITLE_MAX_LENGTH }
   validates :body, format: { with: TEXT_FORMAT }, length: { maximum: BODY_MAX_LENGTH }
-  validates :book_rate, numericality: { greater_than: RATE_MIN, less_than_or_equal_to: RATE_MAX },
-                        if: -> { book_rate.present? }
-  validate :book_existance, if: -> { book_id.present? }
+  validates :book_rate, numericality: { greater_than_or_equal_to: RATE_MIN, less_than_or_equal_to: RATE_MAX }
 
   belongs_to :book
   belongs_to :user
 
   scope :processed, -> { where(status: %i[approved rejected]) }
   scope :with_user, -> { includes([:user]) }
-
-  private
-
-  def book_existance
-    errors.add(:book_id, :required) unless Book.exists?(id: book_id)
-  end
 end

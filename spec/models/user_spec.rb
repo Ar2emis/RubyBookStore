@@ -26,15 +26,12 @@ RSpec.describe User, type: :model do
 
   context 'with associations' do
     %i[billing_address shipping_address].each do |model|
-      it { is_expected.to belong_to(model).class_name('Address').optional }
-      it { is_expected.to accept_nested_attributes_for(model) }
+      it { is_expected.to have_one(model).dependent(:destroy) }
     end
-
-    it { is_expected.to have_many(:reviews) }
   end
 
   context 'with model fields' do
-    %i[email encrypted_password provider uid billing_address_id shipping_address_id].each do |field|
+    %i[email encrypted_password provider uid].each do |field|
       it { is_expected.to have_db_column(field) }
     end
   end
