@@ -15,4 +15,5 @@ class Book < ApplicationRecord
   belongs_to :category
 
   scope :ordered, ->(order_type) { order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) }
+  scope :with_authors, -> { includes(:authors) }
 end

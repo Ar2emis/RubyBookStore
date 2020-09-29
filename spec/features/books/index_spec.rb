@@ -49,15 +49,10 @@ RSpec.describe 'books#index', type: :feature do
       expect(books_titles).to eq displayed_titles
     end
 
-    {
-      I18n.t('books.sort.cheap') => :price,
-      I18n.t('books.sort.atoz') => :title,
-      I18n.t('books.sort.expensive') => { price: :desc },
-      I18n.t('books.sort.ztoa') => { title: :desc }
-    }.each do |sort_name, property|
-      it "displays books sorted by '#{sort_name}}'" do
-        within('.hidden-xs.clearfix') { click_link(sort_name) }
-        books_titles = Book.order(property).limit(books_amount).map(&:title)
+    BooksPresenter::SORT_PARAMETERS.except(:newest).each do |sort_key, sort_name|
+      it "displays books sorted by '#{I18n.t(sort_name)}}'" do
+        within('.hidden-xs.clearfix') { click_link(I18n.t(sort_name)) }
+        books_titles = Book.ordered(sort_key).limit(books_amount).map(&:title)
         displayed_titles = page.all('p.title').map(&:text)
         expect(books_titles).to eq displayed_titles
       end
