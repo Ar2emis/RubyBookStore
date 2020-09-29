@@ -70,8 +70,6 @@ en:
     or: or
   sessions:
     sign_in: Sign in
-    enter_email: Enter Email
-    password: Password
     sign_up: Sign Up
     forgot_password: Forgot password?
     remember_me: Remember me

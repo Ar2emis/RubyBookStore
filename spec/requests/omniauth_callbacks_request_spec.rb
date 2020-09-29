@@ -3,30 +3,20 @@ RSpec.describe 'OmniauthCallbacks', type: :request do
     let(:callback) { Faker::Omniauth.facebook }
 
     before do
-      allow(User).to receive(:from_omniauth).and_return(create(:user))
       OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(callback)
     end
 
-    it 'has redirect status' do
-      post user_facebook_omniauth_callback_path(callback)
-      expect(response).to have_http_status(:redirect)
-    end
-
-    context 'when user exists' do
-      it 'redirects to home page' do
-        post user_facebook_omniauth_callback_path(callback)
-        expect(response).to redirect_to(root_path)
-      end
-    end
-
-    context 'when user new' do
+    context 'when callback is successful' do
       before do
-        allow(User).to receive(:from_omniauth).and_return(build(:user))
         post user_facebook_omniauth_callback_path(callback)
       end
 
-      it 'registers user' do
-        expect(response).to redirect_to(new_user_registration_path)
+      it 'has redirect status' do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'authorizes user' do
+        expect(response).to redirect_to(root_path)
       end
     end
 
