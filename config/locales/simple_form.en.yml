@@ -1,0 +1,32 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+    error_notification:
+      default_message: "Please review the problems below:"
+    labels:
+      defaults:
+        email: Enter email
+        password: Password
+        password_confirmation: Enter password again
+      review:
+        body: Text
+    placeholders:
+      defaults:
+        email: Enter email
+        password: Password
+        current_password: Current Password
+        password_confirmation: Repeat password
+        first_name: First name
+        last_name: Last name
+        address: Address
+        city: City
+        zip: Zip
+        country: Select country
+        phone: +xxx xx xxx xxxx
+    prompts:
+      defaults:
+        country: Select your country
