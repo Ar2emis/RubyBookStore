@@ -26,22 +26,21 @@ ActiveAdmin.register Order do
 
   batch_action I18n.t('activeadmin.orders.change_to_in_delivery'),
                if: proc { @current_scope.scope_method == :in_progress } do |ids|
-    orders = Order.in_progress.where(id: ids)
-    orders.any? ? orders.each(&:in_delivery_step!) : flash[:error] = I18n.t('admin.error')
+    Order.in_progress.where(id: ids).each(&:in_delivery_step!)
     redirect_to(admin_orders_path)
   end
 
   batch_action I18n.t('activeadmin.orders.change_to_delivered'),
                if: proc { @current_scope.scope_method == :in_progress } do |ids|
-    orders = Order.in_delivery.where(id: ids)
-    orders.any? ? orders.each(&:delivered_step!) : flash[:error] = I18n.t('admin.error')
+    Order.in_delivery.where(id: ids).each do |order|
+      order.update(completed_at: Time.zone.today)
+    end
     redirect_to(admin_orders_path)
   end
 
   batch_action I18n.t('activeadmin.orders.change_to_in_canceled'),
                if: proc { @current_scope.scope_method != :canceled } do |ids|
-    orders = Order.where(id: ids)
-    orders.any? ? orders.each(&:canceled_step!) : flash[:error] = I18n.t('admin.error')
+    Order.where(id: ids).orders.each(&:canceled_step!)
     redirect_to(admin_orders_path)
   end
 end
