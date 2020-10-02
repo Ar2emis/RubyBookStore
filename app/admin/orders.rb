@@ -34,6 +34,7 @@ ActiveAdmin.register Order do
                if: proc { @current_scope.scope_method == :in_progress } do |ids|
     Order.in_delivery.where(id: ids).each do |order|
       order.update(completed_at: Time.zone.today)
+      order.delivered_step!
     end
     redirect_to(admin_orders_path)
   end
