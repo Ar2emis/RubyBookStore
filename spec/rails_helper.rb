@@ -16,7 +16,8 @@ require 'site_prism'
 require 'site_prism/all_there'
 require 'faker'
 require 'devise'
-require_relative 'support/helpers/presenter_helpers'
+require 'aasm/rspec'
+require 'rack_session_access/capybara'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -34,7 +35,6 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
-  config.include PresenterHelpers
 
   config.before(:each, type: :system) do
     driven_by :rack_test

@@ -16,7 +16,7 @@ class Address < ApplicationRecord
   validate :country_code_of_the_selected_country, if: -> { phone.present? }
   validate :country_from_the_above, if: -> { country.present? }
 
-  belongs_to :user
+  belongs_to :addressable, polymorphic: true
 
   private
 

@@ -32,17 +32,17 @@
             %td
               %p.font-16 #{t('cart.subtotal')}:
             %td
-              %p.font-16 #{t('currency')}#{shopping_cart.subtotal_price}
+              %p.font-16= number_to_currency(shopping_cart.subtotal)
           %tr
             %td
               %p.font-16 #{t('cart.coupon')}:
             %td
-              %p.font-16 #{t('currency')}#{shopping_cart.coupon_sale}
+              %p.font-16= number_to_currency(shopping_cart.discount)
           %tr
             %td
               %strong.font-18 #{t('cart.order_total')}:
             %td
-              %strong.font-18 #{t('currency')}#{shopping_cart.total_price}
+              %strong.font-18= number_to_currency(shopping_cart.total_price)
         - if shopping_cart.cart_items.any?
           %a.btn.btn-default.mb-20.visible-xs-inline-block{href: checkout_path}= t('cart.checkout')
 - if shopping_cart.cart_items.any?

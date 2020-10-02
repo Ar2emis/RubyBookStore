@@ -58,4 +58,5 @@ Rails.application.configure do
   end
 
   config.factory_bot.definition_file_paths = ["spec/support/factories"]
+  config.middleware.use RackSessionAccess::Middleware
 end

@@ -1,3 +1,4 @@
-= simple_form_for(address.present? ? address : Address.new, as: :address, validate: true, remote: true, url: address_path, method: :put, html: { id: type }) do |f|
+= simple_form_for(address ? address : Address.new, as: :address, validate: true, remote: true, url: address_path, method: :put, html: { id: type }) do |f|
+  %h3.general-subtitle.mt-00= t("addresses.#{type.downcase}")
   = render partial: 'addresses/partials/fields', locals: { f: f, type: type }
   = f.button :submit, t('addresses.save')

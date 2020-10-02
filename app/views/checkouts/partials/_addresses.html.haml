@@ -1,0 +1,29 @@
+= simple_form_for checkout_presenter.order, url: checkout_path, method: :put, validate: true, html: { class: 'res-mb-100' } do |f|
+  .hidden-xs.hidden-sm
+    .row
+      .col-md-5
+        %h3.general-subtitle= t('checkouts.addresses.billing_address')
+        %p.general-info-text= t('checkouts.addresses.all_fields_are_required')
+      .col-md-5.col-md-offset-1
+        %h3.general-subtitle= t('checkouts.addresses.shipping_address')
+  .row
+    .col-md-5.mb-40
+      .visible-xs.visible-sm
+        %h3.general-subtitle= t('checkouts.addresses.billing_address')
+        %p.general-info-text= t('checkouts.addresses.all_fields_are_required')
+      = f.simple_fields_for :billing_address, checkout_presenter.address(checkout_presenter.order.billing_address), validate: true do |fa|
+        = render partial: 'addresses/partials/fields', locals: { f: fa, type: BillingAddress.to_s }
+    .col-md-5.col-md-offset-1.mb-60
+      #shipping_address_form
+        .visible-xs.visible-sm
+          %h3.general-subtitle= t('checkouts.addresses.shipping_address')
+        = f.simple_fields_for :shipping_address, checkout_presenter.address(checkout_presenter.order.shipping_address), validate: true do |fa|
+          = render partial: 'addresses/partials/fields', locals: { f: fa, type: ShippingAddress.to_s }
+      .form-group.checkbox
+        %label.checkbox-label
+          = check_box_tag 'order[only_billing]', "1", false, class: 'checkbox-input', hidden: 'true'
+          %span.checkbox-icon
+            %i.fa.fa-check
+          %span.checkbox-text= t('checkouts.addresses.use_billing_address')
+  .text-center
+    = f.button :submit, t('checkouts.save_and_continue')

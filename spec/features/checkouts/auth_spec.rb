@@ -1,4 +1,12 @@
-RSpec.describe 'Checkout Index', type: :feature do
+RSpec.describe 'Checkout Auth', type: :feature do
+  let(:cart) { create(:cart) }
+  let(:cart_item) { create(:cart_item, cart: cart) }
+
+  before do
+    cart.cart_items << cart_item
+    page.set_rack_session(shopping_cart: cart.id)
+  end
+
   describe 'sign in form' do
     let(:user_data) { attributes_for(:user) }
 
@@ -16,8 +24,8 @@ RSpec.describe 'Checkout Index', type: :feature do
         click_button(I18n.t('checkouts.log_in_with_password'))
       end
 
-      it 'authorizes user and redirects to home page' do
-        expect(page).to have_current_path(root_path)
+      it 'authorizes user and redirects to checkout page' do
+        expect(page).to have_current_path(checkout_path)
       end
     end
 
@@ -51,8 +59,8 @@ RSpec.describe 'Checkout Index', type: :feature do
         end
       end
 
-      it 'registers user and redirects to home page' do
-        expect(page).to have_current_path(root_path)
+      it 'registers user and redirects to checkout page' do
+        expect(page).to have_current_path(checkout_path)
       end
     end
 

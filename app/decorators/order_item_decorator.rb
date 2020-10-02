@@ -1,0 +1,2 @@
+class OrderItemDecorator < ItemDecorator
+end

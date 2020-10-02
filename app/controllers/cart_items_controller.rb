@@ -22,7 +22,7 @@ class CartItemsController < ApplicationController
   private
 
   def update_cart_item(cart_item)
-    cart_item.update(count: cart_item.count + cart_item_params[:count].to_i)
+    cart_item.update(amount: cart_item.amount + cart_item_params[:amount].to_i)
     @shopping_cart.reload
   end
 
@@ -32,6 +32,6 @@ class CartItemsController < ApplicationController
   end
 
   def cart_item_params
-    params.require(:cart_item).permit(:book_id, :count)
+    params.require(:cart_item).permit(:book_id, :amount)
   end
 end

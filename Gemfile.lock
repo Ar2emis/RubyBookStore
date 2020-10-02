@@ -75,11 +75,13 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    after_commit_everywhere (0.1.5)
+      activerecord (>= 4.2)
     arbre (1.3.0)
       activesupport (>= 3.0.0, < 6.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
     ast (2.4.1)
-    autoprefixer-rails (10.0.0.2)
+    autoprefixer-rails (10.0.1.0)
       execjs
     aws-eventstream (1.1.0)
     aws-partitions (1.377.0)
@@ -326,6 +328,9 @@ GEM
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack_session_access (0.2.0)
+      builder (>= 2.0.0)
+      rack (>= 1.0.0)
     rails (6.0.2)
       actioncable (= 6.0.2)
       actionmailbox (= 6.0.2)
@@ -511,6 +516,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   activeadmin
+  after_commit_everywhere
   aws-sdk-s3
   bootsnap (>= 1.1.0)
   bootstrap-sass
@@ -544,6 +550,7 @@ DEPENDENCIES
   pagy
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  rack_session_access
   rails (= 6.0.2)
   rails-controller-testing
   rspec-rails

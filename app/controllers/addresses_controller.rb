@@ -3,7 +3,7 @@ class AddressesController < ApplicationController
 
   def update
     @type = address_params[:type]
-    @address = Address.find_or_initialize_by(user: current_user, type: @type)
+    @address = Address.find_or_initialize_by(addressable: current_user, type: @type)
     @address.update(address_params)
   end
 
@@ -11,6 +11,6 @@ class AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type)
-          .merge(user: current_user)
+          .merge(addressable: current_user)
   end
 end

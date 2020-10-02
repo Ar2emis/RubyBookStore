@@ -12,14 +12,15 @@ en:
         email: Enter email
         password: Password
         password_confirmation: Enter password again
-      review:
         body: Text
+        number: Card Number
+        name: Name on Card
+        expiration_date: MM / YY
+        cvv: CVV
     placeholders:
-      review:
-        review:
+      defaults:
         title: Title
         body: Text
-      defaults:
         email: Enter email
         password: Password
         current_password: Current Password
@@ -31,6 +32,10 @@ en:
         zip: Zip
         country: Select country
         phone: +xxx xx xxx xxxx
+        number: Card Number
+        name: Name on Card
+        expiration_date: MM / YY
+        cvv: CVV
     prompts:
       defaults:
         country: Select your country

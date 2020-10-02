@@ -16,23 +16,23 @@ RSpec.describe CartDecorator do
     end
   end
 
-  describe '#subtotal_price' do
+  describe '#subtotal' do
     it 'returns sum of cart_items prices' do
-      subtotal_price = cart_items.inject(0) { |sum, item| sum + item.count * item.book.price }
-      expect(decorator.subtotal_price).to eq subtotal_price
+      subtotal_price = cart_items.inject(0) { |sum, item| sum + item.amount * item.book.price }
+      expect(decorator.subtotal).to eq subtotal_price
     end
   end
 
-  describe '#coupon_sale' do
+  describe '#discount' do
     let(:coupon) { create(:coupon) }
 
     it 'returns sale of the coupon if coupon exists' do
       cart.coupon = coupon
-      expect(decorator.coupon_sale).to eq coupon.sale
+      expect(decorator.discount).to eq coupon.sale
     end
 
     it 'returns 0.0 of the coupon if coupon does not exist' do
-      expect(decorator.coupon_sale).to be_zero
+      expect(decorator.discount).to be_zero
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe CartDecorator do
 
     it 'returns sum of cart_items with coupon sale' do
       cart.coupon = coupon
-      total_price = cart_items.inject(0) { |sum, item| sum + item.count * item.book.price } - coupon.sale
+      total_price = cart_items.inject(0) { |sum, item| sum + item.amount * item.book.price } - coupon.sale
       expect(decorator.total_price).to eq total_price
     end
   end

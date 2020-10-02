@@ -66,11 +66,11 @@ RSpec.describe Address, type: :model do
   end
 
   context 'with associations' do
-    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:addressable) }
   end
 
   context 'with model fields' do
-    %i[first_name last_name city country zip address phone type user_id].each do |field|
+    %i[first_name last_name city country zip address phone type addressable_id addressable_type].each do |field|
       it { is_expected.to have_db_column(field) }
     end
   end

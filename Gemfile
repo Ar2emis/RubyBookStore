@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'aasm'
 gem 'activeadmin'
+gem 'after_commit_everywhere'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
@@ -60,6 +61,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
+  gem 'rack_session_access'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'

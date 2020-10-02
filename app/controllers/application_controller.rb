@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :shopping_cart, :transfer_shopping_cart_to_user
+  before_action :transfer_shopping_cart_to_user, :shopping_cart
   helper_method :categories, :countries
 
   private

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resource :address, only: [:update]
   resources :reviews, only: [:create]
   resources :cart_items, only: [:create, :destroy]
-  resource :checkout, only: [:show]
+  resource :checkout, only: [:show, :update]
   get '/cart', to: 'cart_items#index'
   post '/coupon', to: 'cart_items#coupon'
 
