@@ -39,9 +39,9 @@ ActiveAdmin.register Order do
     redirect_to(admin_orders_path)
   end
 
-  batch_action I18n.t('activeadmin.orders.change_to_in_canceled'),
+  batch_action I18n.t('activeadmin.orders.change_to_canceled'),
                if: proc { @current_scope.scope_method != :canceled } do |ids|
-    Order.where(id: ids).orders.each(&:canceled_step!)
+    Order.where(id: ids).each(&:canceled_step!)
     redirect_to(admin_orders_path)
   end
 end
