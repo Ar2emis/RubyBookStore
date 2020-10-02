@@ -17,16 +17,4 @@ class CheckoutPresenter < BasePresenter
   def address(address)
     address || Address.new
   end
-
-  def address_full_name(address)
-    "#{address.first_name} #{address.last_name}"
-  end
-
-  def address_city_with_zip(address)
-    "#{address.city} #{address.zip}"
-  end
-
-  def card_last_four_digits
-    @order.card.number[-4..]
-  end
 end

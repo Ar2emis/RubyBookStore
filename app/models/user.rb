@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :user_coupons, dependent: :destroy
   has_many :coupons, through: :user_coupons
+  has_many :orders, dependent: :destroy
 
   validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
   validates :email, presence: true

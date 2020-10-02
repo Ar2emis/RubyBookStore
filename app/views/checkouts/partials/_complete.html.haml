@@ -7,12 +7,12 @@
       %p.general-order-number.mb-0= t('checkouts.complete.order', order: checkout_presenter.order.number)
       %p.general-address.mb-30= Time.zone.today
     %p.general-address
-      = checkout_presenter.address_full_name(checkout_presenter.order.billing_address)
+      = checkout_presenter.order.billing_address.full_name
       = link_to 'edit', checkout_path(state: :addresses), class: 'general-edit'
       %br
       = checkout_presenter.order.billing_address.address
       %br
-      = checkout_presenter.address_city_with_zip(checkout_presenter.order.billing_address)
+      = checkout_presenter.order.billing_address.city_with_zip
       %br
       = checkout_presenter.order.billing_address.country
       %br

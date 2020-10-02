@@ -44,32 +44,4 @@ RSpec.describe CheckoutPresenter do
       expect(presenter.address(nil)).to be_a Address
     end
   end
-
-  describe '#address_full_name' do
-    let(:address) { build(:address, addressable: order) }
-
-    it 'returns first and last name from address' do
-      full_name = "#{address.first_name} #{address.last_name}"
-      expect(presenter.address_full_name(address)).to eq full_name
-    end
-  end
-
-  describe '#address_city_with_zip' do
-    let(:address) { build(:address, addressable: order) }
-
-    it 'returns city and zip from address' do
-      city_with_zip = "#{address.city} #{address.zip}"
-      expect(presenter.address_city_with_zip(address)).to eq city_with_zip
-    end
-  end
-
-  describe '#card_last_four_digits' do
-    let(:card) { build(:card, order: order) }
-
-    it 'returns order card last 4 digits' do
-      order.card = card
-      four_digits = card.number[-4..]
-      expect(presenter.card_last_four_digits).to eq four_digits
-    end
-  end
 end

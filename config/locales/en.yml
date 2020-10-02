@@ -159,3 +159,16 @@ en:
       place_order: Place Order
   order_mailer:
     dear_customer: Dear Customer,
+  orders:
+    my_orders: My Orders
+    sort_by: Sort by
+    number: Number
+    completed_at: Completed at
+    status: Status
+    total: Total
+    date: Date
+    in_queue: Waiting for processing
+    in_delivery: In delivery
+    delivered: Delivered
+    canceled: Canceled
+    order_not_found: Order not found.

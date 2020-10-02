@@ -32,7 +32,7 @@
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('layouts.account')
               %ul.dropdown-menu
                 %li
-                  %a{href: "#"}= t('layouts.orders')
+                  %a{href: orders_path}= t('layouts.orders')
                 %li
                   %a{href: edit_user_registration_path}= t('layouts.settings')
                 %li.divider{role: "separator"}
@@ -59,7 +59,7 @@
               %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t('layouts.account')
               %ul.dropdown-menu
                 %li
-                  %a{href: "#"}= t('layouts.orders')
+                  %a{href: orders_path}= t('layouts.orders')
                 %li
                   %a{href: edit_user_registration_path}= t('layouts.settings')
                 %li.divider{role: "separator"}

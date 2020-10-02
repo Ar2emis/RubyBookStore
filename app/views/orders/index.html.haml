@@ -1,0 +1,63 @@
+%main.container.general-main-wrap
+  %h1.mt-0.mb-25= t('orders.my_orders')
+  %p.lead.small.mb-10.visible-xs= t('orders.sort_by')
+  .dropdowns.dropdown.general-order-dropdown
+    %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = t(@presenter.current_filter)
+      %i.fa.fa-angle-down.dropdown-icon.pull-right
+    %ul.dropdown-menu
+      %li
+        %a{href: orders_path}= t('orders.date')
+      - @presenter.filter_states.each do |state, text|
+        %li
+          %a{href: orders_path(state: state)}= t(text)
+  .visible-xs
+    - @presenter.orders.each_with_index do |order, index|
+      .general-cart-item{ class: @presenter.divider(index) }
+        %table.table
+          %tr
+            %td.col-half
+              = link_to order_path(id: order.id), class: 'general-edit' do
+                %span.in-grey-600= t('orders.number')
+            %td.col-half
+              = link_to order_path(id: order.id), class: 'general-edit' do
+                %span.general-order-number= order.number
+          %tr
+            %td
+              %span.in-grey-600= t('orders.completed_at')
+            %td
+              %span.in-grey-900.font-16.fw-300= order.completed_at
+          %tr
+            %td
+              %span.in-grey-600= t('orders.status')
+            %td
+              %span.font-16.fw-300{class: @presenter.state_color(order)}= t("orders.#{order.state}")
+          %tr
+            %td
+              %span.in-grey-600= t('orders.total')
+            %td
+              %strong.font-16= number_to_currency(order.total_price)
+  .hidden-xs.mb-res-50
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('orders.number')
+          %th
+            %span.in-grey-600= t('orders.completed_at')
+          %th
+            %span.in-grey-600= t('orders.status')
+          %th
+            %span.in-grey-600= t('orders.total')
+      %tbody
+        - @presenter.orders.each do |order|
+          %tr
+            %td
+              = link_to order_path(id: order.id), class: 'general-edit' do
+                %span.general-order-number= order.number
+            %td
+              %span.in-grey-900.font-16.fw-300= order.completed_at
+            %td
+              %span.font-16.fw-300{class: @presenter.state_color(order)}= t("orders.#{order.state}")
+            %td
+              %strong.font-16= number_to_currency(order.total_price)

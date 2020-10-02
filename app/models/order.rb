@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   scope :in_progress, -> { where(state: %i[in_queue in_delivery]) }
   scope :delivered, -> { where(state: :delivered) }
   scope :canceled, -> { where(state: :canceled) }
+  scope :finished_by_user, -> { where(state: %i[in_queue in_delivery delivered canceled]) }
 
   aasm column: :state do
     state :addresses, initial: true

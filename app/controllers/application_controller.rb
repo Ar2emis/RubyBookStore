@@ -5,20 +5,20 @@ class ApplicationController < ActionController::Base
   private
 
   def categories
-    Category.all
+    @categories ||= Category.all
   end
 
   def countries
-    ISO3166::Country.all.sort_by(&:name)
+    @countries ||= ISO3166::Country.all.sort_by(&:name)
   end
 
   def shopping_cart
     if user_signed_in?
-      @shopping_cart = current_user.cart
+      @shopping_cart ||= current_user.cart
     elsif session[:shopping_cart]
-      @shopping_cart = Cart.find(session[:shopping_cart])
+      @shopping_cart ||= Cart.find(session[:shopping_cart])
     else
-      @shopping_cart = Cart.create
+      @shopping_cart ||= Cart.create
       session[:shopping_cart] = @shopping_cart.id
     end
   end

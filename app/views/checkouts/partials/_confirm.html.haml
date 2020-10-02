@@ -2,12 +2,12 @@
   .col-sm-3
     %h3.general-subtitle= t('checkouts.address.shipping_address')
     %p.general-address
-      = checkout_presenter.address_full_name(checkout_presenter.order.shipping_address)
+      = checkout_presenter.order.shipping_address.full_name
       = link_to 'edit', checkout_path(state: :addresses), class: 'general-edit'
       %br
       =checkout_presenter.order.shipping_address.address
       %br
-      = checkout_presenter.address_city_with_zip(checkout_presenter.order.shipping_address)
+      = checkout_presenter.order.shipping_address.city_with_zip
       %br
       = checkout_presenter.order.shipping_address.country
       %br
@@ -15,12 +15,12 @@
   .col-sm-3
     %h3.general-subtitle= t('checkouts.address.billing_address')
     %p.general-address
-      = checkout_presenter.address_full_name(checkout_presenter.order.billing_address)
+      = checkout_presenter.order.billing_address.full_name
       = link_to 'edit', checkout_path(state: :addresses), class: 'general-edit'
       %br
       = checkout_presenter.order.billing_address.address
       %br
-      = checkout_presenter.address_city_with_zip(checkout_presenter.order.billing_address)
+      = checkout_presenter.order.billing_address.city_with_zip
       %br
       = checkout_presenter.order.billing_address.country
       %br
@@ -33,7 +33,7 @@
   .col-sm-3
     %h3.general-subtitle= t('checkouts.confirm.payment_information')
     %p.general-address
-      = t('checkouts.confirm.hidden_card', digits: checkout_presenter.card_last_four_digits)
+      = t('checkouts.confirm.hidden_card', digits: checkout_presenter.order.card.last_four_digits)
       = link_to 'edit', checkout_path(state: :payment), class: 'general-edit'
       %br
       = checkout_presenter.order.card.expiration_date
