@@ -7,6 +7,8 @@ SimpleCov.start 'rails' do
               'app/channels/application_cable',
               'app/admin']
   add_group 'Decorators', 'app/decorators'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Queries', 'app/queries'
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -24,6 +26,7 @@ require 'selenium-webdriver'
 require 'site_prism'
 require 'site_prism/all_there'
 require 'faker'
+require_relative 'support/helpers/presenter_helpers'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -46,6 +49,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
+  config.include PresenterHelpers
 
   Capybara.server = :puma, { Silent: true }
 

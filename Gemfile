@@ -39,6 +39,7 @@ group :development do
   gem 'guard-livereload'
   gem 'lefthook'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pagy'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'

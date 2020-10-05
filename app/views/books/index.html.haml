@@ -1,0 +1,37 @@
+%main.container
+  %h1.general-title-margin= t('books.catalog')
+  .hidden-xs.clearfix
+    .dropdowns.pull-right
+      .dropdown.width-240
+        = render partial: 'books/partials/sorting'
+    %ul.list-inline.pt-10.mb-25.mr-240
+      %li.mr-35
+        = link_to books_path(@presenter.display_params(category: nil)), class: "filter-link #{@presenter.no_category_chosen_class}" do
+          = t('categories.all')
+          %span.badge.general-badge
+            = @presenter.all_books_count
+      - @presenter.categories.each do |category|
+        %li.mr-35
+          = link_to books_path(@presenter.display_params(category: category)), class: "filter-link #{@presenter.chosen_category_class(category)}" do
+            = category.name
+            %span.badge.general-badge= category.books.count
+  .dropdowns.mb-25.visible-xs
+    %p.lead.small.mb-10= t('books.filter_by_category')
+    .dropdown
+      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        = @presenter.current_category
+        %i.fa.fa-angle-down.dropdown-icon.pull-right
+      %ul.dropdown-menu
+        %li
+          %a{href: books_path(@presenter.display_params(category: nil))}= t('categories.all')
+        - @presenter.categories.each do |category|
+          %li
+            %a{href: books_path(@presenter.display_params(category: category))}= category.name
+    %p.lead.small.mb-10= t('books.sort.sort_by')
+    .dropdown
+      = render partial: 'books/partials/sorting'
+  .mb-120
+    .row#books_list
+      = render 'books/partials/books'
+    #div_next_link.text-center
+      = render partial: 'books/partials/next_link'
