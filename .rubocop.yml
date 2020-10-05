@@ -21,7 +21,10 @@ Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context', 'guard']
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'app/admin/*.rb'
+    - 'Guardfile'
 
 Style/FrozenStringLiteralComment:
   Enabled: false

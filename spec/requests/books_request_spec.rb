@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Books', type: :request do
   describe 'GET /books' do
     before do

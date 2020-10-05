@@ -1,15 +1,5 @@
 require 'spec_helper'
-require 'simplecov'
-SimpleCov.start 'rails' do
-  minimum_coverage 90
-  add_filter ['app/jobs/application_job.rb',
-              'app/mailers/application_mailer.rb',
-              'app/channels/application_cable',
-              'app/admin']
-  add_group 'Decorators', 'app/decorators'
-  add_group 'Presenters', 'app/presenters'
-  add_group 'Queries', 'app/queries'
-end
+require_relative 'support/simplecov'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
@@ -26,6 +16,7 @@ require 'selenium-webdriver'
 require 'site_prism'
 require 'site_prism/all_there'
 require 'faker'
+require 'devise'
 require_relative 'support/helpers/presenter_helpers'
 
 begin
@@ -35,13 +26,6 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
-
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -49,24 +33,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include PresenterHelpers
-
-  Capybara.server = :puma, { Silent: true }
-
-  Capybara.register_driver :chrome_headless do |app|
-    options = ::Selenium::WebDriver::Chrome::Options.new
-
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--window-size=1400,1400')
-
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-  end
-
-  Capybara.javascript_driver = :chrome_headless
-  Capybara.default_max_wait_time = 10
-  Capybara::Screenshot.prune_strategy = :keep_last_run
 
   config.before(:each, type: :system) do
     driven_by :rack_test
@@ -76,3 +45,5 @@ RSpec.configure do |config|
     driven_by :chrome_headless
   end
 end
+
+Dir[Rails.root.join('spec/support/config/*.rb')].sort.each { |file| require file }

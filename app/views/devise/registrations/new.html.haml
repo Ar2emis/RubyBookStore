@@ -1,0 +1,15 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t('registrations.sign_up')
+    %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
+      %i.fa.fa-facebook-official
+    %p.general-login-text= t('registrations.or')
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'width-370 center-form' }) do |f|
+    = f.input :email, required: false, autocomplete: "email"
+    = f.input :password, autocomplete: "new-password"
+    = f.input :password_confirmation, autocomplete: "new-password"
+    .text-center
+      = f.button :submit, t('registrations.sign_up')
+  %p.general-sign-text.text-center
+    = t('registrations.already_have_an_account')
+    %a.in-gold-500{href: new_user_session_path}= t('registrations.already_have_an_account')
