@@ -1,8 +1,0 @@
-%main.container.general-main-wrap
-  .text-center
-    %h3.general-login-title= t('passwords.set_new_password')
-  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'general-form', method: :put }) do |f|
-    = f.hidden_field :reset_password_token
-    = f.input :password, autocomplete: "new-password", placeholder: t('passwords.set_new_password'), label: t('passwords.type_a_new_password')
-    = f.input :password_confirmation, autocomplete: "new-password", placeholder: t('passwords.confirm_password'), label: t('passwords.confirm_password')
-    = f.button :submit, t('passwords.change'), class: 'center-block'

@@ -5,11 +5,9 @@ en:
     shop_name: BookStore
     home: Home
     shop: Shop
-    account: Account
     my_account: My account
-    sign_in: Sign in
+    log_in: Log in
     sign_up: Sign up
-    log_out: Log out
     orders: Orders
     settings: Settings
   categories:
@@ -50,28 +48,3 @@ en:
   flash:
     book_successfuly_added: Book successfully added to your cart
     error: An error has occurred. Please try again later...
-  passwords:
-    set_new_password: Set new password
-    type_a_new_password: Type a new Password
-    confirm_password: Confirm Password
-    change: Change
-    forgot_your_password: Forgot your password?
-    we_will_email_you: We'll email you instructions on how to reset it
-    enter_your_email: Enter your email
-    email_instructions: Email Instructions
-    cancel: Cancel
-  registrations:
-    sign_up: Sign Up
-    enter_email: Enter Email
-    password: Password
-    confirm_password: Confirm Password
-    already_have_an_account: Already have an Account?
-    sign_in: Sign in
-    or: or
-  sessions:
-    sign_in: Sign in
-    sign_up: Sign Up
-    forgot_password: Forgot password?
-    remember_me: Remember me
-    dont_have_an_account: Don't have an Account?
-    or: or
