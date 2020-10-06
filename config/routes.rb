@@ -3,6 +3,4 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root 'static_pages#home'
-
-  resources :books, only: [:index, :show]
 end
