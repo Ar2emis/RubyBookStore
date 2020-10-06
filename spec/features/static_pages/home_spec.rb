@@ -12,7 +12,7 @@ RSpec.describe 'Home', type: :feature do
       within('ol.carousel-indicators') { expect(page).to have_selector('li', count: books.count) }
     end
 
-    it 'has books data' do
+    it 'has books titles' do
       books.each do |book|
         expect(page).to have_content(book.title)
         expect(page).to have_content(book.description)

@@ -1,4 +1,4 @@
-class CreateBooks < ActiveRecord::Migration[6.0]
+class CreateBooks < ActiveRecord::Migration[5.2]
   def change
     create_table :books do |t|
       t.string :title, null: false
@@ -8,8 +8,8 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.float :width, scale: 2
       t.float :height, scale: 2
       t.float :depth, scale: 2
-      t.string :materials
-      t.belongs_to :category, foreign_key: { to_table: :categories }
+      t.string :material
+      t.belongs_to :category
 
       t.timestamps
     end

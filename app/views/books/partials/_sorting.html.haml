@@ -1,9 +1,0 @@
-%a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-  = t(@presenter.current_sort)
-  %i.fa.fa-angle-down.dropdown-icon.pull-right
-%ul.dropdown-menu
-  - @presenter.sort_parameters.each do |sort_key, sort_name|
-    %li
-      %a{href: books_path(@presenter.display_params(sort: sort_key))}= t(sort_name)
-  %li
-    %a{href: "#"} Popular first
