@@ -4,3 +4,7 @@ pre-commit:
       rubocop:
         glob: "*.rb"
         run: bundle exec rubocop
+    DatabaseConsistency:
+      enabled: true
+      quiet: false
+      command: ['bundle', 'exec', 'database_consistency']
