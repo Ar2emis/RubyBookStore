@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Home', type: :feature do
   context 'with slider' do
     let!(:books) { BookDecorator.decorate_collection(create_list(:book, StaticPagesController::LATEST_BOOKS_AMOUNT)) }

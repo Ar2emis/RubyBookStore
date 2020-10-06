@@ -1,10 +1,10 @@
 RSpec.describe 'books#index', type: :feature do
   context 'with books filtering' do
-    let(:category) { create(:category) }
-    let(:another_category) { create(:category) }
-    let(:books_amount) { 3 }
-    let!(:category_books) { create_list(:book, books_amount, category: category) }
-    let!(:other_books) { create_list(:book, books_amount, category: another_category) }
+    let!(:category) { create(:category) }
+    let(:category_books_amount) { 3 }
+    let!(:category_books) { create_list(:book, category_books_amount, category: category) }
+    let(:other_books_amount) { 3 }
+    let!(:other_books) { create_list(:book, other_books_amount) }
 
     before do
       visit books_path
@@ -27,7 +27,7 @@ RSpec.describe 'books#index', type: :feature do
         end
       end
 
-      it "doesn't display others books" do
+      it "does't display others books" do
         other_books.each do |book|
           expect(page).not_to have_content(book.title)
         end
