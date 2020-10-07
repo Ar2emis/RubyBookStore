@@ -9,9 +9,9 @@
     #address.tab-pane.fade.in.active.general-main-wrap{role: "tabpanel"}
       .row
         .col-md-5.mb-40
-          = render partial: 'addresses/partials/form', locals: { address: current_user.billing_address, type: BillingAddress.to_s }
+          = render partial: 'addresses/partials/form', locals: { address: current_user.billing_address, type: :billing }
         .col-md-5.col-md-offset-1.mb-25
-          = render partial: 'addresses/partials/form', locals: { address: current_user.shipping_address, type: ShippingAddress.to_s }
+          = render partial: 'addresses/partials/form', locals: { address: current_user.shipping_address, type: :shipping }
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
