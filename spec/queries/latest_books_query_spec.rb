@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe LatestBooksQuery do
   let(:amount) { 3 }
   let(:old_book) { create(:book, created_at: 'Wed, 02 Sep 2020 09:01:00') }

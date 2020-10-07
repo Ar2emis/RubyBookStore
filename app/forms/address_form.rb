@@ -18,6 +18,13 @@ class AddressForm < BaseForm
   validate :country_code_of_the_selected_country, if: -> { phone.present? }
   validate :country_from_the_above, if: -> { country.present? }
 
+  def self.from_address(address)
+    return new unless address
+
+    address_attributes = address.attributes.except('id', 'user_id', 'created_at', 'updated_at')
+    new(address_attributes)
+  end
+
   def submit
     case address_type
     when 'billing' then user.billing_address = Address.new(@params)

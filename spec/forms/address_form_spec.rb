@@ -72,4 +72,12 @@ RSpec.describe AddressForm, type: :model do
       expect(address_form.submit).to be_a Address
     end
   end
+
+  describe '#from_address' do
+    let(:address) { build(:address) }
+
+    it 'creates form instance by address attributes' do
+      expect(described_class.from_address(address)).to be_a described_class
+    end
+  end
 end

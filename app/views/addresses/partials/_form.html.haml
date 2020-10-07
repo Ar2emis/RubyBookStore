@@ -1,3 +1,3 @@
-= simple_form_for(address || AddressForm.new, as: :address, validate: true, remote: true, url: address_path, method: :put, html: { id: "#{type}_address" }) do |f|
+= simple_form_for(address, as: :address, validate: true, remote: true, url: address_path, method: :put, html: { id: "#{type}_address" }) do |f|
   = render partial: 'addresses/partials/fields', locals: { f: f, type: type }
   = f.button :submit, t('addresses.save')
