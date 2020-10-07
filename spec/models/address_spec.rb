@@ -1,6 +1,6 @@
 RSpec.describe Address, type: :model do
   context 'with validations' do
-    %i[first_name last_name city country zip address phone type].each do |property|
+    %i[first_name last_name city country zip address phone address_type].each do |property|
       it { is_expected.to validate_presence_of(property) }
     end
   end
