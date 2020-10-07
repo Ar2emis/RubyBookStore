@@ -3,7 +3,7 @@
     %span.img-circle.logo-size.inlide-block.pull-left.logo-empty=review.user.email.chr.capitalize
     .ml-70
       %div
-        .general-message-date.hidden-xs= review.date
+        .general-message-date.hidden-xs= review.created_at.strftime('%Y/%m/%d')
         .max-240
           .general-message-verified= t('reviews.verified_reviewer')
           .general-message-name= review.title

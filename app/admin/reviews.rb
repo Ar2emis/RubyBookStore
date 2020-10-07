@@ -30,20 +30,20 @@ ActiveAdmin.register Review do
   end
 
   action_item :approve, only: :show do
-    link_to 'Approve', approve_admin_review_path(resource), method: :put
+    link_to I18n.t('activeadmin.reviews.approve'), approve_admin_review_path(resource), method: :put
   end
 
   action_item :reject, only: :show do
-    link_to 'Reject', reject_admin_review_path(resource), method: :put
+    link_to I18n.t('activeadmin.reviews.reject'), reject_admin_review_path(resource), method: :put
   end
 
   member_action :approve, method: :put do
     resource.approved!
-    redirect_to(resource_path, notice: 'Approved!')
+    redirect_to(resource_path, notice: I18n.t('activeadmin.reviews.approved'))
   end
 
   member_action :reject, method: :put do
     resource.rejected!
-    redirect_to(resource_path, notice: 'Rejected!')
+    redirect_to(resource_path, notice: I18n.t('activeadmin.reviews.rejected'))
   end
 end

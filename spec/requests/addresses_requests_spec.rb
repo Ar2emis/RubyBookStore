@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Addresses', type: :request do
   describe 'PUT /addresses' do
     let(:address_attributes) { attributes_for(:address) }
