@@ -8,11 +8,3 @@ en:
               invalid: has invalid format.
             password:
               invalid: must contain at least 1 uppercase, at least 1 lowercase, at least 1 number.
-        review:
-          attributes:
-            title:
-              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
-            body:
-              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
-            book_rate:
-              blank: must be selected

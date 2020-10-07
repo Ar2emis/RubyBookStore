@@ -5,7 +5,6 @@ class CreateReviews < ActiveRecord::Migration[6.0]
       t.integer :book_rate, null: false
       t.string :title, null: false
       t.text :body, null: false
-      t.date :date
       t.belongs_to :user, foreign_key: { to_table: :users }
       t.integer :status, default: 0
 

@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 2020_09_19_103401) do
     t.integer "book_rate", null: false
     t.string "title", null: false
     t.text "body", null: false
-    t.date "date"
     t.bigint "user_id"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false

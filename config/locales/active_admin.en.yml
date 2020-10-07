@@ -1,0 +1,7 @@
+en:
+  activeadmin:
+    reviews:
+      approve: Approve
+      reject: Reject
+      approved: Approved!
+      rejected: Rejected!
