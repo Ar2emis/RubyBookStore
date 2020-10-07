@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_09_19_103401) do
     t.string "zip", null: false
     t.string "country", null: false
     t.string "phone", null: false
-    t.string "type"
+    t.integer "address_type", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

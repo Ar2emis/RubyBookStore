@@ -6,8 +6,4 @@ class ApplicationController < ActionController::Base
   def categories
     Category.all
   end
-
-  def countries
-    ISO3166::Country.all.sort_by(&:name)
-  end
 end

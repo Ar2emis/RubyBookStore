@@ -1,6 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  # protect_from_forgery prepend: true
-
   protected
 
   def without_password?

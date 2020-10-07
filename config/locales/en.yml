@@ -79,8 +79,8 @@ en:
     remove_my_account: Remove my Account
     i_understand: I understand that all data will be lost
   addresses:
-    billingaddress: Billing Address
-    shippingaddress: Shipping Address
+    billing_address: Billing Address
+    shipping_address: Shipping Address
     save: Save
   sessions:
     sign_in: Sign in
