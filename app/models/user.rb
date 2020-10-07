@@ -5,11 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_one :billing_address, dependent: :destroy
-  has_one :shipping_address, dependent: :destroy
-
-  accepts_nested_attributes_for :billing_address
-  accepts_nested_attributes_for :shipping_address
+  has_one :billing_address, -> { where(address_type: :billing) },
+          inverse_of: :user, class_name: 'Address', dependent: :destroy
+  has_one :shipping_address, -> { where(address_type: :shipping) },
+          inverse_of: :user, class_name: 'Address', dependent: :destroy
 
   validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
   validates :email, presence: true

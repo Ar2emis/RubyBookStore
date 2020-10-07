@@ -1,5 +1,5 @@
 RSpec.describe 'Edit', type: :feature do
-  [BillingAddress.to_s, ShippingAddress.to_s].each do |type|
+  %i[billing shipping].each do |type|
     describe type, js: true do
       let(:address_data) { attributes_for(:address) }
       let(:user) { create(:user) }
@@ -11,13 +11,13 @@ RSpec.describe 'Edit', type: :feature do
 
       context 'with valid input' do
         before do
-          within "##{type}" do
+          within "##{type}_address" do
             fill_in(I18n.t('simple_form.placeholders.defaults.first_name'), with: address_data[:first_name])
             fill_in(I18n.t('simple_form.placeholders.defaults.last_name'), with: address_data[:last_name])
             fill_in(I18n.t('simple_form.placeholders.defaults.address'), with: address_data[:address])
             fill_in(I18n.t('simple_form.placeholders.defaults.city'), with: address_data[:city])
             fill_in(I18n.t('simple_form.placeholders.defaults.zip'), with: address_data[:zip])
-            page.select(address_data[:country], from: 'address_country')
+            select(address_data[:country], from: 'address_country')
             fill_in(I18n.t('simple_form.placeholders.defaults.phone'), with: address_data[:phone])
             click_button(I18n.t('addresses.save'))
           end
@@ -30,7 +30,7 @@ RSpec.describe 'Edit', type: :feature do
 
       context 'with invalid input' do
         before do
-          within "##{type}" do
+          within "##{type}_address" do
             click_button(I18n.t('addresses.save'))
           end
         end

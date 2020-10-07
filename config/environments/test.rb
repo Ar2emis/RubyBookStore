@@ -54,7 +54,6 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
-    Bullet.raise = true
   end
 
   config.factory_bot.definition_file_paths = ["spec/support/factories"]
