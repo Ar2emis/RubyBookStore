@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  context 'with validations' do
-    %i[title body book_rate].each do |property|
-      it { is_expected.to validate_presence_of(property) }
-    end
-  end
-
   context 'with associations' do
     %i[book user].each do |model|
       it { is_expected.to belong_to(model) }
