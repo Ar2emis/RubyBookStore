@@ -25,21 +25,21 @@ RSpec.describe 'Show', type: :feature do
 
   describe 'approve action' do
     before do
-      click_link('Approve')
+      click_link(I18n.t('activeadmin.reviews.approve'))
     end
 
     it 'displays approve message' do
-      expect(page).to have_content('Approved!')
+      expect(page).to have_content(I18n.t('activeadmin.reviews.approved'))
     end
   end
 
   describe 'reject action' do
     before do
-      click_link('Reject')
+      click_link(I18n.t('activeadmin.reviews.reject'))
     end
 
     it 'displays approve message' do
-      expect(page).to have_content('Rejected!')
+      expect(page).to have_content(I18n.t('activeadmin.reviews.rejected'))
     end
   end
 end

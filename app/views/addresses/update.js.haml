@@ -1,1 +1,1 @@
-$("##{@type}-form").html('#{j(render partial: "addresses/partials/form", locals: { address: @address, type: @type, countries: countries })}');
+$("##{@type}-form").html('#{j(render partial: "addresses/partials/form", locals: { address: @form, type: @form.address_type })}');

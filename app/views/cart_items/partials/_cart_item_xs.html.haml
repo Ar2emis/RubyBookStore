@@ -3,7 +3,7 @@
     %span{'aria-hidden': "true"} &times;
   = link_to book_path(id: cart_item.book.id) do
     .general-img-wrap-table
-      %img.cart-img-shadow{src: presenter.title_image_url(cart_item.book), alt: "design-book"}
+      %img.cart-img-shadow{src: cart_item.book.title_image.url(:w170), alt: "design-book"}
     %p.title= cart_item.book.title
   %table.table
     %tr

@@ -1,15 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :shopping_cart, :transfer_shopping_cart_to_user
-  helper_method :categories, :countries
+  helper_method :categories
 
   private
 
   def categories
     Category.all
-  end
-
-  def countries
-    ISO3166::Country.all.sort_by(&:name)
   end
 
   def shopping_cart
