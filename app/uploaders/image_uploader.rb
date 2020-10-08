@@ -13,16 +13,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [170, nil]
   end
 
-  version :w550 do
-    process resize_to_fit: [550, nil]
-  end
-
   version :w200 do
     process resize_to_fit: [200, nil]
   end
 
   version :w300 do
     process resize_to_fit: [300, nil]
+  end
+
+  version :w550 do
+    process resize_to_fit: [550, nil]
   end
 
   def extension_whitelist

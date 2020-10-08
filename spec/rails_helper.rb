@@ -17,6 +17,7 @@ require 'site_prism'
 require 'site_prism/all_there'
 require 'faker'
 require 'devise'
+require 'carrierwave/test/matchers'
 require_relative 'support/helpers/presenter_helpers'
 
 begin
@@ -36,6 +37,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include PresenterHelpers
+  config.include CarrierWave::Test::Matchers
 
   config.before(:each, type: :system) do
     driven_by :rack_test
