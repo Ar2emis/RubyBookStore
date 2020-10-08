@@ -2,7 +2,7 @@
   .col-xs-6.col-sm-3
     .general-thumb-wrap
       .thumbnail.general-thumbnail
-        %img.img-shadow.general-thumbnail-img{src: @presenter.title_image_url(book), alt: "design-book"}
+        %img.img-shadow.general-thumbnail-img{src: book.title_image.url(:w200), alt: "design-book"}
         .thumb-hover
           .general-thumb-link-wrap
             = link_to book, class: 'thumb-hover-link' do

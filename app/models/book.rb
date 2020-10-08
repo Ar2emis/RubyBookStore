@@ -15,8 +15,8 @@ class Book < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :category
 
-  has_one_attached :title_image, dependent: :destroy
-  has_many_attached :images, dependent: :destroy
+  mount_uploader :title_image, ImageUploader
+  mount_uploaders :images, ImageUploader
 
   scope :ordered, ->(order_type) { order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) }
   scope :with_authors, -> { includes(:authors) }

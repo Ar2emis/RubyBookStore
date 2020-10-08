@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :categories, :countries
+  helper_method :categories
 
   private
 

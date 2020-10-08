@@ -6,11 +6,11 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: @presenter.title_image_url }
+          %img.img-responsive{src: @presenter.book.title_image.url(:w550) }
         .images.clearfix
-          - @presenter.book.images_urls.each do |url|
+          - @presenter.book.images.each do |image|
             %a.img-link{href: "#"}
-              %img{src: url}
+              %img{src: image.url(:w170)}
     .col-sm-6
       %h1.mt-res-0= @presenter.book.title
       %p.lead.small= @presenter.book.authors_names
