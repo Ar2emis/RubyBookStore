@@ -1,6 +1,6 @@
 %h1.general-title-margin= t('cart.cart')
 .visible-xs
-  = render partial: 'cart_items/partials/cart_item_xs', collection: shopping_cart.ordered_cart_items, as: :cart_item, locals: { presenter: BasePresenter.new(view: self) }
+  = render partial: 'cart_items/partials/cart_item_xs', collection: shopping_cart.ordered_cart_items, as: :cart_item
 .hidden-xs
   %table.table.table-hover
     %tr.no-hover
@@ -14,7 +14,7 @@
       %th.col-total
         %span.in-grey-600= t('cart.subtotal')
       %th.col-close
-    = render partial: 'cart_items/partials/cart_item_xl', collection: shopping_cart.ordered_cart_items, as: :cart_item, locals: { presenter: BasePresenter.new(view: self) }
+    = render partial: 'cart_items/partials/cart_item_xl', collection: shopping_cart.ordered_cart_items, as: :cart_item
 .general-order-wrap
   .row
     .col-sm-4
