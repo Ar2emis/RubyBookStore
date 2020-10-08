@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
   def coupon
     coupon = Coupon.find_by(code: params[:code])
     service = AddCouponService.call(coupon: coupon, cart: @shopping_cart)
-    flash[:error] = service.errors.join(', ') unless service.success?
+    flash[:error] = service.errors_message unless service.success?
     redirect_to(cart_path)
   end
 
