@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def categories
-    Category.all
+    @categories ||= Category.all
   end
 
   def shopping_cart
