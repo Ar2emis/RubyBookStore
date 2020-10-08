@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  helper_method :categories, :countries
+  helper_method :categories
 
   private
 
   def categories
-    Category.all
+    @categories ||= Category.all
   end
 end
