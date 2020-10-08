@@ -1,5 +1,5 @@
 ActiveAdmin.register Book do
-  includes :category, :authors, title_image_attachment: :blob
+  includes :category, :authors
   decorate_with BookDecorator
   permit_params :title, :price, :description, :publication_year,
                 :width, :height, :depth, :title_image,
@@ -8,7 +8,7 @@ ActiveAdmin.register Book do
   index do
     selectable_column
     column :title_image do |book|
-      image_tag(book.title_image_url(size: '100x100')) if book.title_image.attached?
+      image_tag(book.title_image.url(:w170))
     end
     column :title do |book|
       link_to book.title, resource_path(book)
@@ -25,11 +25,11 @@ ActiveAdmin.register Book do
   show do
     attributes_table do
       row :title_image do |book|
-        image_tag(book.title_image_url(size: '400x400')) if book.title_image.attached?
+        image_tag(book.title_image.url(:w550))
       end
-      book.images_urls(size: '200x200').each do |url|
+      book.images.each do |image|
         row :image do
-          image_tag(url)
+          image_tag(image.url(:w200))
         end
       end
       row :title
@@ -58,17 +58,9 @@ ActiveAdmin.register Book do
       f.input :depth
       f.input :materials
       f.input :title_image, as: :file,
-                            hint: if book.title_image.attached?
-                                    image_tag(book.decorate.title_image_url(size: '400x400'))
-                                  end
+                            hint: (image_tag(book.title_image.url(:w550)) unless book.title_image.nil?)
       f.input :images, as: :file, input_html: { multiple: true }
     end
     actions
-  end
-
-  controller do
-    def find_resource
-      scoped_collection.where(id: params[:id]).with_attached_images.first!
-    end
   end
 end

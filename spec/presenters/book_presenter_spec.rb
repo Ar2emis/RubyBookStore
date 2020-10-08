@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe BookPresenter do
   subject(:presenter) { described_class.new(view: fake_view, book: book) }
 
