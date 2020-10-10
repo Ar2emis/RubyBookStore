@@ -18,7 +18,7 @@ RSpec.describe CartDecorator do
 
   describe '#subtotal_price' do
     it 'returns sum of cart_items prices' do
-      subtotal_price = cart_items.inject(0) { |sum, item| sum + item.count * item.book.price }
+      subtotal_price = cart_items.inject(0) { |sum, item| sum + item.amount * item.book.price }
       expect(decorator.subtotal_price).to eq subtotal_price
     end
   end
@@ -41,7 +41,7 @@ RSpec.describe CartDecorator do
 
     it 'returns sum of cart_items with coupon sale' do
       cart.coupon = coupon
-      total_price = cart_items.inject(0) { |sum, item| sum + item.count * item.book.price } - coupon.sale
+      total_price = cart_items.inject(0) { |sum, item| sum + item.amount * item.book.price } - coupon.sale
       expect(decorator.total_price).to eq total_price
     end
   end

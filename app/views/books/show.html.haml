@@ -17,13 +17,13 @@
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10 #{t('currency')}#{@presenter.book.price}
-        = form_for :cart_item, as: :cart_item, url: cart_items_path do |f|
+        = form_for 'cart[cart_item]', url: cart_path, method: :put do |f|
           .col-xs-5.col-md-3
             .input-group.general-position
               %a.input-link.b-n.pt-7#minus
                 %i.fa.fa-minus.line-height-40
               = f.hidden_field :book_id, value: @presenter.book.id
-              = f.text_field :count, class: 'form-control quantity-input input-count-book', value: 1
+              = f.text_field :amount, class: 'form-control quantity-input input-count-book', value: 1
               %a.b-n.input-link#plus
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5

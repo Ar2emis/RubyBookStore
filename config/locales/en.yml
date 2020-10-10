@@ -99,6 +99,7 @@ en:
     cart: Cart
     coupon_used: Coupon has already used.
     invalid_coupon: Invalid coupon code.
+    coupon_added: Coupon successfully added to your cart.
     quantity: Quantity
     price: Price
     subtotal: SubTotal

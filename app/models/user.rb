@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :reviews, dependent: :destroy
-  has_many :user_coupons, dependent: :destroy
-  has_many :coupons, through: :user_coupons
+  has_many :couponable_coupons, as: :couponable, dependent: :destroy
+  has_many :coupons, through: :couponable_coupons
   has_one :cart, dependent: :destroy
   has_one :billing_address, -> { where(address_type: :billing) },
           inverse_of: :user, class_name: 'Address', dependent: :destroy

@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "count", default: 1
+    t.integer "amount", default: 1
     t.bigint "cart_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
@@ -113,6 +113,16 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "couponable_coupons", force: :cascade do |t|
+    t.string "couponable_type"
+    t.bigint "couponable_id"
+    t.bigint "coupon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coupon_id"], name: "index_couponable_coupons_on_coupon_id"
+    t.index ["couponable_type", "couponable_id"], name: "index_couponable_coupons_on_couponable_type_and_couponable_id"
+  end
+
   create_table "coupons", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "sale", precision: 8, scale: 2, null: false
@@ -132,15 +142,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "user_coupons", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "coupon_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["coupon_id"], name: "index_user_coupons_on_coupon_id"
-    t.index ["user_id"], name: "index_user_coupons_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -170,8 +171,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "carts", "coupons"
   add_foreign_key "carts", "users"
+  add_foreign_key "couponable_coupons", "coupons"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
-  add_foreign_key "user_coupons", "coupons"
-  add_foreign_key "user_coupons", "users"
 end

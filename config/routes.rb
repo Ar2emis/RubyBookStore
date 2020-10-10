@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
 
   resources :books, only: [:index, :show]
-  resource :address, only: [:update]
   resources :reviews, only: [:create]
-  resources :cart_items, only: [:create, :destroy]
-  get '/cart', to: 'cart_items#index'
-  post '/coupon', to: 'cart_items#coupon'
+  resource :address, only: [:update]
+  resource :cart, only: [:show, :update, :destroy]
 
   match '*path' => redirect('/'), via: [:get]
 end
