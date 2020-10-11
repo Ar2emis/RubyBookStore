@@ -47,7 +47,7 @@ class CheckoutsController < ApplicationController
   end
 
   def current_order
-    @current_order ||= Order.find_by(id: session[:order]) || TransferCartToOrderService.call(cart: shopping_cart).order
+    @current_order ||= Order.find_by(id: session[:order]) || TransferCartToOrderService.call(cart: @shopping_cart).order
     session[:order] ||= @current_order.id
     @current_order
   end

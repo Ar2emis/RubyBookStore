@@ -4,8 +4,10 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :coupon, optional: true
   has_many :order_items, dependent: :destroy
-  has_one :billing_address, as: :addressable, dependent: :destroy
-  has_one :shipping_address, as: :addressable, dependent: :destroy
+  has_one :billing_address, -> { where(address_type: :billing) },
+          inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
+  has_one :shipping_address, -> { where(address_type: :shipping) },
+          inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
   has_one :order_delivery_type, dependent: :destroy
   has_one :delivery_type, through: :order_delivery_type
   has_one :card, dependent: :destroy

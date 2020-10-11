@@ -7,8 +7,8 @@ class AddOrderAddressesService < BaseService
   end
 
   def call
-    billing_address = BillingAddress.create(@billing_params)
-    shipping_address = ShippingAddress.create(@shipping_params)
+    billing_address = Address.create(@billing_params)
+    shipping_address = Address.create(@shipping_params)
     return if billing_address.invalid? || shipping_address.invalid?
 
     @order.update(billing_address: billing_address, shipping_address: shipping_address)

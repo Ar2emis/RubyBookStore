@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
-
 gem 'aasm'
 gem 'activeadmin'
 gem 'after_commit_everywhere'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
+gem 'carrierwave'
+gem 'carrierwave-aws'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'countries'
@@ -27,7 +27,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '6.0.2'
 gem 'sassc-rails'
-gem 'shrine'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier'

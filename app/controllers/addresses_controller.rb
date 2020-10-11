@@ -2,15 +2,16 @@ class AddressesController < ApplicationController
   before_action :authenticate_user!
 
   def update
-    @type = address_params[:type]
-    @address = Address.find_or_initialize_by(addressable: current_user, type: @type)
-    @address.update(address_params)
+    @form = AddressForm.new(address_params)
+    return if @form.invalid?
+
+    @form.submit
   end
 
   private
 
   def address_params
-    params.require(:address).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :type)
+    params.require(:address).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :address_type)
           .merge(addressable: current_user)
   end
 end

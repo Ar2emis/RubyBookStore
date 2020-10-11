@@ -1,7 +1,7 @@
 RSpec.describe 'Checkout Complete', type: :feature do
   let(:user) { create(:user) }
   let(:order) { create(:order, user: user, state: :complete) }
-  let!(:billing_address) { create(:address, type: BillingAddress.to_s, addressable: order) }
+  let!(:billing_address) { create(:address, address_type: :billing, addressable: order) }
   let(:delivery_type) { create(:delivery_type) }
 
   before do

@@ -5,12 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_one :billing_address, as: :addressable, dependent: :destroy
-  has_one :shipping_address, as: :addressable, dependent: :destroy
-  has_one :cart, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :user_coupons, dependent: :destroy
-  has_many :coupons, through: :user_coupons
+  has_many :couponable_coupons, as: :couponable, dependent: :destroy
+  has_many :coupons, through: :couponable_coupons
+  has_one :cart, dependent: :destroy
+  has_one :billing_address, -> { where(address_type: :billing) },
+          inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
+  has_one :shipping_address, -> { where(address_type: :shipping) },
+          inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
 
   validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
   validates :email, presence: true

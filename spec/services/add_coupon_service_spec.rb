@@ -4,7 +4,7 @@ RSpec.describe AddCouponService do
     let(:cart) { create(:cart) }
 
     it 'returns instance of the service' do
-      expect(described_class.call(coupon: coupon, cart: cart)).to be_a described_class
+      expect(described_class.call(coupon_params: { code: coupon.code }, cart: cart)).to be_a described_class
     end
   end
 
@@ -12,7 +12,7 @@ RSpec.describe AddCouponService do
     let(:cart) { create(:cart) }
 
     context 'when service successeded' do
-      subject(:service) { described_class.call(coupon: coupon, cart: cart) }
+      subject(:service) { described_class.call(coupon_params: { code: coupon.code }, cart: cart) }
 
       let(:coupon) { create(:coupon) }
 
@@ -22,7 +22,7 @@ RSpec.describe AddCouponService do
     end
 
     context 'when service failed' do
-      subject(:service) { described_class.call(coupon: nil, cart: cart) }
+      subject(:service) { described_class.call(coupon_params: { code: '' }, cart: cart) }
 
       it 'returns false' do
         expect(service).not_to be_success

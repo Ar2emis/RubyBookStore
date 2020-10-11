@@ -10,12 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :books, only: [:index, :show]
-  resource :address, only: [:update]
   resources :reviews, only: [:create]
-  resources :cart_items, only: [:create, :destroy]
+  resource :address, only: [:update]
+  resource :cart, only: [:show, :update, :destroy]
   resource :checkout, only: [:show, :update]
-  get '/cart', to: 'cart_items#index'
-  post '/coupon', to: 'cart_items#coupon'
 
   match '*path' => redirect('/'), via: [:get]
 end
