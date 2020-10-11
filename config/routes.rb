@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :books, only: [:index, :show]
+  resource :address, only: [:update]
   resources :reviews, only: [:create]
   resources :cart_items, only: [:create, :destroy]
-  resource :checkouts, only: [:show]
-  # get '/checkout', to: 'checkouts#index'
+  resource :checkout, only: [:show, :update]
   get '/cart', to: 'cart_items#index'
   post '/coupon', to: 'cart_items#coupon'
 

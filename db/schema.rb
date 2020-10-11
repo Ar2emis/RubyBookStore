@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_090617) do
+ActiveRecord::Schema.define(version: 2020_09_30_200523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,12 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.string "zip", null: false
     t.string "country", null: false
     t.string "phone", null: false
-    t.integer "address_type", null: false
+    t.string "type", null: false
+    t.string "addressable_type"
+    t.bigint "addressable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -105,8 +108,19 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.string "number", null: false
+    t.string "name", null: false
+    t.string "expiration_date", null: false
+    t.string "cvv", null: false
+    t.bigint "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_cards_on_order_id"
+  end
+
   create_table "cart_items", force: :cascade do |t|
-    t.integer "count", default: 1
+    t.integer "amount", default: 1
     t.bigint "cart_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false
@@ -138,6 +152,47 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "delivery_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "min_days", null: false
+    t.integer "max_days", null: false
+    t.float "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_delivery_types", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "delivery_type_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_type_id"], name: "index_order_delivery_types_on_delivery_type_id"
+    t.index ["order_id"], name: "index_order_delivery_types_on_order_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "book_id"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "coupon_id"
+    t.float "total_price"
+    t.string "state"
+    t.string "number"
+    t.date "completed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coupon_id"], name: "index_orders_on_coupon_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.integer "book_rate", null: false
@@ -166,8 +221,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider"
     t.string "uid"
-    t.bigint "billing_address_id"
-    t.bigint "shipping_address_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -177,25 +230,28 @@ ActiveRecord::Schema.define(version: 2020_09_23_090617) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["billing_address_id"], name: "index_users_on_billing_address_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["shipping_address_id"], name: "index_users_on_shipping_address_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "author_books", "authors"
   add_foreign_key "author_books", "books"
   add_foreign_key "books", "categories"
+  add_foreign_key "cards", "orders"
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "carts", "coupons"
   add_foreign_key "carts", "users"
+  add_foreign_key "order_delivery_types", "delivery_types"
+  add_foreign_key "order_delivery_types", "orders"
+  add_foreign_key "order_items", "books"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "coupons"
+  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_coupons", "coupons"
   add_foreign_key "user_coupons", "users"
-  add_foreign_key "users", "addresses", column: "billing_address_id"
-  add_foreign_key "users", "addresses", column: "shipping_address_id"
 end

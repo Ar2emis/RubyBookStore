@@ -18,7 +18,7 @@ RSpec.describe 'RegistrationsRequests', type: :request do
   describe 'POST /quick_registration' do
     context 'when params are valid' do
       before do
-        post quick_registration_path, params: { user: attributes_for(:user)[:email] }
+        post quick_registration_path, params: { user: { email: Faker::Internet.email } }
       end
 
       it 'returns http redirect' do

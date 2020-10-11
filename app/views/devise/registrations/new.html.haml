@@ -4,7 +4,7 @@
     %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
       %i.fa.fa-facebook-official
     %p.general-login-text= t('registrations.or')
-  = simple_form_for(resource, as: resource_name, validate: true, url: registration_path(resource_name), html: { class: 'width-370 center-form' }) do |f|
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'width-370 center-form' }) do |f|
     = f.input :email, required: false, autocomplete: "email"
     = f.input :password, autocomplete: "new-password"
     = f.input :password_confirmation, autocomplete: "new-password"

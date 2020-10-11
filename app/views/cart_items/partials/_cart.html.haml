@@ -18,10 +18,10 @@
 .general-order-wrap
   .row
     .col-sm-4
-      = form_for :coupon, as: :coupon, url: coupon_path do |f|
+      = form_tag coupon_path do |f|
         .input-group.general-input-group
           %label.input-label= t('cart.enter_coupon_code')
-          = f.text_field :code, placeholder: t('cart.enter_coupon_code'), class: 'form-control mb-30'
+          = text_field_tag :code, '', placeholder: t('cart.enter_coupon_code'), class: 'form-control mb-30'
           %div
             %button.btn.btn-primary.mr-5.mb-15= t('cart.apply_coupon')
     .col-sm-8
@@ -32,17 +32,17 @@
             %td
               %p.font-16 #{t('cart.subtotal')}:
             %td
-              %p.font-16 #{t('currency')}#{shopping_cart.subtotal_price}
+              %p.font-16= number_to_currency(shopping_cart.subtotal)
           %tr
             %td
               %p.font-16 #{t('cart.coupon')}:
             %td
-              %p.font-16 #{t('currency')}#{shopping_cart.coupon_sale}
+              %p.font-16= number_to_currency(shopping_cart.discount)
           %tr
             %td
               %strong.font-18 #{t('cart.order_total')}:
             %td
-              %strong.font-18 #{t('currency')}#{shopping_cart.total_price}
+              %strong.font-18= number_to_currency(shopping_cart.total_price)
         - if shopping_cart.cart_items.any?
           %a.btn.btn-default.mb-20.visible-xs-inline-block{href: checkouts_path}= t('cart.checkout')
 - if shopping_cart.cart_items.any?

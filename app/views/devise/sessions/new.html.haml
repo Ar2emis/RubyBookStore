@@ -5,7 +5,7 @@
       %i.fa.fa-facebook-official.facebook-icon
     %p.general-login-text= t('sessions.or')
   %div.general-form
-    = simple_form_for(resource, as: resource_name, validate: true, url: session_path(resource_name)) do |f|
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       = f.input :email, required: false, autocomplete: "email"
       = f.input :password, autocomplete: "current-password", hint: link_to(t('sessions.forgot_password'), new_user_password_path, class: 'in-gold-500')
       .form-group.checkbox.text-center.mb-30

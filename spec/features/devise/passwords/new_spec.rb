@@ -7,7 +7,7 @@ RSpec.describe 'New', type: :feature do
     let(:user) { create(:user) }
 
     before do
-      fill_in(I18n.t('passwords.enter_your_email'), with: user.email)
+      fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: user.email)
       click_button(I18n.t('passwords.email_instructions'))
     end
 
@@ -20,7 +20,7 @@ RSpec.describe 'New', type: :feature do
     let(:not_registered_email) { '1234' }
 
     before do
-      fill_in(I18n.t('passwords.enter_your_email'), with: not_registered_email)
+      fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: not_registered_email)
       click_button(I18n.t('passwords.email_instructions'))
     end
 

@@ -1,5 +1,11 @@
 class Book < ApplicationRecord
-  include Sortable
+  SORT_PARAMTERS = {
+    newest: { created_at: :desc },
+    cheap: :price,
+    expensive: { price: :desc },
+    atoz: :title,
+    ztoa: { title: :desc }
+  }.freeze
 
   validates :title, :price, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.0 }
@@ -12,10 +18,6 @@ class Book < ApplicationRecord
   has_one_attached :title_image, dependent: :destroy
   has_many_attached :images, dependent: :destroy
 
-  scope :with_authors, -> { includes([:authors]) }
-  scope :sort_atoz, -> { order(:title) }
-  scope :sort_ztoa, -> { order(title: :desc) }
-  scope :sort_cheap, -> { order(:price) }
-  scope :sort_expensive, -> { order(price: :desc) }
-  scope :sort_newest, -> { order(created_at: :desc) }
+  scope :ordered, ->(order_type) { order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) }
+  scope :with_authors, -> { includes(:authors) }
 end

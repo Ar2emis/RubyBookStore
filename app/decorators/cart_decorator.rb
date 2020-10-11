@@ -1,4 +1,4 @@
-class CartDecorator < ApplicationDecorator
+class CartDecorator < PriceDecorator
   delegate_all
   decorates_associations :cart_items
 
@@ -6,16 +6,12 @@ class CartDecorator < ApplicationDecorator
     cart_items.order(:created_at)
   end
 
-  def subtotal_price
-    cart_items.inject(0) { |sum, item| sum + item.full_price }
-  end
-
-  def coupon_sale
-    coupon ? coupon.sale : 0.0
+  def subtotal
+    super(cart_items)
   end
 
   def total_price
-    total = subtotal_price - coupon_sale
+    total = subtotal - discount
     total.negative? ? 0.0 : total
   end
 end

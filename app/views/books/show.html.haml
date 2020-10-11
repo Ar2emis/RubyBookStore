@@ -16,7 +16,7 @@
       %p.lead.small= @presenter.book.authors_names
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10 #{t('currency')}#{@presenter.book.price}
+          %p.h1.in-gold-500.mt-10= number_to_currency(@presenter.book.price)
         = form_for :cart_item, as: :cart_item, url: cart_items_path do |f|
           .col-xs-5.col-md-3
             .input-group.general-position

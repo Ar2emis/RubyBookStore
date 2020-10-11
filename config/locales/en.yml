@@ -1,5 +1,8 @@
 en:
-  currency: €
+  number:
+    currency:
+      format:
+        unit: "€"
   layouts:
     title: BookStore
     shop_name: BookStore
@@ -38,6 +41,7 @@ en:
       newest: Newest first
       atoz: 'Title: A - Z'
       ztoa: 'Title: Z - A'
+    book_not_found: Book not found.
   home:
     welcome: Welcome to our amazing Bookstore!
     description: |
@@ -70,8 +74,6 @@ en:
     settings: Settings
     address: Address
     privacy: Privacy
-    billing_address: Billing Address
-    shipping_address: Shipping Address
     save: Save
     email: Email
     old_password: Old Password
@@ -79,6 +81,10 @@ en:
     remove_account: Remove Account
     remove_my_account: Remove my Account
     i_understand: I understand that all data will be lost
+  addresses:
+    billingaddress: Billing Address
+    shippingaddress: Shipping Address
+    save: Save
   sessions:
     sign_in: Sign in
     sign_up: Sign Up
@@ -86,18 +92,6 @@ en:
     remember_me: Remember me
     dont_have_an_account: Don't have an Account?
     or: or
-  addresses:
-    address: Address
-    billing: Billing
-    shipping: Shipping
-    first_name: First Name
-    last_name: Last Name
-    city: City
-    zip: Zip
-    country: Country
-    phone: Phone
-    phone_example: +xxx xx xxx xxxx
-    save: Save
   reviews:
     success: Review created successfuly.
     verified_reviewer: Verified Reviewer
@@ -121,9 +115,47 @@ en:
     enter_coupon_code: Enter Your Coupon Code
   checkouts:
     returning_customer: Returning Customer
+    new_customer: New Customer
     or: or
     forgot_password: Forgot password?
     log_in_with_password: Log In with Password
     you_will_be_able_to_create_password_later: You’ll be able to create password later
     continue_checkout: Continue to Checkout
     quick_register: Quik Register
+    save_and_continue: Save and Continue
+    checkout: Checkout
+    complete:
+      complete: Complete
+      thanks: Thank You for your Order!
+      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      order: "Order #%{order}"
+      back_to_store: Back to Store
+    addresses:
+      address: Address
+      billing_address: Billing Address
+      all_fields_are_required: all fields are required
+      shipping_address: Shipping Address
+      use_billing_address: Use Billing Address
+    delivery:
+      delivery: Delivery
+      method: Method
+      days: Days
+      from_to_days: "%{min_days} to %{max_days} days"
+      price: Price
+    payment:
+      payment: Payment
+      cvv_hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front.
+      credit_card: Credit Card
+    confirm:
+      confirm: Confirm
+      phone: "Phone %{phone}"
+      payment_information: Payment Information
+      hidden_card: "** ** ** %{digits}"
+      quantity: Quantity
+      total: Total
+      book: Book
+      order_summary: Order Summary
+      shipping: Shipping
+      place_order: Place Order
+  order_mailer:
+    dear_customer: Dear Customer,

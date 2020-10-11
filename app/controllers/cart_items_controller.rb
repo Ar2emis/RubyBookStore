@@ -13,25 +13,16 @@ class CartItemsController < ApplicationController
   end
 
   def coupon
-    coupon = Coupon.find_by(coupon_params)
-    if coupon.nil?
-      flash[:error] = I18n.t('cart.invalid_coupon')
-    elsif coupon_used?(coupon)
-      flash[:error] = I18n.t('cart.coupon_used')
-    else
-      @shopping_cart.update(coupon: coupon)
-    end
+    coupon = Coupon.find_by(code: params[:code])
+    service = AddCouponService.call(coupon: coupon, cart: @shopping_cart)
+    flash[:error] = service.errors.join(', ') unless service.success?
     redirect_to(cart_path)
   end
 
   private
 
-  def coupon_used?(coupon)
-    user_signed_in? && current_user.coupons.exists?(coupon.id)
-  end
-
   def update_cart_item(cart_item)
-    cart_item.update(count: cart_item.count + cart_item_params[:count].to_i)
+    cart_item.update(amount: cart_item.amount + cart_item_params[:amount].to_i)
     @shopping_cart.reload
   end
 
@@ -40,11 +31,7 @@ class CartItemsController < ApplicationController
     @decorated_cart = @shopping_cart.decorate
   end
 
-  def coupon_params
-    params.require(:coupon).permit(:code)
-  end
-
   def cart_item_params
-    params.require(:cart_item).permit(:book_id, :count)
+    params.require(:cart_item).permit(:book_id, :amount)
   end
 end

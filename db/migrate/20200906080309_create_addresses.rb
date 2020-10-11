@@ -8,7 +8,9 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.string :zip, null: false
       t.string :country, null: false
       t.string :phone, null: false
-      t.integer :address_type, null: false
+      t.string :type, null: false
+      t.belongs_to :addressable, polymorphic: true
+
 
       t.timestamps
     end

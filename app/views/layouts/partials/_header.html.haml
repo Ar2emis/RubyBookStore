@@ -25,7 +25,7 @@
               = t('layouts.shop')
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               %li= link_to t('categories.all_books'), books_path, class: 'collapse-link'
-              - @book_categories.each do |category|
+              - categories.each do |category|
                 %li= link_to category.name, books_path(category: category.id), class: 'collapse-link'
           - if user_signed_in?
             %li.dropdown
@@ -52,7 +52,7 @@
               = t('layouts.shop')
             %ul.dropdown-menu
               %li= link_to t('shop.all_books'), books_path, class: 'collapse-link'
-              - @book_categories.each do |category|
+              - categories.each do |category|
                 %li= link_to category.name, books_path(category: category.id), class: 'collapse-link'
           - if user_signed_in?
             %li.dropdown
