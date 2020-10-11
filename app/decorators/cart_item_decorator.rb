@@ -3,6 +3,6 @@ class CartItemDecorator < ApplicationDecorator
   decorates_association :book
 
   def full_price
-    book.price * count
+    book.price * amount
   end
 end

@@ -7,7 +7,7 @@ class CartDecorator < ApplicationDecorator
   end
 
   def subtotal_price
-    cart_items.inject(0) { |sum, item| sum + item.full_price }
+    cart_items.sum(&:full_price)
   end
 
   def coupon_sale

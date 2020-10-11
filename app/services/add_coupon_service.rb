@@ -1,7 +1,7 @@
 class AddCouponService < BaseService
   def initialize(**kwargs)
     super
-    @coupon = kwargs[:coupon]
+    @coupon = Coupon.find_by(code: kwargs[:coupon_params][:code])
     @cart = kwargs[:cart]
   end
 
