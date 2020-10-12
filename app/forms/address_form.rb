@@ -28,9 +28,9 @@ class AddressForm < BaseForm
   end
 
   def submit
-    case address_type
-    when 'billing' then addressable.billing_address = Address.new(@params)
-    when 'shipping' then addressable.shipping_address = Address.new(@params)
+    case address_type.to_sym
+    when :billing then addressable.billing_address = Address.new(@params)
+    when :shipping then addressable.shipping_address = Address.new(@params)
     end
   end
 

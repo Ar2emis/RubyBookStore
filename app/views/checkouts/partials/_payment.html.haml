@@ -1,5 +1,5 @@
 %h3.general-subtitle= t('checkouts.payment.credit_card')
-= simple_form_for checkout_presenter.card, as: 'order[card]', url: checkout_path, method: :put, validate: true, html: { class: 'max-600 mb-80 center-form'} do |f|
+= simple_form_for CardForm.from_card(order.card), as: 'order[card]', url: checkout_path, method: :put, validate: true, html: { class: 'max-600 mb-80 center-form'} do |f|
   = f.input :number, required: false
   .row
     .col-sm-6

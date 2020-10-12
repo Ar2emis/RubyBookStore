@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :couponable_coupons, as: :couponable, dependent: :destroy
   has_many :coupons, through: :couponable_coupons
+  has_many :orders, dependent: :destroy
   has_one :cart, dependent: :destroy
   has_one :billing_address, -> { where(address_type: :billing) },
           inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy

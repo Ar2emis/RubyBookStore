@@ -1,6 +1,6 @@
 class BaseService
   def self.call(**kwargs)
-    service = new(kwargs)
+    service = new(**kwargs.symbolize_keys)
     service.call
     service
   end

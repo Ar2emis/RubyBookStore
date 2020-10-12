@@ -21,17 +21,13 @@ RSpec.describe 'Checkouts', type: :request do
 
   describe 'PUT /checkout' do
     let(:order) { create(:order, user: user) }
+    let(:cart) { create(:cart, user: user) }
+    let(:order_params) { { billing_address: attributes_for(:address, address_type: :billing), only_billing: true } }
 
     before do
-      transfer_service = instance_double(TransferCartToOrderService)
-      allow(transfer_service).to receive(:call)
-      allow(transfer_service).to receive(:order).and_return(order)
-      allow(TransferCartToOrderService).to receive(:new).and_return(transfer_service)
-      address_service = instance_double(AddOrderAddressesService)
-      allow(address_service).to receive(:call)
-      allow(AddOrderAddressesService).to receive(:new).and_return(address_service)
+      cart.cart_items.create(attributes_for(:cart_item))
       sign_in(user)
-      put checkout_path, params: { order: { a: 1 } }
+      put checkout_path, params: { order: order_params }
     end
 
     it 'returns http redirect' do

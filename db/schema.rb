@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 2020_09_30_200523) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.string "number", null: false
-    t.string "name", null: false
-    t.string "expiration_date", null: false
-    t.string "cvv", null: false
+    t.string "number"
+    t.string "name"
+    t.string "expiration_date"
+    t.string "cvv"
     t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

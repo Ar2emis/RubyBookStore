@@ -17,12 +17,12 @@ class CartsController < ApplicationController
     @shopping_cart.cart_items.reload
   end
 
+  private
+
   def update_coupon(coupon_params)
     service = AddCouponService.call(coupon_params: coupon_params, cart: @shopping_cart)
     service.success? ? flash[:success] = I18n.t('cart.coupon_added') : flash[:error] = service.errors_message
   end
-
-  private
 
   def update_cart_item(cart_item_params)
     UpdateCartItemService.call(cart_item_params: cart_item_params, cart: @shopping_cart)

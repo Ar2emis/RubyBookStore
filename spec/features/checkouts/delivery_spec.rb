@@ -4,6 +4,7 @@ RSpec.describe 'Checkout Delivery', type: :feature do
   let!(:delivery_types) { create_list(:delivery_type, 3) }
 
   before do
+    user.cart.cart_items.create!(attributes_for(:cart_item))
     page.set_rack_session(order: order.id)
     sign_in(user)
   end

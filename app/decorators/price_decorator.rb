@@ -1,6 +1,6 @@
 class PriceDecorator < ApplicationDecorator
   def subtotal(items)
-    items.includes(:book).inject(0) { |sum, item| sum + item.subtotal }
+    items.includes(:book).sum(&:subtotal)
   end
 
   def discount
