@@ -6,8 +6,8 @@ RSpec.describe 'Show', type: :feature do
 
     before do
       create(:order_item, order: order)
-      create(:address, type: BillingAddress.to_s, addressable: order)
-      create(:address, type: ShippingAddress.to_s, addressable: order)
+      create(:address, address_type: :billing, addressable: order)
+      create(:address, address_type: :shipping, addressable: order)
       create(:card, order: order)
       user.orders << order
       sign_in(user)

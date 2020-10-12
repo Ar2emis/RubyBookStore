@@ -11,6 +11,5 @@ class OrdersController < ApplicationController
     return redirect_to(orders_path, alert: I18n.t('orders.order_not_found')) unless order
 
     @order = order.decorate
-    @presenter = BasePresenter.new(view: view_context)
   end
 end

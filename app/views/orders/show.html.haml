@@ -39,7 +39,7 @@
     - @order.prepared_order_items.each do |item|
       .general-cart-item.divider-lg.mb-55
         .general-img-wrap-table
-          %img.cart-img-shadow{src: @presenter.title_image_url(item.book), alt: "design-book"}
+          %img.cart-img-shadow{src: item.book.title_image.url(:w170), alt: "design-book"}
         %p.title= item.book.title
         %table.table
           %tr
@@ -75,7 +75,7 @@
           %tr
             %td
               .general-img-wrap-table
-                %img.cart-img-shadow.pull-left{src: @presenter.title_image_url(item.book), alt: "design-book"}
+                %img.cart-img-shadow.pull-left{src: item.book.title_image.url(:w170), alt: "design-book"}
             %td
               %p.title= item.book.title
               %p.in-grey-600.fw-300= item.book.description

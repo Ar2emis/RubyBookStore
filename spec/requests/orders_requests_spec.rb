@@ -23,8 +23,8 @@ RSpec.describe 'Orders', type: :request do
     let(:order) { create(:order, user: user, state: :in_queue, delivery_type: create(:delivery_type)) }
 
     before do
-      create(:address, type: BillingAddress.to_s, addressable: order)
-      create(:address, type: ShippingAddress.to_s, addressable: order)
+      create(:address, address_type: :billing, addressable: order)
+      create(:address, address_type: :shipping, addressable: order)
       create(:card, order: order)
       get order_path(order)
     end
