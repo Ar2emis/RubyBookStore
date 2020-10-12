@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   include Pagy::Backend
 
   def show
-    book = Book.with_attached_title_image.with_attached_images.find_by(id: params[:id])
+    book = Book.find_by(id: params[:id])
     return @presenter = BookPresenter.new(view: view_context, book: book.decorate) if book.present?
 
     redirect_to(books_path, alert: I18n.t('books.book_not_found'))
@@ -16,7 +16,6 @@ class BooksController < ApplicationController
   private
 
   def prepared_books
-    FilteredAndSortedBooksQuery.call(category: params[:category], sort: params[:sort])
-                               .with_attached_title_image.decorate
+    FilteredAndSortedBooksQuery.call(category: params[:category], sort: params[:sort]).decorate
   end
 end

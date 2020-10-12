@@ -1,8 +1,6 @@
 class BaseService
-  attr_reader :errors
-
   def self.call(**kwargs)
-    service = new(kwargs)
+    service = new(**kwargs.symbolize_keys)
     service.call
     service
   end
@@ -13,5 +11,9 @@ class BaseService
 
   def initialize(**_)
     @errors = []
+  end
+
+  def errors_message
+    @errors.join(', ')
   end
 end

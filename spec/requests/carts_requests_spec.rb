@@ -10,16 +10,16 @@ RSpec.describe 'CartItemsRequests', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'renders index template' do
-      expect(response).to render_template(:index)
+    it 'renders show template' do
+      expect(response).to render_template(:show)
     end
   end
 
-  describe 'POST /cart_items' do
+  describe 'POST /cart' do
     let(:book) { create(:book) }
 
     before do
-      post cart_items_path, params: { cart_item: { book_id: book.id } }
+      put cart_path, params: { cart: { cart_item: { book_id: book.id } } }
     end
 
     it 'returns http redirect' do
@@ -27,15 +27,15 @@ RSpec.describe 'CartItemsRequests', type: :request do
     end
 
     it 'redirects to previous page' do
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(cart_path)
     end
   end
 
-  describe 'DELETE /cart_items' do
+  describe 'DELETE /cart' do
     let(:cart_item_id) { 1 }
 
     before do
-      delete cart_item_path(id: cart_item_id), xhr: true
+      delete cart_path(id: cart_item_id), xhr: true
     end
 
     it 'returns http success' do
@@ -51,7 +51,7 @@ RSpec.describe 'CartItemsRequests', type: :request do
     let(:coupon) { create(:coupon) }
 
     before do
-      post coupon_path, params: { coupon: { code: coupon.code } }
+      put cart_path, params: { cart: { coupon: { code: coupon.code } } }
     end
 
     it 'returns http redirect' do

@@ -1,11 +1,12 @@
 RSpec.describe 'Checkout Confirm', type: :feature do
   let(:user) { create(:user) }
   let(:order) { create(:order, user: user, state: :confirm) }
-  let!(:billing_address) { create(:address, type: BillingAddress.to_s, addressable: order) }
-  let!(:shipping_address) { create(:address, type: ShippingAddress.to_s, addressable: order) }
+  let!(:billing_address) { create(:address, address_type: :billing, addressable: order) }
+  let!(:shipping_address) { create(:address, address_type: :shipping, addressable: order) }
   let(:delivery_type) { create(:delivery_type) }
 
   before do
+    user.cart.cart_items.create!(attributes_for(:cart_item))
     order.card = create(:card, order: order)
     order.delivery_type = delivery_type
     page.set_rack_session(order: order.id)

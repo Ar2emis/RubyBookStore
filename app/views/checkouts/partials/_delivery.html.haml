@@ -1,7 +1,7 @@
 %h3.general-subtitle= t('checkouts.delivery.delivery')
 .visible-xs
   = form_tag checkout_path, method: :put do |f|
-    - delivery_types.each_with_index do |delivery, index|
+    - presenter.delivery_types.each_with_index do |delivery, index|
       .general-cart-item.divider-lg-bottom.mb-30
         %table.table
           %tr
@@ -10,7 +10,7 @@
             %td.col-half
               .form-group.radio.mt-0.mb-0
                 %label.radio-label
-                  = radio_button_tag 'order[delivery_type_id]', delivery.id, checkout_presenter.current_delivery?(delivery, index), class: 'radio-input', hidden: true
+                  = radio_button_tag 'order[delivery_type_id]', delivery.id, presenter.current_delivery?(delivery, index), class: 'radio-input', hidden: true
                   %span.radio-icon
                   %span.radio-text= delivery.name
           %tr
@@ -37,12 +37,12 @@
           %th
             %span.in-grey-600= t('checkouts.delivery.price')
       %tbody
-        - delivery_types.each_with_index do |delivery, index|
+        - presenter.delivery_types.each_with_index do |delivery, index|
           %tr
             %td
               .form-group.radio.mt-0.mb-0
                 %label.radio-label
-                  = radio_button_tag 'order[delivery_type_id]', delivery.id, checkout_presenter.current_delivery?(delivery, index), class: 'radio-input', hidden: true
+                  = radio_button_tag 'order[delivery_type_id]', delivery.id, presenter.current_delivery?(delivery, index), class: 'radio-input', hidden: true
                   %span.radio-icon
                   %span.radio-text= delivery.name
             %td

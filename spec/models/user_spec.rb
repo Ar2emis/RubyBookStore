@@ -29,11 +29,11 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_one(model).dependent(:destroy) }
     end
 
-    %i[reviews user_coupons orders].each do |model|
+    %i[reviews couponable_coupons orders].each do |model|
       it { is_expected.to have_many(model) }
     end
 
-    it { is_expected.to have_many(:coupons).through(:user_coupons) }
+    it { is_expected.to have_many(:coupons).through(:couponable_coupons) }
   end
 
   context 'with model fields' do

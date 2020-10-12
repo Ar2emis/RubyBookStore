@@ -1,6 +1,6 @@
 %h1.general-title-margin= t('cart.cart')
 .visible-xs
-  = render partial: 'cart_items/partials/cart_item_xs', collection: shopping_cart.ordered_cart_items, as: :cart_item, locals: { presenter: BasePresenter.new(view: self) }
+  = render partial: 'carts/partials/cart_item_xs', collection: shopping_cart.ordered_cart_items, as: :cart_item
 .hidden-xs
   %table.table.table-hover
     %tr.no-hover
@@ -14,14 +14,14 @@
       %th.col-total
         %span.in-grey-600= t('cart.subtotal')
       %th.col-close
-    = render partial: 'cart_items/partials/cart_item_xl', collection: shopping_cart.ordered_cart_items, as: :cart_item, locals: { presenter: BasePresenter.new(view: self) }
+    = render partial: 'carts/partials/cart_item_xl', collection: shopping_cart.ordered_cart_items, as: :cart_item
 .general-order-wrap
   .row
     .col-sm-4
-      = form_tag coupon_path do |f|
+      = form_tag cart_path, method: :put do |f|
         .input-group.general-input-group
           %label.input-label= t('cart.enter_coupon_code')
-          = text_field_tag :code, '', placeholder: t('cart.enter_coupon_code'), class: 'form-control mb-30'
+          = text_field_tag 'cart[coupon][code]', '', placeholder: t('cart.enter_coupon_code'), class: 'form-control mb-30'
           %div
             %button.btn.btn-primary.mr-5.mb-15= t('cart.apply_coupon')
     .col-sm-8

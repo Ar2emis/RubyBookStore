@@ -6,10 +6,10 @@ class AddOrderPaymentService < BaseService
   end
 
   def call
-    card = Card.create(@card_params)
-    return if card.invalid?
+    card_form = CardForm.new(@card_params)
+    return if card_form.invalid?
 
-    @order.card = card
+    card_form.submit
     @order.confirm_step!
   end
 end

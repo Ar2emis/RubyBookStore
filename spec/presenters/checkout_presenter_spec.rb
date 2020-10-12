@@ -19,29 +19,4 @@ RSpec.describe CheckoutPresenter do
       expect(presenter).not_to be_current_delivery(delivery, 1)
     end
   end
-
-  describe '#card' do
-    let(:card) { build(:card, order: order) }
-
-    it 'returns order card if order has card' do
-      order.card = card
-      expect(presenter.card).to eq card
-    end
-
-    it 'returns new card if order has not card' do
-      expect(presenter.card).to be_a Card
-    end
-  end
-
-  describe '#address' do
-    let(:address) { build(:address, addressable: order) }
-
-    it 'returns passed address if address presents' do
-      expect(presenter.address(address)).to eq address
-    end
-
-    it 'returns new address if passed address is nil' do
-      expect(presenter.address(nil)).to be_a Address
-    end
-  end
 end

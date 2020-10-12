@@ -4,8 +4,4 @@ class BasePresenter
   def initialize(view:)
     @view = view
   end
-
-  def title_image_url(book)
-    book.title_image.attached? ? book.title_image.service_url : @view.image_url(DEFAULT_BOOK_IMAGE)
-  end
 end

@@ -3,6 +3,7 @@ RSpec.describe 'Checkout Addresses', type: :feature do
   let(:order) { create(:order, user: user) }
 
   before do
+    user.cart.cart_items.create!(attributes_for(:cart_item))
     page.set_rack_session(order: order.id)
     sign_in(user)
   end
