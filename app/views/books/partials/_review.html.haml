@@ -5,7 +5,8 @@
       %div
         .general-message-date.hidden-xs= review.created_at.strftime('%Y/%m/%d')
         .max-240
-          .general-message-verified= t('reviews.verified_reviewer')
+          - if review.user.orders.any?
+            .general-message-verified= t('reviews.verified_reviewer')
           .general-message-name= review.title
       .mb-15
         - (1..5).each do |index|

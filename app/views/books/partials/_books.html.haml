@@ -12,7 +12,7 @@
     .general-thumb-info
       %p.title.text_overflow-hidden
         = book.title
-      %p.font-16.in-gold-500 #{t(:currency)}#{book.price}
+      %p.font-16.in-gold-500= number_to_currency(book.price)
       %span.divider-sm
       %p.lead.small.text_overflow-hidden
         = book.authors_names

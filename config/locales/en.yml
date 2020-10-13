@@ -41,6 +41,7 @@ en:
       newest: Newest first
       atoz: 'Title: A - Z'
       ztoa: 'Title: Z - A'
+      popularity: Popular first
     book_not_found: Book not found.
   home:
     welcome: Welcome to our amazing Bookstore!
@@ -128,7 +129,7 @@ en:
     complete:
       complete: Complete
       thanks: Thank You for your Order!
-      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      confirmation_sent: "An order confirmation has been sent to %{email}"
       order: "Order #%{order}"
       back_to_store: Back to Store
     addresses:

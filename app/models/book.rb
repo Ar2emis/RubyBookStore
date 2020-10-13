@@ -13,11 +13,18 @@ class Book < ApplicationRecord
   has_many :author_books, dependent: :destroy
   has_many :authors, through: :author_books
   has_many :reviews, dependent: :destroy
+  has_many :order_items, dependent: :destroy
   belongs_to :category
 
   mount_uploader :title_image, ImageUploader
   mount_uploaders :images, ImageUploader
 
-  scope :ordered, ->(order_type) { order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) }
   scope :with_authors, -> { includes(:authors) }
+
+  def self.ordered(order_type)
+    return order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) unless order_type == :popularity
+
+    left_joins(:order_items).select('books.*', 'count(order_items.id) as items_count')
+                            .group('books.id').order(items_count: :desc)
+  end
 end
