@@ -1,0 +1,23 @@
+%tr
+  %td
+    = link_to book_path(id: order_item.book.id) do
+      .general-img-wrap-table
+        %img.cart-img-shadow.pull-left{src: order_item.book.title_image.url(:w170), alt: "design-book"}
+  %td
+    = link_to book_path(id: order_item.book.id) do
+      %p.title= order_item.book.title
+  %td
+    %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
+  %td
+    .input-group
+      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, amount: -1 } }), method: :put, remote: true, class: 'input-link mt-10' do
+        %i.fa.fa-minus.line-heaght-40
+      %input.form-control.quantity-input{type: "text", value: order_item.amount}
+      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, amount: 1 } }), method: :put, remote: true, class: 'input-link mt-10' do
+        %i.fa.fa-plus.line-heaght-40
+  %td
+    %span.font-16.in-gold-500= number_to_currency(order_item.full_price)
+  %td
+    = link_to cart_path(id: order_item.id), method: :delete, 'data-remote': true, class: 'close general-cart-close' do
+      %span{'aria-hidden': "true"} &times;
+

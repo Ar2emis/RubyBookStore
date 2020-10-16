@@ -1,13 +1,13 @@
-class CartDecorator < ApplicationDecorator
+class OrderDecorator < ApplicationDecorator
   delegate_all
-  decorates_associations :cart_items
+  decorates_associations :order_items
 
-  def ordered_cart_items
-    cart_items.order(:created_at)
+  def ordered_order_items
+    order_items.includes(:book).order(:created_at)
   end
 
   def subtotal_price
-    cart_items.sum(&:full_price)
+    order_items.sum(&:full_price)
   end
 
   def coupon_sale

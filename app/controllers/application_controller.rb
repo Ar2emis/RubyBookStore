@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :build_shopping_cart
-  helper_method :categories
+  helper_method :categories, :current_order_items_count
 
   private
 
@@ -8,7 +7,8 @@ class ApplicationController < ActionController::Base
     @categories ||= Category.all
   end
 
-  def build_shopping_cart
-    @shopping_cart = BuildCartService.call(session: session, user: current_user).shopping_cart
+  def current_order_items_count
+    order = user_signed_in? ? current_user.current_order : session[:current_order]
+    @current_order_items_count = order ? OrderItem.where(order: order).count : 0
   end
 end

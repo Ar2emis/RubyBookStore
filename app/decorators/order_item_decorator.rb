@@ -1,4 +1,4 @@
-class CartItemDecorator < ApplicationDecorator
+class OrderItemDecorator < ApplicationDecorator
   delegate_all
   decorates_association :book
 
