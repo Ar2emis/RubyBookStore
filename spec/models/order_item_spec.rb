@@ -1,7 +1,7 @@
 RSpec.describe OrderItem, type: :model do
   context 'with validations' do
     it { is_expected.to validate_presence_of(:book) }
-    it { is_expected.to validate_numericality_of(:amount).is_greater_than(0) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than(described_class::MIN_AMOUNT) }
   end
 
   context 'with associations' do
