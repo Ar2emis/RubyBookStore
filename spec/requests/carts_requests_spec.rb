@@ -19,7 +19,7 @@ RSpec.describe 'CartItemsRequests', type: :request do
     let(:book) { create(:book) }
 
     before do
-      put cart_path, params: { cart: { cart_item: { book_id: book.id } } }
+      put cart_path, params: { order: { order_item: { book_id: book.id } } }
     end
 
     it 'returns http redirect' do
@@ -32,10 +32,10 @@ RSpec.describe 'CartItemsRequests', type: :request do
   end
 
   describe 'DELETE /cart' do
-    let(:cart_item_id) { 1 }
+    let(:order_item_id) { 1 }
 
     before do
-      delete cart_path(id: cart_item_id), xhr: true
+      delete cart_path(id: order_item_id), xhr: true
     end
 
     it 'returns http success' do
@@ -51,7 +51,7 @@ RSpec.describe 'CartItemsRequests', type: :request do
     let(:coupon) { create(:coupon) }
 
     before do
-      put cart_path, params: { cart: { coupon: { code: coupon.code } } }
+      put cart_path, params: { order: { coupon: { code: coupon.code } } }
     end
 
     it 'returns http redirect' do

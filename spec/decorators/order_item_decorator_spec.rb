@@ -1,5 +1,5 @@
-RSpec.describe CartItemDecorator do
-  subject(:decorator) { build(:cart_item).decorate }
+RSpec.describe OrderItemDecorator do
+  subject(:decorator) { build(:order_item).decorate }
 
   describe '#full_price' do
     it 'returns price of a book multiplied by count' do

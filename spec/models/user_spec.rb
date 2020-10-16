@@ -25,15 +25,12 @@ RSpec.describe User, type: :model do
   end
 
   context 'with associations' do
-    %i[billing_address shipping_address cart].each do |model|
+    %i[billing_address shipping_address].each do |model|
       it { is_expected.to have_one(model).dependent(:destroy) }
     end
 
-    %i[reviews couponable_coupons].each do |model|
-      it { is_expected.to have_many(model) }
-    end
-
-    it { is_expected.to have_many(:coupons).through(:couponable_coupons) }
+    it { is_expected.to have_one(:current_order).class_name('Order').dependent(:destroy) }
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
   end
 
   context 'with model fields' do

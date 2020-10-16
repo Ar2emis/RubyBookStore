@@ -7,12 +7,12 @@
           .general-thumb-link-wrap
             = link_to book, class: 'thumb-hover-link' do
               %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-            = link_to cart_path(cart: { cart_item: { book_id: book.id, amount: 1 } }), method: :put, class: 'thumb-hover-link' do
+            = link_to cart_path(order: { order_item: { book_id: book.id, amount: 1 } }), method: :put, class: 'thumb-hover-link' do
               %i.fa.fa-shopping-cart.thumb-icon
     .general-thumb-info
       %p.title.text_overflow-hidden
         = book.title
-      %p.font-16.in-gold-500 #{t(:currency)}#{book.price}
+      %p.font-16.in-gold-500= number_to_currency(book.price)
       %span.divider-sm
       %p.lead.small.text_overflow-hidden
         = book.authors_names

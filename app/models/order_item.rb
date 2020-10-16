@@ -1,5 +1,5 @@
-class CartItem < ApplicationRecord
-  belongs_to :cart
+class OrderItem < ApplicationRecord
+  belongs_to :order
   belongs_to :book
 
   validates :book, presence: true
