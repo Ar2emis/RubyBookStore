@@ -42,10 +42,13 @@ RSpec.describe 'carts#show', type: :feature do
 
     before do
       within 'table.table.table-hover' do
-        2.times { page.all('i.fa.fa-plus').first.click }
+        2.times do
+          page.all('i.fa.fa-plus').first.click
+          sleep(0.5)
+        end
         page.all('i.fa.fa-minus').first.click
+        sleep(0.5)
       end
-      sleep(0.5)
     end
 
     it 'decreases book amount by 1' do
