@@ -17,7 +17,7 @@ RSpec.describe 'Edit', type: :feature do
             fill_in(I18n.t('simple_form.placeholders.defaults.address'), with: address_data[:address])
             fill_in(I18n.t('simple_form.placeholders.defaults.city'), with: address_data[:city])
             fill_in(I18n.t('simple_form.placeholders.defaults.zip'), with: address_data[:zip])
-            select(address_data[:country], from: 'address_country')
+            page.select(address_data[:country], from: 'address_country')
             fill_in(I18n.t('simple_form.placeholders.defaults.phone'), with: address_data[:phone])
             click_button(I18n.t('addresses.save'))
           end
