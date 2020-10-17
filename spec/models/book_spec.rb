@@ -16,7 +16,8 @@ RSpec.describe Book, type: :model do
   end
 
   context 'with model fields' do
-    %i[title price description publication_year width height depth materials category_id].each do |field|
+    %i[title price description publication_year width height depth
+       materials category_id title_image images].each do |field|
       it { is_expected.to have_db_column(field) }
     end
   end

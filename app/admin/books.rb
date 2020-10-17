@@ -2,11 +2,14 @@ ActiveAdmin.register Book do
   includes :category, :authors
   decorate_with BookDecorator
   permit_params :title, :price, :description, :publication_year,
-                :width, :height, :depth,
-                :material, :category_id, author_ids: []
+                :width, :height, :depth, :title_image,
+                :materials, :category_id, author_ids: [], images: []
 
   index do
     selectable_column
+    column :title_image do |book|
+      image_tag(book.title_image.url(:w170))
+    end
     column :title do |book|
       link_to book.title, resource_path(book)
     end
@@ -21,6 +24,14 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
+      row :title_image do |book|
+        image_tag(book.title_image.url(:w550))
+      end
+      book.images.each do |image|
+        row :image do
+          image_tag(image.url(:w200))
+        end
+      end
       row :title
       row :authors, &:authors_names
       row :description
@@ -46,6 +57,9 @@ ActiveAdmin.register Book do
       f.input :width
       f.input :depth
       f.input :materials
+      f.input :title_image, as: :file,
+                            hint: (image_tag(book.title_image.url(:w550)) unless book.title_image.nil?)
+      f.input :images, as: :file, input_html: { multiple: true }
     end
     actions
   end
