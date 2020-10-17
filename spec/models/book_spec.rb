@@ -12,15 +12,9 @@ RSpec.describe Book, type: :model do
   end
 
   context 'with model fields' do
-    it { is_expected.to have_db_column(:title) }
-    it { is_expected.to have_db_column(:price) }
-    it { is_expected.to have_db_column(:description) }
-    it { is_expected.to have_db_column(:publication_year) }
-    it { is_expected.to have_db_column(:width) }
-    it { is_expected.to have_db_column(:height) }
-    it { is_expected.to have_db_column(:depth) }
-    it { is_expected.to have_db_column(:materials) }
-    it { is_expected.to have_db_column(:category_id) }
+    %i[title price description publication_year width height depth materials category_id].each do |field|
+      it { is_expected.to have_db_column(field) }
+    end
   end
 
   describe '.ordered' do

@@ -1,0 +1,20 @@
+en:
+  activemodel:
+    errors:
+      models:
+        address_form:
+          attributes:
+            first_name:
+              invalid: must consist of only letters.
+            last_name:
+              invalid: must consist of only letters.
+            city:
+              invalid: must consist of only letters.
+            address:
+              invalid: must consist of only letters, numbers, spaces, commas, spaces and dashes.
+            zip:
+              invalid: must consist of only numbers and dashes.
+            phone:
+              invalid: must contain plus (+) at the beginning. After should contain country code of chosen country in Country drop down list. Consists of numbers only.
+            country:
+              invalid: must be listed from the above.

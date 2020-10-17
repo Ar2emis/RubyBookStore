@@ -1,4 +1,4 @@
-RSpec.describe 'OmniauthCallbacks', type: :request do
+RSpec.describe 'OmniauthCallbacksRequest', type: :request do
   describe 'POST /users/auth/facebook' do
     let(:callback) { Faker::Omniauth.facebook }
 

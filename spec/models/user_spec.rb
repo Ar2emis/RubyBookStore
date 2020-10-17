@@ -14,31 +14,25 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:email) }
 
     context 'with password' do
-      subject(:user) { build(:user) }
-
       let(:valid_password) { 'Abcdefg1' }
 
-      it 'allows password with one uppercase, downcase letters and digit' do
-        expect(user).to allow_value(valid_password).for(:password)
-      end
+      it { is_expected.to allow_value(valid_password).for(:password) }
 
-      {
-        'Abc' => 'shorter than 8 characters',
-        'abcdefg1' => 'without at least 1 uppercase letter',
-        'ABCDEFG1' => 'without at least 1 downcase letter',
-        'Abcdefgh' => 'without at least 1 digit'
-      }.each do |invalid_password, message|
-        it "doesn't allow password #{message}" do
-          expect(user).not_to allow_value(invalid_password).for(:password)
-        end
+      %w[Abc abcdefg1 ABCDEFG1 Abcdefgh].each do |invalid_password|
+        it { is_expected.not_to allow_value(invalid_password).for(:password) }
       end
     end
   end
 
+  context 'with associations' do
+    %i[billing_address shipping_address].each do |model|
+      it { is_expected.to have_one(model).dependent(:destroy) }
+    end
+  end
+
   context 'with model fields' do
-    it { is_expected.to have_db_column(:email) }
-    it { is_expected.to have_db_column(:encrypted_password) }
-    it { is_expected.to have_db_column(:provider) }
-    it { is_expected.to have_db_column(:uid) }
+    %i[email encrypted_password provider uid].each do |field|
+      it { is_expected.to have_db_column(field) }
+    end
   end
 end

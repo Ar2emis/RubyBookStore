@@ -1,14 +1,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
-
 gem 'aasm'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
+gem 'countries'
 gem 'devise'
 gem 'draper'
 gem 'faker'

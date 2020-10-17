@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :categories
+  helper_method :categories
 
   private
 
   def categories
-    @categories = Category.all
+    @categories ||= Category.all
   end
 end

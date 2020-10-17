@@ -1,10 +1,17 @@
 class User < ApplicationRecord
+  PASSWORD_FORMAT = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.freeze
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
+  has_one :billing_address, -> { where(address_type: :billing) },
+          inverse_of: :user, class_name: 'Address', dependent: :destroy
+  has_one :shipping_address, -> { where(address_type: :shipping) },
+          inverse_of: :user, class_name: 'Address', dependent: :destroy
+
+  validates :password, format: { with: PASSWORD_FORMAT }, if: :password_required?
   validates :email, presence: true
-  validates :password, format: { with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/ }, unless: :blank?
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

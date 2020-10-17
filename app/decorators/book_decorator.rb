@@ -1,7 +1,8 @@
 class BookDecorator < ApplicationDecorator
   delegate_all
+  decorates_association :authors
 
   def authors_names
-    object.authors.decorate.map(&:full_name).join(', ')
+    authors.map(&:full_name).join(', ')
   end
 end

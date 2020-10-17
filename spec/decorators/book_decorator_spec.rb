@@ -1,7 +1,7 @@
 RSpec.describe BookDecorator do
   subject(:decorator) { book.decorate }
 
-  let(:book) { build(:book) }
+  let(:book) { create(:book) }
 
   describe '#authors_names' do
     it 'returns authors names as string' do
