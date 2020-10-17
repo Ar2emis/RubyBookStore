@@ -18,3 +18,11 @@ en:
               invalid: must contain plus (+) at the beginning. After should contain country code of chosen country in Country drop down list. Consists of numbers only.
             country:
               invalid: must be listed from the above.
+        review_form:
+          attributes:
+            title:
+              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
+            body:
+              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
+            book_rate:
+              blank: must be selected

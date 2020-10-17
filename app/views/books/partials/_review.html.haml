@@ -1,0 +1,16 @@
+.general-message-wrap.divider-lg
+  .clearfix
+    %span.img-circle.logo-size.inlide-block.pull-left.logo-empty=review.user.email.chr.capitalize
+    .ml-70
+      %div
+        .general-message-date.hidden-xs= review.created_at.strftime('%Y/%m/%d')
+        .max-240
+          .general-message-verified= t('reviews.verified_reviewer')
+          .general-message-name= review.title
+      .mb-15
+        - (1..5).each do |index|
+          - if index <= review.book_rate
+            %i.fa.fa-star.rate-star
+          - else
+            %i.fa.fa-star.rate-star.rate-empty
+      %p= review.body

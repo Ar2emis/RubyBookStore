@@ -1,0 +1,16 @@
+= simple_form_for review, as: :review, validate: true, url: reviews_path, html: { class: 'row' } do |f|
+  %h3= t('reviews.write_a_review')
+  %p.general-info-text= t('reviews.score')
+  .mb-15#stars
+    - (1..5).each do |index|
+      %i.fa.fa-star.rate-star.rate-empty{'data-value': index}
+    = f.hidden_field :book_rate, as: :hidden, value: '0'
+    %div{class: "#{'has-error' if f.object.errors[:book_rate].any?}"}
+      %p= t('reviews.score') + ' ' + f.object.errors[:book_rate].join(' ,')
+  = f.hidden_field :book_id, value: book_id
+  .col-md-8
+    .mb-40
+      = f.input :title, required: false
+      = f.input :body, as: :text, required: false
+    .text-right
+      = f.button :submit, t('reviews.post')
