@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Checkouts', type: :request do
   describe 'GET /checkout' do
     context 'when user signed in' do
@@ -8,12 +6,12 @@ RSpec.describe 'Checkouts', type: :request do
         get checkout_path
       end
 
-      it 'returns http redirect status' do
-        expect(response).to have_http_status(:redirect)
+      it 'returns http ok status' do
+        expect(response).to have_http_status(:ok)
       end
 
-      it 'redirects to home page' do
-        expect(response).to redirect_to(root_path)
+      it 'renders show template' do
+        expect(response).to render_template(:show)
       end
     end
 
@@ -22,12 +20,12 @@ RSpec.describe 'Checkouts', type: :request do
         get checkout_path
       end
 
-      it 'returns http success status' do
-        expect(response).to have_http_status(:ok)
+      it 'returns http redirect status' do
+        expect(response).to have_http_status(:redirect)
       end
 
-      it 'redirects to home page' do
-        expect(response).to render_template(:show)
+      it 'redirects to quick registration page' do
+        expect(response).to redirect_to(quick_registration_path)
       end
     end
   end

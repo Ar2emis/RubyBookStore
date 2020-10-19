@@ -1,9 +1,9 @@
-RSpec.describe 'Checkout Index', type: :feature do
+RSpec.describe 'QuickRegistrations Show', type: :feature do
   describe 'sign in form' do
     let(:user_data) { attributes_for(:user) }
 
     before do
-      visit checkout_path
+      visit quick_registration_path
       within 'div.col-md-5.mb-40' do
         fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: user_data[:email])
         fill_in(I18n.t('simple_form.placeholders.defaults.password'), with: user_data[:password])
@@ -40,7 +40,7 @@ RSpec.describe 'Checkout Index', type: :feature do
     let(:user_data) { attributes_for(:user) }
 
     before do
-      visit checkout_path
+      visit quick_registration_path
     end
 
     context 'when email is valid' do
@@ -61,8 +61,8 @@ RSpec.describe 'Checkout Index', type: :feature do
         click_button(I18n.t('checkouts.continue_checkout'))
       end
 
-      it 'stays at checkout page' do
-        expect(page).to have_current_path(checkout_path)
+      it 'stays at quick registration page' do
+        expect(page).to have_current_path(quick_registration_path)
       end
 
       it 'displays invalid email message' do
