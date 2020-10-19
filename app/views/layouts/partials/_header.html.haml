@@ -9,10 +9,10 @@
       %a.navbar-brand{href: root_path}= t('layouts.shop_name')
       %a.shop-link.pull-right.visible-xs{href: cart_path}
         %span.shop-icon
-          %span.shop-quantity= current_order_items_count
+          %span.shop-quantity= cart_items_count
     %a.shop-link.pull-right.hidden-xs{href: cart_path}
       %span.shop-icon
-        %span.shop-quantity= current_order_items_count
+        %span.shop-quantity= cart_items_count
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
         %button.close{type: "button", 'aria-label': "Close"}

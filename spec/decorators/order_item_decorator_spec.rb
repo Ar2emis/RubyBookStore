@@ -1,10 +1,10 @@
 RSpec.describe OrderItemDecorator do
   subject(:decorator) { build(:order_item).decorate }
 
-  describe '#full_price' do
+  describe '#subtotal' do
     it 'returns price of a book multiplied by count' do
-      full_price = decorator.book.price * decorator.amount
-      expect(decorator.full_price).to eq full_price
+      subtotal = decorator.book.price * decorator.amount
+      expect(decorator.subtotal).to eq subtotal
     end
   end
 end

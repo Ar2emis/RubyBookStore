@@ -9,18 +9,20 @@ RSpec.describe UpdateCartService do
     context 'when order item updates' do
       let(:order_item_params) { attributes_for(:order_item) }
 
-      it 'creates order item' do
+      it 'calls UpdateOrderItemService' do
+        allow(UpdateOrderItemService).to receive(:call)
         described_class.call(params: { order_item: order_item_params }, order: order)
-        expect(order.order_items.count).not_to be_zero
+        expect(UpdateOrderItemService).to have_received(:call)
       end
     end
 
     context 'when coupon updates' do
-      let(:coupon) { create(:coupon) }
+      let(:coupon_code) { '123456' }
 
       it 'assigns coupon to order' do
-        described_class.call(params: { coupon: { code: coupon.code } }, order: order)
-        expect(order.coupon).to eq coupon
+        allow(AddCouponService).to receive(:call)
+        described_class.call(params: { coupon: { code: coupon_code } }, order: order)
+        expect(AddCouponService).to have_received(:call)
       end
     end
   end
@@ -30,8 +32,6 @@ RSpec.describe UpdateCartService do
 
     context 'when service successeded' do
       subject(:service) { described_class.call(params: {}, order: order) }
-
-      let(:coupon) { create(:coupon) }
 
       it 'returns true' do
         expect(service).to be_success
