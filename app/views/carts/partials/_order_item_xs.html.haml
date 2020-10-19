@@ -1,5 +1,5 @@
 .general-cart-item.divider-lg-bottom
-  = link_to cart_path(id: order_item.id), method: :delete, 'data-remote': true, class: 'close general-cart-close' do
+  = link_to cart_path(order: { order_item: { delete_id: order_item.id } }), method: :put, 'data-remote': true, class: 'close general-cart-close' do
     %span{'aria-hidden': "true"} &times;
   = link_to book_path(id: order_item.book.id) do
     .general-img-wrap-table
@@ -25,4 +25,4 @@
       %td
         %span.in-grey-600= t('cart.subtotal')
       %td
-        %span.font-16.in-gold-500= number_to_currency(order_item.full_price)
+        %span.font-16.in-gold-500= number_to_currency(order_item.subtotal)

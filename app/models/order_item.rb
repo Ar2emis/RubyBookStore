@@ -4,5 +4,5 @@ class OrderItem < ApplicationRecord
   belongs_to :book
 
   validates :book, presence: true
-  validates :amount, numericality: { greater_than: MIN_AMOUNT }, if: -> { amount.present? }
+  validates :amount, numericality: { greater_than: MIN_AMOUNT }
 end

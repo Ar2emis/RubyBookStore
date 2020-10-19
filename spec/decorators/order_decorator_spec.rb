@@ -23,16 +23,16 @@ RSpec.describe OrderDecorator do
     end
   end
 
-  describe '#coupon_sale' do
+  describe '#discount' do
     let(:coupon) { create(:coupon) }
 
     it 'returns sale of the coupon if coupon exists' do
       order.coupon = coupon
-      expect(decorator.coupon_sale).to eq coupon.sale
+      expect(decorator.discount).to eq coupon.sale
     end
 
     it 'returns 0.0 of the coupon if coupon does not exist' do
-      expect(decorator.coupon_sale).to be_zero
+      expect(decorator.discount).to be_zero
     end
   end
 

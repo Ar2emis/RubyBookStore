@@ -7,15 +7,15 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def subtotal_price
-    order_items.sum(&:full_price)
+    order_items.sum(&:subtotal)
   end
 
-  def coupon_sale
-    coupon ? coupon.sale : 0.0
+  def discount
+    coupon&.sale || 0.0
   end
 
   def total_price
-    total = subtotal_price - coupon_sale
+    total = subtotal_price - discount
     total.negative? ? 0.0 : total
   end
 end
