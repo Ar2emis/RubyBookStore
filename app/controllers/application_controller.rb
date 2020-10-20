@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :build_shopping_cart
-  helper_method :categories
+  before_action :transfer_cart_to_user
+  helper_method :categories, :cart_items_count
 
   private
 
@@ -8,7 +8,15 @@ class ApplicationController < ActionController::Base
     @categories ||= Category.all
   end
 
-  def build_shopping_cart
-    @shopping_cart = BuildCartService.call(session: session, user: current_user).shopping_cart
+  def cart_items_count
+    order = current_user&.current_order || Order.find_by(id: session[:current_order])
+    @cart_items_count ||= OrderItem.where(order: order).count
+  end
+
+  def transfer_cart_to_user
+    return unless user_signed_in? && session[:current_order]
+
+    current_user.current_order = Order.find(session[:current_order])
+    session[:current_order] = nil
   end
 end

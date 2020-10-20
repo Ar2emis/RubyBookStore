@@ -5,7 +5,7 @@ RSpec.describe 'Show', type: :feature do
     let(:decorated_order) { order.decorate }
 
     before do
-      create(:order_item, order: order)
+      order.order_items.create(attributes_for(:order_item))
       create(:address, address_type: :billing, addressable: order)
       create(:address, address_type: :shipping, addressable: order)
       create(:card, order: order)

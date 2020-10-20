@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @presenter = OrdersPresenter.new(view: view_context, state: params[:state],
-                                     orders: FilteredOrdersQuery.call(params[:state], current_user))
+                                     orders: FilteredOrdersQuery.call(params[:state], current_user).decorate)
   end
 
   def show

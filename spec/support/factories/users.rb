@@ -6,6 +6,6 @@ FactoryBot.define do
     uid { Faker::Omniauth.facebook[:uid] }
     confirmation_token { Devise.token_generator.generate(User, :confirmation_token)[1] }
     confirmed_at { Time.now.utc }
-    cart { create(:cart) }
+    current_order { create(:order) }
   end
 end

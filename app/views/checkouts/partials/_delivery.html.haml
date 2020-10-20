@@ -23,6 +23,7 @@
               %span.in-grey-600= t('checkouts.delivery.price')
             %td
               %span.font-16.in-gold-500= number_to_currency(delivery.price)
+    = render partial: 'checkouts/partials/order_summary', locals: { order: order, presenter: presenter }
     .text-center
       %button.btn.btn-default.mb-20 Save and Continue
 .hidden-xs.mb-res-50
@@ -49,5 +50,6 @@
               %span= t('checkouts.delivery.from_to_days', min_days: delivery.min_days, max_days: delivery.max_days)
             %td
               %span.font-16.in-gold-500= number_to_currency(delivery.price)
+    = render partial: 'checkouts/partials/order_summary', locals: { order: order, presenter: presenter }
     .text-center
       %button.btn.btn-default.mb-20= t('checkouts.save_and_continue')

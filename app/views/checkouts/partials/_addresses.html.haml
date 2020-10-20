@@ -2,14 +2,11 @@
   .row
     .col-md-5.mb-40
       .visible-xs.visible-sm
-        %h3.general-subtitle= t('checkouts.addresses.billing_address')
-        %p.general-info-text= t('checkouts.addresses.all_fields_are_required')
       = f.simple_fields_for :billing_address, AddressForm.from_address(order.billing_address), validate: true do |fa|
         = render partial: 'addresses/partials/fields', locals: { f: fa, type: :billing }
     .col-md-5.col-md-offset-1.mb-60
       #shipping_address_form
         .visible-xs.visible-sm
-          %h3.general-subtitle= t('checkouts.addresses.shipping_address')
         = f.simple_fields_for :shipping_address, AddressForm.from_address(order.shipping_address), validate: true do |fa|
           = render partial: 'addresses/partials/fields', locals: { f: fa, type: :shipping }
       .form-group.checkbox
@@ -18,5 +15,6 @@
           %span.checkbox-icon
             %i.fa.fa-check
           %span.checkbox-text= t('checkouts.addresses.use_billing_address')
+  = render partial: 'checkouts/partials/order_summary', locals: { order: order, presenter: presenter }
   .text-center
     = f.button :submit, t('checkouts.save_and_continue')

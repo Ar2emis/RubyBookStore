@@ -3,11 +3,11 @@ RSpec.describe 'Checkout Payment', type: :feature do
   let(:order) { create(:order, user: user, state: :payment) }
 
   before do
-    user.cart.cart_items.create!(attributes_for(:cart_item))
+    user.current_order = order
+    user.current_order.order_items.create(attributes_for(:order_item))
     create(:address, address_type: :billing, addressable: order)
     create(:address, address_type: :shipping, addressable: order)
     order.delivery_type = create(:delivery_type)
-    page.set_rack_session(order: order.id)
     sign_in(user)
   end
 

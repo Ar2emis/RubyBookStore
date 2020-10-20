@@ -1,17 +1,9 @@
-RSpec.describe 'Checkout Auth', type: :feature do
-  let(:cart) { create(:cart) }
-  let(:cart_item) { create(:cart_item, cart: cart) }
-
-  before do
-    cart.cart_items << cart_item
-    page.set_rack_session(shopping_cart: cart.id)
-  end
-
+RSpec.describe 'QuickRegistrations Show', type: :feature do
   describe 'sign in form' do
     let(:user_data) { attributes_for(:user) }
 
     before do
-      visit checkout_path
+      visit quick_registration_path
       within 'div.col-md-5.mb-40' do
         fill_in(I18n.t('simple_form.placeholders.defaults.email'), with: user_data[:email])
         fill_in(I18n.t('simple_form.placeholders.defaults.password'), with: user_data[:password])
@@ -24,8 +16,8 @@ RSpec.describe 'Checkout Auth', type: :feature do
         click_button(I18n.t('checkouts.log_in_with_password'))
       end
 
-      it 'authorizes user and redirects to checkout page' do
-        expect(page).to have_current_path(checkout_path)
+      it 'authorizes user and redirects to home page' do
+        expect(page).to have_current_path(root_path)
       end
     end
 
@@ -48,7 +40,7 @@ RSpec.describe 'Checkout Auth', type: :feature do
     let(:user_data) { attributes_for(:user) }
 
     before do
-      visit checkout_path
+      visit quick_registration_path
     end
 
     context 'when email is valid' do
@@ -59,8 +51,8 @@ RSpec.describe 'Checkout Auth', type: :feature do
         end
       end
 
-      it 'registers user and redirects to checkout page' do
-        expect(page).to have_current_path(checkout_path)
+      it 'registers user and redirects to home page' do
+        expect(page).to have_current_path(root_path)
       end
     end
 
@@ -69,8 +61,8 @@ RSpec.describe 'Checkout Auth', type: :feature do
         click_button(I18n.t('checkouts.continue_checkout'))
       end
 
-      it 'stays at checkout page' do
-        expect(page).to have_current_path(checkout_path)
+      it 'stays at quick registration page' do
+        expect(page).to have_current_path(quick_registration_path)
       end
 
       it 'displays invalid email message' do

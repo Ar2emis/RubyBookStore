@@ -1,6 +1,6 @@
 RSpec.describe PlaceOrderService do
   describe '.call' do
-    let(:order) { build(:order, delivery_type: build(:delivery_type), state: :confirm) }
+    let(:order) { create(:order, user: build(:user), delivery_type: build(:delivery_type), state: :confirm) }
 
     before do
       allow(OrderMailer).to receive(:order_complete_mail).and_call_original

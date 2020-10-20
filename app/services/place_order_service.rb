@@ -15,6 +15,6 @@ class PlaceOrderService < BaseService
   private
 
   def order_number
-    "R#{Array.new(ORDER_NUMBER_LENGTH) { rand(10) }.join}"
+    "R#{'0' * (ORDER_NUMBER_LENGTH - @order.id.digits.count)}#{@order.id}"
   end
 end

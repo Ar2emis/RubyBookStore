@@ -4,7 +4,7 @@ RSpec.describe Coupon, type: :model do
       it { is_expected.to validate_presence_of(property) }
     end
 
-    it { is_expected.to validate_numericality_of(:sale).is_greater_than_or_equal_to(0.0) }
+    it { is_expected.to validate_numericality_of(:sale).is_greater_than_or_equal_to(described_class::MIN_SALE) }
   end
 
   context 'with model fields' do

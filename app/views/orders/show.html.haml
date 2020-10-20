@@ -36,7 +36,7 @@
         %br
         = @order.card.expiration_date
   .visible-xs
-    - @order.prepared_order_items.each do |item|
+    - @order.ordered_order_items.each do |item|
       .general-cart-item.divider-lg.mb-55
         .general-img-wrap-table
           %img.cart-img-shadow{src: item.book.title_image.url(:w170), alt: "design-book"}
@@ -71,7 +71,7 @@
           %th
             %span.in-grey-600= t('checkouts.confirm.total')
       %tbody
-        - @order.prepared_order_items.each do |item|
+        - @order.ordered_order_items.each do |item|
           %tr
             %td
               .general-img-wrap-table
