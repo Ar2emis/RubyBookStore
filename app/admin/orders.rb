@@ -9,7 +9,7 @@ ActiveAdmin.register Order do
   index do
     selectable_column
     column :number
-    column :state
+    column(:state) { |order| order.state.humanize }
     column :created_at
     actions
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register Order do
   show do
     attributes_table do
       row :number
-      row :status
+      row(:state) { |order| order.state.humanize }
       row :created_at
       row :coupon
       row :delivery_type

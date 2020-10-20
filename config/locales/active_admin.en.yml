@@ -1,9 +1,9 @@
 en:
   activeadmin:
     orders:
-      change_to_in_delivery: 'Change to in_delivery'
-      change_to_delivered: 'Change to delivered'
-      change_to_canceled: 'Change to canceled'
+      change_to_in_delivery: 'Change to In Delivery'
+      change_to_delivered: 'Change to Delivered'
+      change_to_canceled: 'Change to Canceled'
     reviews:
       approve: Approve
       reject: Reject
