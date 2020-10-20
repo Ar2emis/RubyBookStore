@@ -116,6 +116,7 @@ en:
     checkout: Checkout
     enter_coupon_code: Enter Your Coupon Code
   checkouts:
+    cart_is_empty: Cart is empty.
     returning_customer: Returning Customer
     new_customer: New Customer
     or: or

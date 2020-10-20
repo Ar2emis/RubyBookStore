@@ -44,7 +44,7 @@ class CheckoutsController < ApplicationController
   end
 
   def check_preparations
-    return redirect_to(root_path) unless cart_items_count.positive?
+    return redirect_to(root_path, alert: I18n.t('checkouts.cart_is_empty')) unless cart_items_count.positive?
     return if user_signed_in?
 
     store_location_for(:user, checkout_path)
