@@ -14,34 +14,4 @@ RSpec.describe 'RegistrationsRequests', type: :request do
       expect(response).to render_template(:edit)
     end
   end
-
-  describe 'POST /quick_registration' do
-    context 'when params are valid' do
-      before do
-        post quick_registration_path, params: { user: { email: Faker::Internet.email } }
-      end
-
-      it 'returns http redirect' do
-        expect(response).to have_http_status(:redirect)
-      end
-
-      it 'redirects to checkout page' do
-        expect(response).to redirect_to(checkout_path)
-      end
-    end
-
-    context 'when params are invalid' do
-      before do
-        post quick_registration_path
-      end
-
-      it 'returns http redirect' do
-        expect(response).to have_http_status(:redirect)
-      end
-
-      it 'redirects to checkout page' do
-        expect(response).to redirect_to(checkout_path)
-      end
-    end
-  end
 end

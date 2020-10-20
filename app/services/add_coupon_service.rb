@@ -1,23 +1,17 @@
 class AddCouponService < BaseService
   def initialize(**kwargs)
     super
-    @coupon = Coupon.find_by(code: kwargs[:coupon_params][:code])
-    @cart = kwargs[:cart]
+    @order = kwargs[:order]
+    @params = kwargs[:params]
+    @success_message = I18n.t('cart.coupon_added')
   end
 
   def call
-    validate
-    return unless success?
+    coupon = Coupon.find_by(code: @params[:code])
+    return @errors << I18n.t('cart.invalid_coupon') if coupon.nil?
+    return @errors << I18n.t('cart.coupon_used') unless coupon.active?
 
-    @cart.update(coupon: @coupon)
-    @cart.user.coupons << @coupon if @cart.user
-  end
-
-  private
-
-  def validate
-    return @errors << I18n.t('cart.invalid_coupon') if @coupon.nil?
-
-    @errors << I18n.t('cart.coupon_used') if @cart.user&.coupons&.include?(@coupon)
+    @order.coupon = coupon
+    coupon.update(active: false)
   end
 end

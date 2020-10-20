@@ -7,7 +7,7 @@ class AddOrderPaymentService < BaseService
 
   def call
     card_form = CardForm.new(@card_params)
-    return if card_form.invalid?
+    return @errors += card_form.errors.full_messages if card_form.invalid?
 
     card_form.submit
     @order.confirm_step!

@@ -1,31 +1,46 @@
-require 'rails_helper'
-
 RSpec.describe 'Checkouts', type: :request do
   let(:user) { create(:user) }
 
   describe 'GET /checkout' do
-    before do
-      sign_in(user)
-      user.cart.cart_items << create(:cart_item, cart: user.cart)
-      get checkout_path
+    context 'when user ready to make order' do
+      before do
+        sign_in(user)
+        user.current_order.order_items.create(attributes_for(:order_item))
+        get checkout_path
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders show template' do
+        expect(response).to render_template(:show)
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:ok)
-    end
+    context 'when user is not signed in' do
+      let(:order_item_params) { { order: { order_item: { book_id: create(:book).id } } } }
 
-    it 'renders show template' do
-      expect(response).to render_template(:show)
+      before do
+        put cart_path, params: order_item_params
+        get checkout_path
+      end
+
+      it 'returns http redirect' do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'redirects to quick registration page' do
+        expect(response).to redirect_to(quick_registration_path)
+      end
     end
   end
 
   describe 'PUT /checkout' do
-    let(:order) { create(:order, user: user) }
-    let(:cart) { create(:cart, user: user) }
     let(:order_params) { { billing_address: attributes_for(:address, address_type: :billing), only_billing: true } }
 
     before do
-      cart.cart_items.create(attributes_for(:cart_item))
+      user.current_order.order_items.create(attributes_for(:order_item))
       sign_in(user)
       put checkout_path, params: { order: order_params }
     end
@@ -34,7 +49,7 @@ RSpec.describe 'Checkouts', type: :request do
       expect(response).to have_http_status(:redirect)
     end
 
-    it 'renders show template' do
+    it 'redirects to show page' do
       expect(response).to redirect_to(checkout_path)
     end
   end

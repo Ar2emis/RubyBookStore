@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
   devise_scope :user do
-    post 'quick_registration', to: 'registrations#quick_create'
+    resource :quick_registration, only: [:show, :create]
   end
 
   resources :books, only: [:index, :show]

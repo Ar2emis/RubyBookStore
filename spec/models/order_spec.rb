@@ -1,20 +1,19 @@
-require 'rails_helper'
-
 RSpec.describe Order, type: :model do
   context 'with associations' do
-    it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:coupon).optional(true) }
-    it { is_expected.to have_many(:order_items) }
+    it { is_expected.to belong_to(:user).optional(true) }
+    it { is_expected.to have_many(:order_items).dependent(:destroy) }
 
-    %i[billing_address shipping_address order_delivery_type card].each do |model|
+    %i[billing_address shipping_address order_coupon order_delivery_type card].each do |model|
       it { is_expected.to have_one(model).dependent(:destroy) }
     end
 
-    it { is_expected.to have_one(:delivery_type).through(:order_delivery_type) }
+    { coupon: :order_coupon, delivery_type: :order_delivery_type }.each do |model, through_model|
+      it { is_expected.to have_one(model).through(through_model) }
+    end
   end
 
   context 'with model fields' do
-    %i[user_id coupon_id total_price state number completed_at].each do |field|
+    %i[user_id state number completed_at].each do |field|
       it { is_expected.to have_db_column(field) }
     end
   end

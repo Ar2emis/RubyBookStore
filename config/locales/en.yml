@@ -51,8 +51,8 @@ en:
     best_sellers: Best Sellers
     buy_now: Buy now
   flash:
-    book_successfuly_added: Book successfully added to your cart.
-    error: An error has occurred. Please try again later...
+    book_added: Book successfully added to your cart.
+    error: An error occurred. Please try again later...
   passwords:
     set_new_password: Set new password
     type_a_new_password: Type a new Password
@@ -100,6 +100,7 @@ en:
     post: Post
   cart:
     cart: Cart
+    cart_is_empty: Cart is empty
     coupon_used: Coupon has already used.
     invalid_coupon: Invalid coupon code.
     coupon_added: Coupon successfully added to your cart.
@@ -132,7 +133,7 @@ en:
       order: "Order #%{order}"
       back_to_store: Back to Store
     addresses:
-      address: Address
+      addresses: Addresses
       billing_address: Billing Address
       all_fields_are_required: all fields are required
       shipping_address: Shipping Address

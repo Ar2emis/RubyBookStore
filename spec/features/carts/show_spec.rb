@@ -1,15 +1,15 @@
-RSpec.describe 'cart_items#index', type: :feature do
-  let(:user) { create(:user, coupons: [create(:coupon)]) }
-  let(:cart_items_amount) { 3 }
-  let(:cart_items) { create_list(:cart_item, cart_items_amount, cart: user.cart) }
+RSpec.describe 'carts#show', type: :feature do
+  let(:user) { create(:user) }
+  let(:order_items_amount) { 3 }
+  let(:order_items) { create_list(:order_item, order_items_amount, order: user.current_order) }
 
   before do
-    user.cart.cart_items = cart_items
+    user.current_order.order_items = order_items
     sign_in(user)
     visit cart_path
   end
 
-  describe 'cart item deletion', js: true do
+  describe 'order item deletion', js: true do
     before do
       within 'table.table.table-hover' do
         page.all('a.close.general-cart-close').first.click
@@ -17,8 +17,8 @@ RSpec.describe 'cart_items#index', type: :feature do
       sleep(0.5)
     end
 
-    it 'deletes cart item from cart' do
-      expect(page.all('a.close.general-cart-close').count).to eq cart_items_amount - 1
+    it 'deletes order item from cart' do
+      expect(page.all('a.close.general-cart-close').count).to eq order_items_amount - 1
     end
   end
 
@@ -42,10 +42,13 @@ RSpec.describe 'cart_items#index', type: :feature do
 
     before do
       within 'table.table.table-hover' do
-        2.times { page.all('i.fa.fa-plus').first.click }
+        2.times do
+          page.all('i.fa.fa-plus').first.click
+          sleep(0.5)
+        end
         page.all('i.fa.fa-minus').first.click
+        sleep(0.5)
       end
-      sleep(0.5)
     end
 
     it 'decreases book amount by 1' do
@@ -77,8 +80,10 @@ RSpec.describe 'cart_items#index', type: :feature do
     end
 
     context 'when coupon was already used' do
+      let(:used_coupon) { create(:coupon, active: false) }
+
       it 'adds coupon sale to the cart' do
-        fill_in(I18n.t('cart.enter_coupon_code'), with: user.coupons.first.code)
+        fill_in(I18n.t('cart.enter_coupon_code'), with: used_coupon.code)
         click_button(I18n.t('cart.apply_coupon'))
         expect(page).to have_content(I18n.t('cart.coupon_used'))
       end

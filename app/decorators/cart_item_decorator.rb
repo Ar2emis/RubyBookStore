@@ -1,2 +1,0 @@
-class CartItemDecorator < ItemDecorator
-end

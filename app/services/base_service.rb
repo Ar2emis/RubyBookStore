@@ -1,6 +1,8 @@
 class BaseService
+  attr_reader :errors, :success_message
+
   def self.call(**kwargs)
-    service = new(**kwargs.symbolize_keys)
+    service = new(**kwargs)
     service.call
     service
   end

@@ -9,12 +9,16 @@ class AddOrderAddressesService < BaseService
   end
 
   def call
-    billing_address_form = AddressForm.new(@billing_params)
-    shipping_address_form = AddressForm.new(@shipping_params)
-    return if billing_address_form.invalid? || shipping_address_form.invalid?
+    [@billing_params, @shipping_params].each { |params| create_address(params) }
+    @order.delivery_step! if success?
+  end
 
-    billing_address_form.submit
-    shipping_address_form.submit
-    @order.delivery_step!
+  private
+
+  def create_address(params)
+    address_form = AddressForm.new(params)
+    return @errors = (@errors + address_form.errors.full_messages).uniq if address_form.invalid?
+
+    address_form.submit
   end
 end

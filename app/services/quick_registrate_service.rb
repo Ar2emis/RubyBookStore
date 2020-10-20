@@ -8,11 +8,7 @@ class QuickRegistrateService < BaseService
 
   def call
     build_resource
-    if @resource.persisted?
-      @resource.send_reset_password_instructions
-    else
-      @errors += @resource.errors[:email]
-    end
+    @resource.persisted? ? @resource.send_reset_password_instructions : @errors += @resource.errors[:email]
   end
 
   private

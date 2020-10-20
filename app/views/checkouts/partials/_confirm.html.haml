@@ -38,7 +38,7 @@
       %br
       = order.card.expiration_date
 .visible-xs
-  - order.prepared_order_items.each do |item|
+  - order.ordered_order_items.each do |item|
     .general-cart-item.divider-lg.mb-55
       .general-img-wrap-table
         %img.cart-img-shadow{src: item.book.title_image.url(:w170), alt: "design-book"}
@@ -73,7 +73,7 @@
         %th
           %span.in-grey-600= t('checkouts.confirm.total')
     %tbody
-      - order.prepared_order_items.each do |item|
+      - order.ordered_order_items.each do |item|
         %tr
           %td
             .general-img-wrap-table
@@ -104,7 +104,7 @@
       %td
         %p.font-16 #{t('checkouts.confirm.shipping')}:
       %td
-        %p.font-16= number_to_currency(order.delivery_type.price)
+        %p.font-16= number_to_currency(order.delivery_price)
     %tr
       %td
         %strong.font-18 #{t('cart.order_total')}:
