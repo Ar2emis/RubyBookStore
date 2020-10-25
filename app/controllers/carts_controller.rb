@@ -11,7 +11,7 @@ class CartsController < ApplicationController
 
   def current_order
     @current_order ||= current_user&.current_order || Order.where(id: session[:current_order]).first_or_create
-    session[:current_order] = user_signed_in? ? nil : @current_order.id
+    session[:current_order] = @current_order.id
     @current_order
   end
 
