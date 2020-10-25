@@ -26,4 +26,12 @@ class OrderDecorator < ApplicationDecorator
   def formated_updated_at
     updated_at.strftime('%B %d, %Y')
   end
+
+  def state_done?(state)
+    state_before_type_cast > Order.states[state]
+  end
+
+  def current_state?(state)
+    self.state == state.to_s
+  end
 end
