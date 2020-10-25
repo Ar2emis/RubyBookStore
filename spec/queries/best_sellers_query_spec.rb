@@ -7,12 +7,12 @@ RSpec.describe BestSellersQuery do
 
     it 'returns best selled books' do
       books = order_items.map(&:book).sort_by(&:id)
-      queried_books = described_class.call(order_items_amount).sort_by(&:id)
+      queried_books = described_class.call.sort_by(&:id)
       expect(queried_books).to eq books
     end
 
     it 'does not return books which not selled' do
-      queried_books = described_class.call(order_items_amount * 2)
+      queried_books = described_class.call
       expect(queried_books & not_selled_books).to be_empty
     end
   end

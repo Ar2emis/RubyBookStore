@@ -1,5 +1,6 @@
 class BestSellersQuery
-  def self.call(amount)
-    OrderItem.joins(:order).merge(Order.finished_by_user).group(:book).count.max(amount).map(&:first)
+  def self.call
+    Book.includes(:authors).joins(order_items: :order).merge(Order.finished_by_user).group(:id)
+        .select('books.*', 'COUNT(*) as order_items_count').order(order_items_count: :desc).uniq(&:category_id)
   end
 end

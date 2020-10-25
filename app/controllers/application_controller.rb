@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def cart_items_count
     order = current_user&.current_order || Order.find_by(id: session[:current_order])
-    @cart_items_count ||= OrderItem.where(order: order).count
+    OrderItem.where(order: order).count
   end
 
   def transfer_cart_to_user
