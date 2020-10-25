@@ -10,7 +10,7 @@
       %p.font-16 #{t('cart.coupon')}:
     %td
       %p.font-16= number_to_currency(order.discount)
-  - if presenter.state_done?(:addresses)
+  - if order.state_done?(:addresses)
     %tr
       %td
         %p.font-16 #{t('checkouts.confirm.shipping')}:

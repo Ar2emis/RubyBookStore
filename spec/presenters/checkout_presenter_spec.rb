@@ -26,19 +26,6 @@ RSpec.describe CheckoutPresenter do
     end
   end
 
-  describe '#state_done?' do
-    let(:completed_step) { :addresses }
-    let(:uncompleted_step) { :confirm }
-
-    it 'returns true if state already done' do
-      expect(presenter).to be_state_done(completed_step)
-    end
-
-    it 'returns false if state does not completed' do
-      expect(presenter).not_to be_state_done(uncompleted_step)
-    end
-  end
-
   describe '#last_state?' do
     let(:not_last_state_index) { presenter.states.count - 2 }
     let(:last_state_index) { presenter.states.count - 1 }

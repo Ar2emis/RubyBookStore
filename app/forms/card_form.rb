@@ -1,6 +1,5 @@
 class CardForm < BaseForm
   NUMERIC_FORMAT = /\A\d+\z/.freeze
-  TEXT_FORMAT = /\A[a-zA-Z\s]+\z/.freeze
   DATE_FORMAT = %r/\A(0[1-9]|10|11|12)\/[0-9]{2}\z/.freeze
   MAX_NAME_LENGTH = 50
   MIN_CVV_LENGTH = 3

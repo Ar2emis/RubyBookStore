@@ -162,6 +162,7 @@ en:
       shipping: Shipping
       place_order: Place Order
   order_mailer:
+    subject: "Order #%{number} created successfuly!"
     dear_customer: Dear Customer,
   orders:
     my_orders: My Orders

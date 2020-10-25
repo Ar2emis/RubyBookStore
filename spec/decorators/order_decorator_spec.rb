@@ -2,7 +2,7 @@ RSpec.describe OrderDecorator do
   subject(:decorator) { order.decorate }
 
   let(:order_items_amount) { 3 }
-  let(:order) { create(:order) }
+  let(:order) { create(:order, state: :confirm) }
   let(:order_items) { create_list(:order_item, order_items_amount, order: order) }
 
   before do
@@ -66,6 +66,31 @@ RSpec.describe OrderDecorator do
 
     it 'formats updated at date' do
       expect(decorator.formated_updated_at).to eq expected_format
+    end
+  end
+
+  describe '#state_done?' do
+    let(:completed_step) { :addresses }
+    let(:uncompleted_step) { :complete }
+
+    it 'returns true if state already done' do
+      expect(decorator).to be_state_done(completed_step)
+    end
+
+    it 'returns false if state does not completed' do
+      expect(decorator).not_to be_state_done(uncompleted_step)
+    end
+  end
+
+  describe '#current_state?' do
+    let(:not_current_state) { :not_current_state }
+
+    it 'returns true if passed state is current' do
+      expect(decorator).to be_current_state(decorator.state)
+    end
+
+    it 'returns false if passed state is not current' do
+      expect(decorator).not_to be_current_state(not_current_state)
     end
   end
 end
