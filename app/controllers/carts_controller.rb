@@ -1,22 +1,24 @@
 class CartsController < ApplicationController
-  helper_method :decorated_order
+  helper_method :decorated_cart
 
   def update
-    service = UpdateCartService.call(order: current_order, params: cart_params)
+    service = UpdateCartService.call(order: cart, params: cart_params)
     return if request.format.js?
 
     service.success? ? flash[:success] = service.success_message : flash[:error] = service.errors_message
     redirect_back(fallback_location: cart_path)
   end
 
-  def current_order
-    @current_order ||= current_user&.current_order || Order.where(id: session[:current_order]).first_or_create
-    session[:current_order] = @current_order.id
-    @current_order
+  def cart
+    return @cart if @cart
+
+    @cart = current_user&.cart || Order.find_by(id: session[:cart]) || Order.create
+    session[:cart] = @cart.id
+    @cart
   end
 
-  def decorated_order
-    @decorated_order ||= current_order.decorate if cart_items_count.positive?
+  def decorated_cart
+    @decorated_cart ||= cart.decorate if cart_items_count.positive?
   end
 
   def cart_params

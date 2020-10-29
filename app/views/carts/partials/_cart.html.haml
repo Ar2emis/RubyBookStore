@@ -1,7 +1,7 @@
-- if current_order
+- if cart
   %h1.general-title-margin= t('cart.cart')
   .visible-xs
-    = render partial: 'carts/partials/order_item_xs', collection: current_order.ordered_order_items, as: :order_item
+    = render partial: 'carts/partials/order_item_xs', collection: cart.ordered_order_items, as: :order_item
   .hidden-xs
     %table.table.table-hover
       %tr.no-hover
@@ -15,7 +15,7 @@
         %th.col-total
           %span.in-grey-600= t('cart.subtotal')
         %th.col-close
-      = render partial: 'carts/partials/order_item_xl', collection: current_order.ordered_order_items, as: :order_item
+      = render partial: 'carts/partials/order_item_xl', collection: cart.ordered_order_items, as: :order_item
   .general-order-wrap
     .row
       .col-sm-4
@@ -33,17 +33,17 @@
               %td
                 %p.font-16 #{t('cart.subtotal')}:
               %td
-                %p.font-16= number_to_currency(current_order.subtotal_price)
+                %p.font-16= number_to_currency(cart.subtotal_price)
             %tr
               %td
                 %p.font-16 #{t('cart.coupon')}:
               %td
-                %p.font-16= number_to_currency(current_order.discount)
+                %p.font-16= number_to_currency(cart.discount)
             %tr
               %td
                 %strong.font-18 #{t('cart.order_total')}:
               %td
-                %strong.font-18= number_to_currency(current_order.total_price)
+                %strong.font-18= number_to_currency(cart.total_price)
           %button.btn.btn-default.mb-20.visible-xs-inline-block= t('cart.checkout')
   %button.btn.btn-default.mb-20.hidden-xs.center-block= t('cart.checkout')
 - else

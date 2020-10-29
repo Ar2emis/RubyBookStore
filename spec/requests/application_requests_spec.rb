@@ -1,6 +1,6 @@
 RSpec.describe 'ApplicationRequests', type: :request do
   describe '#transfer_cart_to_user' do
-    let(:user) { create(:user, current_order: nil) }
+    let(:user) { create(:user, cart: nil) }
     let(:order_item_params) { { order: { order_item: { book_id: create(:book).id } } } }
 
     before do
@@ -10,7 +10,7 @@ RSpec.describe 'ApplicationRequests', type: :request do
     end
 
     it 'assigns cart to user' do
-      expect(user.current_order).not_to be_nil
+      expect(user.cart).not_to be_nil
     end
   end
 end

@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_one(model).dependent(:destroy) }
     end
 
-    it { is_expected.to have_one(:current_order).class_name('Order').dependent(:destroy) }
+    it { is_expected.to have_one(:cart).class_name('Order').dependent(:destroy) }
     it { is_expected.to have_many(:reviews).dependent(:destroy) }
   end
 
