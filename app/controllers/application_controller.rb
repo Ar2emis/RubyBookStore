@@ -9,14 +9,16 @@ class ApplicationController < ActionController::Base
   end
 
   def cart_items_count
-    order = current_user&.current_order || Order.find_by(id: session[:current_order])
-    OrderItem.where(order: order).count
+    return @cart_items_count if @cart_items_count
+
+    order = current_user&.cart || Order.find_by(id: session[:cart])
+    @cart_items_count = OrderItem.where(order: order).count
   end
 
   def transfer_cart_to_user
-    return unless user_signed_in? && session[:current_order]
+    return unless user_signed_in? && session[:cart]
 
-    current_user.current_order = Order.find(session[:current_order])
-    session[:current_order] = nil
+    current_user.cart = Order.find(session[:cart])
+    session[:cart] = nil
   end
 end

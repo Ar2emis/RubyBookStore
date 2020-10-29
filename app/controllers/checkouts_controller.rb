@@ -36,7 +36,7 @@ class CheckoutsController < ApplicationController
   end
 
   def current_order
-    current_user.current_order
+    current_user.cart
   end
 
   def complete_order
