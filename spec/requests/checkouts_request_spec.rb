@@ -5,7 +5,7 @@ RSpec.describe 'Checkouts', type: :request do
     context 'when user ready to make order' do
       before do
         sign_in(user)
-        user.current_order.order_items.create(attributes_for(:order_item))
+        user.cart.order_items.create(attributes_for(:order_item))
         get checkout_path
       end
 
@@ -40,7 +40,7 @@ RSpec.describe 'Checkouts', type: :request do
     let(:order_params) { { billing_address: attributes_for(:address, address_type: :billing), only_billing: true } }
 
     before do
-      user.current_order.order_items.create(attributes_for(:order_item))
+      user.cart.order_items.create(attributes_for(:order_item))
       sign_in(user)
       put checkout_path, params: { order: order_params }
     end

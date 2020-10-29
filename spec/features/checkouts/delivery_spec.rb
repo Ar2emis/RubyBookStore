@@ -4,8 +4,8 @@ RSpec.describe 'Checkout Delivery', type: :feature do
   let!(:delivery_types) { create_list(:delivery_type, 3) }
 
   before do
-    user.current_order = order
-    user.current_order.order_items.create(attributes_for(:order_item))
+    user.cart = order
+    user.cart.order_items.create(attributes_for(:order_item))
     sign_in(user)
   end
 

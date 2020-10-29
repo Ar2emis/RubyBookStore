@@ -5,7 +5,7 @@ RSpec.describe 'Checkout Complete', type: :feature do
   let(:delivery_type) { create(:delivery_type) }
 
   before do
-    user.current_order = order
+    user.cart = order
     order.order_items.create(attributes_for(:order_item))
     order.delivery_type = delivery_type
     sign_in(user)
