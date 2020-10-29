@@ -1,10 +1,10 @@
 RSpec.describe 'carts#show', type: :feature do
   let(:user) { create(:user) }
   let(:order_items_amount) { 3 }
-  let(:order_items) { create_list(:order_item, order_items_amount, order: user.current_order) }
+  let(:order_items) { create_list(:order_item, order_items_amount, order: user.cart) }
 
   before do
-    user.current_order.order_items = order_items
+    user.cart.order_items = order_items
     sign_in(user)
     visit cart_path
   end
