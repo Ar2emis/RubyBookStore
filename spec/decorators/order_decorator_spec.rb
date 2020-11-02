@@ -16,10 +16,10 @@ RSpec.describe OrderDecorator do
     end
   end
 
-  describe '#subtotal_price' do
+  describe '#subtotal' do
     it 'returns sum of order_items prices' do
-      subtotal_price = order_items.inject(0) { |sum, item| sum + item.amount * item.book.price }
-      expect(decorator.subtotal_price).to eq subtotal_price
+      subtotal = order_items.inject(0) { |sum, item| sum + item.quantity * item.book.price }
+      expect(decorator.subtotal).to eq subtotal
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe OrderDecorator do
 
     it 'returns sum of order_items with coupon sale' do
       order.coupon = coupon
-      total_price = order_items.inject(0) { |sum, item| sum + item.amount * item.book.price } - coupon.sale
+      total_price = order_items.inject(0) { |sum, item| sum + item.quantity * item.book.price } - coupon.sale
       expect(decorator.total_price).to eq total_price
     end
   end

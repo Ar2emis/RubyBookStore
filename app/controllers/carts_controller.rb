@@ -22,6 +22,6 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:order).permit(order_item: %i[delete_id book_id amount], coupon: :code)
+    params.require(:order).permit(order_item: %i[delete_id book_id quantity], coupon: :code)
   end
 end

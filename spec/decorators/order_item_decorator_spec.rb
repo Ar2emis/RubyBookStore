@@ -3,7 +3,7 @@ RSpec.describe OrderItemDecorator do
 
   describe '#subtotal' do
     it 'returns price of a book multiplied by count' do
-      subtotal = decorator.book.price * decorator.amount
+      subtotal = decorator.book.price * decorator.quantity
       expect(decorator.subtotal).to eq subtotal
     end
   end

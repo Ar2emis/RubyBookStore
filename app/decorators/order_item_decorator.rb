@@ -3,6 +3,6 @@ class OrderItemDecorator < ApplicationDecorator
   decorates_association :book
 
   def subtotal
-    book.price * amount
+    book.price * quantity
   end
 end
