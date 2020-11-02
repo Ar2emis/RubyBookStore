@@ -115,3 +115,11 @@ en:
     order_total: Order Total
     checkout: Checkout
     enter_coupon_code: Enter Your Coupon Code
+  checkouts:
+    returning_customer: Returning Customer
+    or: or
+    forgot_password: Forgot password?
+    log_in_with_password: Log In with Password
+    you_will_be_able_to_create_password_later: You’ll be able to create password later
+    continue_checkout: Continue to Checkout
+    quick_register: Quik Register

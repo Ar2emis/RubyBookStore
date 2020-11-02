@@ -8,11 +8,15 @@ Rails.application.routes.draw do
                                     registrations: 'registrations',
                                     sessions: 'sessions'
                                   }
+  devise_scope :user do
+    resource :quick_registration, only: [:show, :create]
+  end
 
   resources :books, only: [:index, :show]
   resources :reviews, only: [:create]
   resource :address, only: [:update]
   resource :cart, only: [:show, :update, :destroy]
+  resource :checkout, only: [:show]
 
   match '*path' => redirect('/'), via: [:get]
 end

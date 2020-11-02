@@ -1,12 +1,12 @@
 RSpec.describe 'RegistrationsRequests', type: :request do
-  before do
-    user = create(:user)
-    sign_in(user)
-    get edit_user_registration_path
-  end
-
   describe 'GET /users/edit' do
-    it 'return http success' do
+    before do
+      user = create(:user)
+      sign_in(user)
+      get edit_user_registration_path
+    end
+
+    it 'returns http success' do
       expect(response).to have_http_status(:ok)
     end
 

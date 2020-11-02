@@ -63,3 +63,6 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  checkouts:
+    email_error: "Email %{errors}"
+    success: "You have signed up successfully. Log out and check your email to set new password."

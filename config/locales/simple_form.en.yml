@@ -8,6 +8,10 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     labels:
+      defaults:
+        email: Enter email
+        password: Password
+        password_confirmation: Enter password again
       review:
         body: Text
     placeholders:
