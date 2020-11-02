@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_200523) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "amount", default: 1
+    t.integer "quantity", default: 1
     t.bigint "order_id"
     t.bigint "book_id"
     t.datetime "created_at", precision: 6, null: false

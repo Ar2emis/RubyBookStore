@@ -35,7 +35,7 @@
           %td.vertical-middle
             %span.in-grey-600= t('checkouts.confirm.quantity')
           %td
-            %span.font-16.in-gold-500= item.amount
+            %span.font-16.in-gold-500= item.quantity
         %tr
           %td
             %span.in-grey-600= t('checkouts.confirm.total')
@@ -66,7 +66,7 @@
           %td
             %span.font-16.in-gold-500= number_to_currency(item.book.price)
           %td
-            %span.font-16.in-gold-500= item.amount
+            %span.font-16.in-gold-500= item.quantity
           %td
             %span.font-16.in-gold-500= number_to_currency(item.subtotal)
 .text-center.general-text-right
