@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :transfer_cart_to_user
   helper_method :categories, :cart_items_count
 
   private

@@ -6,7 +6,7 @@ class OrderDecorator < ApplicationDecorator
     order_items.includes(:book).order(:created_at)
   end
 
-  def subtotal_price
+  def subtotal
     order_items.sum(&:subtotal)
   end
 
@@ -15,7 +15,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def total_price
-    total = subtotal_price - discount
+    total = subtotal - discount
     total.negative? ? 0.0 : total
   end
 end

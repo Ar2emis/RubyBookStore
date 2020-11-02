@@ -10,10 +10,10 @@
     %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
   %td
     .input-group
-      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, amount: -1 } }), method: :put, remote: true, class: 'input-link mt-10' do
+      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, quantity: -1 } }), method: :put, remote: true, class: 'input-link mt-10' do
         %i.fa.fa-minus.line-heaght-40
-      %input.form-control.quantity-input{type: "text", value: order_item.amount}
-      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, amount: 1 } }), method: :put, remote: true, class: 'input-link mt-10' do
+      %input.form-control.quantity-input{type: "text", value: order_item.quantity}
+      = link_to cart_path(order: { order_item: { book_id: order_item.book.id, quantity: 1 } }), method: :put, remote: true, class: 'input-link mt-10' do
         %i.fa.fa-plus.line-heaght-40
   %td
     %span.font-16.in-gold-500= number_to_currency(order_item.subtotal)

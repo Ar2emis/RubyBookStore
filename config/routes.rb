@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks',
+                                    registrations: 'registrations',
+                                    sessions: 'sessions'
+                                  }
 
   resources :books, only: [:index, :show]
   resources :reviews, only: [:create]
