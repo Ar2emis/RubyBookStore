@@ -44,7 +44,7 @@ RSpec.describe 'Show', type: :feature do
 
     it 'displays order item data' do
       item = decorated_order.order_items.first
-      [item.book.title, item.book.description, item.book.price, item.amount, item.subtotal].each do |property|
+      [item.book.title, item.book.description, item.book.price, item.quantity, item.subtotal].each do |property|
         expect(page).to have_content(property)
       end
     end
