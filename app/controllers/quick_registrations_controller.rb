@@ -5,6 +5,7 @@ class QuickRegistrationsController < Devise::RegistrationsController
     service = QuickRegistrateService.call(sign_up_params: sign_up_params)
     if service.success?
       sign_up(resource_name, service.resource)
+      transfer_cart_to_user
       redirect_to(stored_location_for(service.resource), notice: I18n.t('checkouts.success'))
     else
       redirect_to(quick_registration_path, alert: I18n.t('checkouts.email_error', errors: service.errors_message))
