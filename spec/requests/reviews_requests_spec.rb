@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'ReviewsRequests', type: :request do
   describe 'POST /reviews_request' do
     let(:review_attributes) { attributes_for(:review) }

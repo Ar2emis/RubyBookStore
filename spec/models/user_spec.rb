@@ -28,6 +28,9 @@ RSpec.describe User, type: :model do
     %i[billing_address shipping_address].each do |model|
       it { is_expected.to have_one(model).dependent(:destroy) }
     end
+
+    it { is_expected.to have_one(:cart).class_name('Order').dependent(:destroy) }
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
   end
 
   context 'with model fields' do

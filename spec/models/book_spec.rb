@@ -4,7 +4,7 @@ RSpec.describe Book, type: :model do
       it { is_expected.to validate_presence_of(property) }
     end
 
-    it { is_expected.to validate_numericality_of(:price) }
+    it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(described_class::MIN_PRICE) }
   end
 
   context 'with associations' do
