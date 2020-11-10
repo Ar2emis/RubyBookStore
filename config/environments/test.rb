@@ -51,9 +51,9 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
-    Bullet.add_whitelist type: :n_plus_one_query, class_name: "ActiveStorage::Attachment", association: :blob
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: 'ActiveStorage::Attachment', association: :blob
   end
 
-  config.factory_bot.definition_file_paths = ["spec/support/factories"]
+  config.factory_bot.definition_file_paths = ['spec/support/factories']
   config.middleware.use RackSessionAccess::Middleware
 end

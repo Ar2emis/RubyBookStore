@@ -8,7 +8,6 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'db/**/*'
-    - 'config/**/*'
     - 'script/**/*'
     - 'bin/*'
     - 'vendor/**/*'
@@ -25,6 +24,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'app/admin/*.rb'
     - 'Guardfile'
+    - 'config/**/*.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
