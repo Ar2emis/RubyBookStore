@@ -5,7 +5,8 @@ class Book < ApplicationRecord
     cheap: :price,
     expensive: { price: :desc },
     atoz: :title,
-    ztoa: { title: :desc }
+    ztoa: { title: :desc },
+    popularity: { items_count: :desc }
   }.freeze
 
   validates :title, :price, presence: true
@@ -21,11 +22,11 @@ class Book < ApplicationRecord
   mount_uploaders :images, ImageUploader
 
   scope :with_authors, -> { includes(:authors) }
-
-  def self.ordered(order_type)
-    return order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest])) unless order_type == :popularity
-
-    left_joins(:order_items).select('books.*', 'count(order_items.id) as items_count')
-                            .group('books.id').order(items_count: :desc)
-  end
+  scope :with_items_count, lambda {
+    left_joins(:order_items).select('books.*', 'count(order_items.id) as items_count').group('books.id')
+  }
+  scope :ordered, lambda { |order_type|
+    books = order_type == :popularity ? with_items_count : all
+    books.order(SORT_PARAMTERS.fetch(order_type, SORT_PARAMTERS[:newest]))
+  }
 end
