@@ -3,5 +3,6 @@ class StaticPagesController < ApplicationController
 
   def home
     @latest_books = LatestBooksQuery.call(LATEST_BOOKS_AMOUNT).decorate
+    @bestsellers = BookDecorator.decorate_collection(BestSellersQuery.call)
   end
 end

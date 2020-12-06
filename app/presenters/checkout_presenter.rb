@@ -8,7 +8,7 @@ class CheckoutPresenter < BasePresenter
   end
 
   def current_delivery?(delivery, index)
-    @order.delivery_type == delivery || (@order.delivery_type.nil? && index.zero?)
+    (@order.delivery_type.nil? && index.zero?) || @order.delivery_type == delivery
   end
 
   def states

@@ -1,0 +1,110 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('checkouts.complete.order', order: @order.number)
+  .row.mb-20
+    .col-sm-3
+      %h3.general-subtitle= t('checkouts.address.shipping_address')
+      %p.general-address
+        = @order.shipping_address.full_name
+        %br
+        = @order.shipping_address.address
+        %br
+        = @order.shipping_address.city_with_zip
+        %br
+        = @order.shipping_address.country
+        %br
+        = t('checkouts.confirm.phone', phone: @order.shipping_address.phone)
+    .col-sm-3
+      %h3.general-subtitle= t('checkouts.address.billing_address')
+      %p.general-address
+        = @order.billing_address.full_name
+        %br
+        = @order.billing_address.address
+        %br
+        = @order.billing_address.city_with_zip
+        %br
+        = @order.billing_address.country
+        %br
+        = t('checkouts.confirm.phone', phone: @order.billing_address.phone)
+    .col-sm-3
+      %h3.general-subtitle= t('checkouts.delivery.delivery')
+      %p.general-address
+        = @order.delivery_type.name
+    .col-sm-3
+      %h3.general-subtitle= t('checkouts.confirm.payment_information')
+      %p.general-address
+        = t('checkouts.confirm.hidden_card', digits: @order.card.last_four_digits)
+        %br
+        = @order.card.expiration_date
+  .visible-xs
+    - @order.ordered_order_items.each do |item|
+      .general-cart-item.divider-lg.mb-55
+        .general-img-wrap-table
+          %img.cart-img-shadow{src: item.book.title_image.url(:w170), alt: "design-book"}
+        %p.title= item.book.title
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600= t('checkouts.delivery.price')
+            %td
+              %span.font-16.in-gold-500= number_to_currency(item.book.price)
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600= t('checkouts.confirm.quantity')
+            %td
+              %span.font-16.in-gold-500= item.quantity
+          %tr
+            %td
+              %span.in-grey-600= t('checkouts.confirm.total')
+            %td
+              %span.font-16.in-gold-500= number_to_currency(item.subtotal)
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('checkouts.confirm.book')
+          %th.col-method
+          %th
+            %span.in-grey-600= t('checkouts.delivery.price')
+          %th
+            %span.in-grey-600= t('checkouts.confirm.quantity')
+          %th
+            %span.in-grey-600= t('checkouts.confirm.total')
+      %tbody
+        - @order.ordered_order_items.each do |item|
+          %tr
+            %td
+              .general-img-wrap-table
+                %img.cart-img-shadow.pull-left{src: item.book.title_image.url(:w170), alt: "design-book"}
+            %td
+              %p.title= item.book.title
+              %p.in-grey-600.fw-300= item.book.description
+            %td
+              %span.font-16.in-gold-500= number_to_currency(item.book.price)
+            %td
+              %span.font-16.in-gold-500= item.quantity
+            %td
+              %span.font-16.in-gold-500= number_to_currency(item.subtotal)
+  .text-center.general-text-right
+    %p.in-gold-500.font-18= t('checkouts.confirm.order_summary')
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16 #{t('cart.subtotal')}:
+        %td
+          %p.font-16= number_to_currency(@order.subtotal)
+      %tr
+        %td
+          %p.font-16 #{t('cart.coupon')}:
+        %td
+          %p.font-16= number_to_currency(@order.discount)
+      %tr
+        %td
+          %p.font-16 #{t('checkouts.confirm.shipping')}:
+        %td
+          %p.font-16= number_to_currency(@order.delivery_type.price)
+      %tr
+        %td
+          %strong.font-18 #{t('cart.order_total')}:
+        %td
+          %strong.font-18= number_to_currency(@order.total_price)

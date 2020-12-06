@@ -41,6 +41,7 @@ en:
       newest: Newest first
       atoz: 'Title: A - Z'
       ztoa: 'Title: Z - A'
+      popularity: Popular first
     book_not_found: Book not found.
   home:
     welcome: Welcome to our amazing Bookstore!
@@ -130,7 +131,7 @@ en:
     complete:
       complete: Complete
       thanks: Thank You for your Order!
-      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      confirmation_sent: "An order confirmation has been sent to %{email}"
       order: "Order #%{order}"
       back_to_store: Back to Store
     addresses:
@@ -163,3 +164,16 @@ en:
   order_mailer:
     subject: "Order #%{number} created successfuly!"
     dear_customer: Dear Customer,
+  orders:
+    my_orders: My Orders
+    sort_by: Sort by
+    number: Number
+    completed_at: Completed at
+    status: Status
+    total: Total
+    date: Date
+    in_queue: Waiting for processing
+    in_delivery: In delivery
+    delivered: Delivered
+    canceled: Canceled
+    order_not_found: Order not found.

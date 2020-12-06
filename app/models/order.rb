@@ -17,6 +17,7 @@ class Order < ApplicationRecord
   scope :in_progress, -> { where(state: %i[in_queue in_delivery]) }
   scope :delivered, -> { where(state: :delivered) }
   scope :canceled, -> { where(state: :canceled) }
+  scope :finished_by_user, -> { where(state: %i[in_queue in_delivery delivered canceled]) }
 
   enum state: {
     addresses: 0, delivery: 1, payment: 2, confirm: 3, complete: 4,

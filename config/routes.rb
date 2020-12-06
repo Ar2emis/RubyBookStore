@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :address, only: [:update]
   resource :cart, only: %i[show update destroy]
   resource :checkout, only: %i[show update]
+  resources :orders, only: %i[index show]
 
   get '*path' => redirect('/')
 end

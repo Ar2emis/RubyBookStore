@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :reviews, dependent: :destroy
-  has_many :orders, dependent: :destroy
+  has_many :orders, -> { finished_by_user }, inverse_of: :user, dependent: :destroy
   has_one :cart, -> { uncompleted }, inverse_of: :user, class_name: 'Order', dependent: :destroy
   has_one :billing_address, -> { where(address_type: :billing) },
           inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
