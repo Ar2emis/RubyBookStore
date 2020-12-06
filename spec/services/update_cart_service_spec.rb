@@ -19,7 +19,7 @@ RSpec.describe UpdateCartService do
     context 'when coupon updates' do
       let(:coupon_code) { '123456' }
 
-      it 'assigns coupon to order' do
+      it 'calls AddCouponService' do
         allow(AddCouponService).to receive(:call)
         described_class.call(params: { coupon: { code: coupon_code } }, order: order)
         expect(AddCouponService).to have_received(:call)

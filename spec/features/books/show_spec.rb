@@ -29,8 +29,8 @@ RSpec.describe 'books#show', type: :feature do
       let(:review_attributes) { attributes_for(:review) }
 
       before do
-        fill_in(I18n.t('simple_form.placeholders.review.title'), with: review_attributes[:title])
-        fill_in(I18n.t('simple_form.placeholders.review.body'), with: review_attributes[:body])
+        fill_in(I18n.t('simple_form.placeholders.defaults.title'), with: review_attributes[:title])
+        fill_in(I18n.t('simple_form.placeholders.defaults.body'), with: review_attributes[:body])
         page.all(:css, '.fa-star').first.click
         click_button(I18n.t('reviews.post'))
       end

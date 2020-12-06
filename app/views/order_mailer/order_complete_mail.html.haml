@@ -1,0 +1,37 @@
+%body
+  %table
+    %tr
+      %td{ colspan: "3" }= t('order_mailer.dear_customer')
+    %tr
+      %td{ align: "center", colspan: "3", style: "padding: 25px 0px; font-size: 17px; line-height: 24px; font-size: 18px; text-align: center" }
+      = t('checkouts.complete.order', order: @order.number)
+  %table{ border: "1", style: "border: 4px double black; width: 100%; text-align: center" }
+    %tr
+      %th= t('.book')
+      %th= t('.price')
+      %th= t('.quantity')
+      %th= t('.subtotal')
+    - @order.order_items.each do |item|
+      %tr
+        %td= item.book.title
+        %td= number_to_currency(item.book.price)
+        %td= item.quantity
+        %td= number_to_currency(item.subtotal)
+  %table{ style: "width: 300px" }
+    %tr
+      %td= t('.order_summary')
+      %td
+    %tr
+      %td= t('.subtotal')
+      %td= number_to_currency(@order.subtotal)
+    %tr
+      %td= t('.coupon')
+      %td= number_to_currency(@order.discount)
+    %tr
+      %td= t('.shipping')
+      %td= number_to_currency(@order.delivery_type.price)
+    %tr
+      %td
+        %b= t('.order_total')
+      %td
+        %b= number_to_currency(@order.total_price)

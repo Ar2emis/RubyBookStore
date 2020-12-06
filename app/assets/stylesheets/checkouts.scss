@@ -1,0 +1,34 @@
+.cvv-hint {
+  font-size: 12px;
+  display: inline-block;
+  border-bottom: 1px dotted #1e1e1c;
+}
+
+.cvv-hint .cvv-hint-text {
+  visibility: hidden;
+  width: 200px;
+  background-color:#1e1e1c;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.xs-hint {
+  position: absolute;
+  right: 15px;
+  top: -35px;
+}
+
+.cvv-hint:hover .cvv-hint-text {
+  visibility: visible;
+}
+
+.list-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}

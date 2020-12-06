@@ -9,7 +9,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
       t.string :country
       t.string :phone
       t.integer :address_type
-      t.belongs_to :user, foreign_key: { to_table: :users }
+      t.belongs_to :addressable, polymorphic: true
 
       t.timestamps
     end

@@ -1,4 +1,4 @@
-module AdminHelper
+module AdminHelpers
   include ActionView::Helpers
 
   SHORT_DESCRIPTION_LENGTH = 100
@@ -18,5 +18,5 @@ module AdminHelper
 end
 
 RSpec.configure do |config|
-  config.include AdminHelper, type: :feature
+  config.include AdminHelpers, type: :feature
 end

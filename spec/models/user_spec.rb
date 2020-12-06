@@ -30,7 +30,10 @@ RSpec.describe User, type: :model do
     end
 
     it { is_expected.to have_one(:cart).class_name('Order').dependent(:destroy) }
-    it { is_expected.to have_many(:reviews).dependent(:destroy) }
+
+    %i[reviews orders].each do |model|
+      it { is_expected.to have_many(model).dependent(:destroy) }
+    end
   end
 
   context 'with model fields' do

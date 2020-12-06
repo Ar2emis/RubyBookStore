@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'aasm', '~> 5.1.1'
 gem 'activeadmin', '~> 2.8.1'
+gem 'after_commit_everywhere', '~> 0.1.5'
 gem 'aws-sdk-s3', '~> 1.83.0', require: false
 gem 'bootsnap', '~> 1.4.8', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -59,6 +60,7 @@ group :test do
   gem 'capybara', '~> 3.33.0'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'database_cleaner-active_record', '~> 1.8.0'
+  gem 'rack_session_access', '~> 0.2.0'
   gem 'rails-controller-testing', '~> 1.0.5'
   gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.4.1'

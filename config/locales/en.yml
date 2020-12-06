@@ -116,10 +116,50 @@ en:
     checkout: Checkout
     enter_coupon_code: Enter Your Coupon Code
   checkouts:
+    cart_is_empty: Cart is empty.
     returning_customer: Returning Customer
+    new_customer: New Customer
     or: or
     forgot_password: Forgot password?
     log_in_with_password: Log In with Password
     you_will_be_able_to_create_password_later: You’ll be able to create password later
     continue_checkout: Continue to Checkout
     quick_register: Quik Register
+    save_and_continue: Save and Continue
+    checkout: Checkout
+    complete:
+      complete: Complete
+      thanks: Thank You for your Order!
+      confirmation_sent: "An order confirmation has been has been sent to %{email}"
+      order: "Order #%{order}"
+      back_to_store: Back to Store
+    addresses:
+      addresses: Addresses
+      billing_address: Billing Address
+      all_fields_are_required: all fields are required
+      shipping_address: Shipping Address
+      use_billing_address: Use Billing Address
+    delivery:
+      delivery: Delivery
+      method: Method
+      days: Days
+      from_to_days: "%{min_days} to %{max_days} days"
+      price: Price
+    payment:
+      payment: Payment
+      cvv_hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front.
+      credit_card: Credit Card
+    confirm:
+      confirm: Confirm
+      phone: "Phone %{phone}"
+      payment_information: Payment Information
+      hidden_card: "** ** ** %{digits}"
+      quantity: Quantity
+      total: Total
+      book: Book
+      order_summary: Order Summary
+      shipping: Shipping
+      place_order: Place Order
+  order_mailer:
+    subject: "Order #%{number} created successfuly!"
+    dear_customer: Dear Customer,

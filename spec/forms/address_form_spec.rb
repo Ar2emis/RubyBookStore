@@ -66,7 +66,7 @@ RSpec.describe AddressForm, type: :model do
   end
 
   describe '#submit' do
-    subject(:address_form) { described_class.new(attributes_for(:address).merge(user: create(:user))) }
+    subject(:address_form) { described_class.new(attributes_for(:address).merge(addressable: create(:user))) }
 
     it 'creates address' do
       expect(address_form.submit).to be_a Address
