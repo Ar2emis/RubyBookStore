@@ -28,9 +28,6 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
-  # Store uploaded files on the local file system in a temporary directory
-  config.active_storage.service = :test
-
   config.action_mailer.perform_caching = false
 
   # Tell Action Mailer not to deliver emails to the real world.
@@ -47,6 +44,9 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.rails_logger = true
-    Bullet.raise = true
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: 'ActiveStorage::Attachment', association: :blob
   end
+
+  config.factory_bot.definition_file_paths = ['spec/support/factories']
+  config.middleware.use RackSessionAccess::Middleware
 end

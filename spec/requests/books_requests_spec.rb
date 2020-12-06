@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe 'Books', type: :request do
+RSpec.describe 'BooksRequest', type: :request do
   describe 'GET /books' do
     before do
       get books_path

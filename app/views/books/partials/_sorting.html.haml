@@ -5,5 +5,3 @@
   - @presenter.sort_parameters.each do |sort_key, sort_name|
     %li
       %a{href: books_path(@presenter.display_params(sort: sort_key))}= t(sort_name)
-  %li
-    %a{href: "#"} Popular first

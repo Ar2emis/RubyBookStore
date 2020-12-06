@@ -1,0 +1,23 @@
+%p.in-gold-500.font-18= t('checkouts.confirm.order_summary')
+%table.general-summary-table
+  %tr
+    %td
+      %p.font-16 #{t('cart.subtotal')}:
+    %td
+      %p.font-16= number_to_currency(order.subtotal)
+  %tr
+    %td
+      %p.font-16 #{t('cart.coupon')}:
+    %td
+      %p.font-16= number_to_currency(order.discount)
+  - if order.state_done?(:addresses)
+    %tr
+      %td
+        %p.font-16 #{t('checkouts.confirm.shipping')}:
+      %td
+        %p.font-16= number_to_currency(order.delivery_price)
+  %tr
+    %td
+      %strong.font-18 #{t('cart.order_total')}:
+    %td
+      %strong.font-18= number_to_currency(order.total_price)

@@ -1,0 +1,51 @@
+- if cart
+  %h1.general-title-margin= t('cart.cart')
+  .visible-xs
+    = render partial: 'carts/partials/order_item_xs', collection: cart.ordered_order_items, as: :order_item
+  .hidden-xs
+    %table.table.table-hover
+      %tr.no-hover
+        %th.col-pic.pl-0
+          %span.in-grey-600= t('cart.product')
+        %th.col-title
+        %th.col-price
+          %span.in-grey-600= t('cart.price')
+        %th.col-quantity
+          %span.in-grey-600= t('cart.quantity')
+        %th.col-total
+          %span.in-grey-600= t('cart.subtotal')
+        %th.col-close
+      = render partial: 'carts/partials/order_item_xl', collection: cart.ordered_order_items, as: :order_item
+  .general-order-wrap
+    .row
+      .col-sm-4
+        = form_tag cart_path, method: :put do |f|
+          .input-group.general-input-group
+            %label.input-label= t('cart.enter_coupon_code')
+            = text_field_tag 'order[coupon][code]', '', placeholder: t('cart.enter_coupon_code'), class: 'form-control mb-30'
+            %div
+              %button.btn.btn-primary.mr-5.mb-15= t('cart.apply_coupon')
+      .col-sm-8
+        .res-mr-200.text-center.general-text-right
+          %p.in-gold-500.font-18= t('cart.order_summary')
+          %table.general-summary-table.general-summary-table-right.general-text-right
+            %tr
+              %td
+                %p.font-16 #{t('cart.subtotal')}:
+              %td
+                %p.font-16= number_to_currency(cart.subtotal)
+            %tr
+              %td
+                %p.font-16 #{t('cart.coupon')}:
+              %td
+                %p.font-16= number_to_currency(cart.discount)
+            %tr
+              %td
+                %strong.font-18 #{t('cart.order_total')}:
+              %td
+                %strong.font-18= number_to_currency(cart.total_price)
+          %a.btn.btn-default.mb-20.visible-xs-inline-block{href: checkout_path}= t('cart.checkout')
+  %a.btn.btn-default.mb-20.hidden-xs.center-block.checkout-btn{href: checkout_path}= t('cart.checkout')
+- else
+  .jumbotron.text-center.mb-0.mb-res-50
+    %p= t('cart.cart_is_empty')

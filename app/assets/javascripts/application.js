@@ -15,4 +15,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require rails.validations
+//= require rails.validations.simple_form
+//= require featherlight
 //= require_tree .

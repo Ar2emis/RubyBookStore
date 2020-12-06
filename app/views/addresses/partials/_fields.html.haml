@@ -1,0 +1,8 @@
+= f.hidden_field :address_type, value: type
+= f.input :first_name, required: false, autocomplete: 'first_name'
+= f.input :last_name, required: false, autocomplete: 'last_name'
+= f.input :address, required: false, autocomplete: 'address'
+= f.input :city, required: false, autocomplete: 'city'
+= f.input :zip, required: false, autocomplete: 'zip'
+= f.input :country, required: false, collection: ISO3166::Country.all.sort_by(&:name), as: :select, prompt: :translate
+= f.input :phone, required: false, autocomplete: 'phone'

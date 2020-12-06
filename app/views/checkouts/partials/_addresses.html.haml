@@ -1,0 +1,20 @@
+= simple_form_for order, url: checkout_path, method: :put, validate: true, html: { class: 'res-mb-100' } do |f|
+  .row
+    .col-md-5.mb-40
+      .visible-xs.visible-sm
+      = f.simple_fields_for :billing_address, AddressForm.from_address(order.billing_address), validate: true do |fa|
+        = render partial: 'addresses/partials/fields', locals: { f: fa, type: :billing }
+    .col-md-5.col-md-offset-1.mb-60
+      #shipping_address_form
+        .visible-xs.visible-sm
+        = f.simple_fields_for :shipping_address, AddressForm.from_address(order.shipping_address), validate: true do |fa|
+          = render partial: 'addresses/partials/fields', locals: { f: fa, type: :shipping }
+      .form-group.checkbox
+        %label.checkbox-label
+          = check_box_tag 'order[only_billing]', "1", false, class: 'checkbox-input', hidden: 'true'
+          %span.checkbox-icon
+            %i.fa.fa-check
+          %span.checkbox-text= t('checkouts.addresses.use_billing_address')
+  = render partial: 'checkouts/partials/order_summary', locals: { order: order, presenter: presenter }
+  .text-center
+    = f.button :submit, t('checkouts.save_and_continue')

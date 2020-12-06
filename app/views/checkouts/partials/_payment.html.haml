@@ -1,0 +1,19 @@
+= simple_form_for CardForm.from_card(order.card), as: 'order[card]', url: checkout_path, method: :put, validate: true, html: { class: 'max-600 mb-80 center-form'} do |f|
+  %h3.general-subtitle= t('checkouts.payment.credit_card')
+  = f.input :number, required: false
+  .row
+    .col-sm-6
+      = f.input :name, required: false
+    .col-sm-3
+      = f.input :expiration_date, required: false
+    .col-sm-3
+      = f.input :cvv, as: :password, required: false
+      %span.cvv-hint
+        %i.fa.fa-question-circle.general-form-help.mr-10
+          %span.cvv-hint-text.hidden-xs
+            = t('checkouts.payment.cvv_hint')
+        %span.cvv-hint-text.visible-xs.xs-hint
+          = t('checkouts.payment.cvv_hint')
+  = render partial: 'checkouts/partials/order_summary', locals: { order: order, presenter: presenter }
+  .text-center
+    = f.button :submit, t('checkouts.save_and_continue')

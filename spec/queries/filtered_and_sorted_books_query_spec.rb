@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe FilteredAndSortedBooksQuery do
   describe '.call' do
     context 'with filtering' do

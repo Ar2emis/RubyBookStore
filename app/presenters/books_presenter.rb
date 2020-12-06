@@ -6,7 +6,8 @@ class BooksPresenter < BasePresenter
     cheap: 'books.sort.cheap',
     expensive: 'books.sort.expensive',
     atoz: 'books.sort.atoz',
-    ztoa: 'books.sort.ztoa'
+    ztoa: 'books.sort.ztoa',
+    popularity: 'books.sort.popularity'
   }.freeze
   CHOSEN_CATEGORY_CLASS = 'def-color-chosen-category'.freeze
 

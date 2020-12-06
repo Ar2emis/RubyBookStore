@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe 'StaticPages', type: :request do
+RSpec.describe 'StaticPagesRequest', type: :request do
   describe 'GET /home' do
     before do
       create_list(:book, StaticPagesController::LATEST_BOOKS_AMOUNT)

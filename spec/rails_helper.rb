@@ -20,12 +20,15 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
-require 'capybara/poltergeist'
 require 'shoulda-matchers'
 require 'selenium-webdriver'
 require 'site_prism'
 require 'site_prism/all_there'
 require 'faker'
+require 'devise'
+require 'aasm/rspec'
+require 'rack_session_access/capybara'
+require 'carrierwave/test/matchers'
 require_relative 'support/helpers/presenter_helpers'
 
 begin
@@ -50,6 +53,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include PresenterHelpers
+  config.include CarrierWave::Test::Matchers
 
   Capybara.server = :puma, { Silent: true }
 
@@ -75,4 +79,8 @@ RSpec.configure do |config|
   config.before(:each, type: :system, js: true) do
     driven_by :chrome_headless
   end
+end
+
+['spec/support/config/*.rb', 'spec/support/helpers/*.rb'].each do |directory|
+  Dir[Rails.root.join(directory)].sort.each { |file| require file }
 end

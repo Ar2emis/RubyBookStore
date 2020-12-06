@@ -6,29 +6,29 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          %img.img-responsive{src: image_url('default_book.png')}
+          %a{href: '#', 'data-featherlight': @presenter.book.title_image.url(:w550)}
+            %img.img-responsive{src: @presenter.book.title_image.url(:w550) }
         .images.clearfix
-          %a.img-link{href: "#"}
-            %img{src: image_url('default_book.png')}
-          %a.img-link{href: "#"}
-            %img{src: image_url('default_book.png')}
-          %a.img-link{href: "#"}
-            %img{src: image_url('default_book.png')}
+          - @presenter.book.images.each do |image|
+            %a.img-link{href: '#', 'data-featherlight': image.url(:w550)}
+              %img{src: image.url(:w170)}
     .col-sm-6
       %h1.mt-res-0= @presenter.book.title
       %p.lead.small= @presenter.book.authors_names
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10 #{t('currency')}#{@presenter.book.price}
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %a.input-link.b-n.pt-7#minus
-              %i.fa.fa-minus.line-height-40
-            = text_field_tag "books_count", "", class: 'form-control quantity-input input-count-book', value: 1
-            %a.b-n.input-link#plus
-              %i.fa.fa-plus.line-height-40
-        .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position= t('books.add_to_cart')
+          %p.h1.in-gold-500.mt-10= number_to_currency(@presenter.book.price)
+        = form_for 'order[order_item]', url: cart_path, method: :put do |f|
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a.input-link.b-n.pt-7#minus
+                %i.fa.fa-minus.line-height-40
+              = f.hidden_field :book_id, value: @presenter.book.id
+              = f.text_field :quantity, class: 'form-control quantity-input input-count-book', value: 1
+              %a.b-n.input-link#plus
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+            %button.btn.btn-default.pull-right.general-position= t('books.add_to_cart')
       .general-info-wrap.divider-lg
         %p= t('books.description')
         %p.lead.small.line-height-2
@@ -51,57 +51,9 @@
         .clearfix
           %p.pull-left= t('books.materials')
           %p.lead.small.pull-right= @presenter.book.materials
+  .mb-80#review_form
+    - if user_signed_in?
+      = render 'reviews/partials/form', book_id: @presenter.book.id, review: ReviewForm.new
   .mb-80
-    %h3 Write a Review
-    %p.general-info-text Score
-    .mb-15
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-    %form.row
-      .col-md-8
-        .mb-40
-          .form-group
-            %label.control-label.input-label.in-grey-600{for: "title"} Title
-            %input#title.form-control{name:"title", type: "text"}
-          .form-group
-            %label.control-label.input-label.in-grey-600{for: "review"} Review
-            %textarea#review.form-control{name:"review", type: "text"}
-        .text-right
-          %button.btn.disabled.mb-20 Post
-  .mb-80
-    %h3.in-gold-500.mb-25 Reviews (3)
-    .general-message-wrap.divider-lg
-      .clearfix
-        %img.img-circle.logo-size.inlide-block.pull-left{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified Verified Reviewer
-              .general-message-name Rita J. Lewis
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
-    .general-message-wrap.divider-lg
-      .clearfix
-        %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified.pull-right Verified Reviewer
-              .general-message-name May J. Novoa
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star.rate-empty
-          %p If ‘Get a better job’ had landed on my desk a year ago, I might have been dismissive of it. Instead I was prepared to be open-minded. There have been many occasions where I turned to career books with practical activities to look for some inspiration when developing education activities for learners or assessment.
+    %h3.in-gold-500.mb-25 Reviews (#{@presenter.reviews.count})
+    = render partial: 'books/partials/review', collection: @presenter.reviews, as: :review

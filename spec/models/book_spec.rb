@@ -2,27 +2,26 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   context 'with validations' do
-    it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:price) }
-    it { is_expected.to validate_numericality_of(:price) }
+    %i[title price].each do |property|
+      it { is_expected.to validate_presence_of(property) }
+    end
+
+    it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(described_class::MIN_PRICE) }
   end
 
   context 'with associations' do
-    it { is_expected.to have_many(:authors) }
-    it { is_expected.to have_many(:author_books) }
+    %i[authors author_books reviews].each do |models|
+      it { is_expected.to have_many(models) }
+    end
+
     it { is_expected.to belong_to(:category) }
   end
 
   context 'with model fields' do
-    it { is_expected.to have_db_column(:title) }
-    it { is_expected.to have_db_column(:price) }
-    it { is_expected.to have_db_column(:description) }
-    it { is_expected.to have_db_column(:publication_year) }
-    it { is_expected.to have_db_column(:width) }
-    it { is_expected.to have_db_column(:height) }
-    it { is_expected.to have_db_column(:depth) }
-    it { is_expected.to have_db_column(:materials) }
-    it { is_expected.to have_db_column(:category_id) }
+    %i[title price description publication_year width height depth
+       materials category_id title_image images].each do |field|
+      it { is_expected.to have_db_column(field) }
+    end
   end
 
   describe '.ordered' do

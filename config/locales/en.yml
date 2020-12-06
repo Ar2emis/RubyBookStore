@@ -1,5 +1,8 @@
 en:
-  currency: €
+  number:
+    currency:
+      format:
+        unit: "€"
   layouts:
     title: BookStore
     shop_name: BookStore
@@ -36,6 +39,7 @@ en:
       newest: Newest first
       atoz: 'Title: A - Z'
       ztoa: 'Title: Z - A'
+      popularity: Popular first
     book_not_found: Book not found.
   home:
     welcome: Welcome to our amazing Bookstore!
@@ -46,5 +50,127 @@ en:
     best_sellers: Best Sellers
     buy_now: Buy now
   flash:
-    book_successfuly_added: Book successfully added to your cart
-    error: An error has occurred. Please try again later...
+    book_added: Book successfully added to your cart.
+    error: An error occurred. Please try again later...
+  passwords:
+    set_new_password: Set new password
+    type_a_new_password: Type a new Password
+    confirm_password: Confirm Password
+    change: Change
+    forgot_your_password: Forgot your password?
+    we_will_email_you: We'll email you instructions on how to reset it
+    enter_your_email: Enter your email
+    email_instructions: Email Instructions
+    cancel: Cancel
+  registrations:
+    sign_up: Sign Up
+    enter_email: Enter Email
+    password: Password
+    confirm_password: Confirm Password
+    already_have_an_account: Already have an Account?
+    sign_in: Sign in
+    or: or
+    settings: Settings
+    address: Address
+    privacy: Privacy
+    save: Save
+    email: Email
+    old_password: Old Password
+    new_password: New Password
+    remove_account: Remove Account
+    remove_my_account: Remove my Account
+    i_understand: I understand that all data will be lost
+  addresses:
+    billing_address: Billing Address
+    shipping_address: Shipping Address
+    save: Save
+  sessions:
+    sign_in: Sign in
+    sign_up: Sign Up
+    forgot_password: Forgot password?
+    remember_me: Remember me
+    dont_have_an_account: Don't have an Account?
+    or: or
+  reviews:
+    success: Review created successfuly.
+    verified_reviewer: Verified Reviewer
+    write_a_review: Write a Review
+    score: Score
+    post: Post
+  cart:
+    cart: Cart
+    cart_is_empty: Cart is empty
+    coupon_used: Coupon has already used.
+    invalid_coupon: Invalid coupon code.
+    coupon_added: Coupon successfully added to your cart.
+    quantity: Quantity
+    price: Price
+    subtotal: SubTotal
+    product: Product
+    enter_coupon_code: Enter Your Coupon Code
+    apply_coupon: Apply Coupon
+    order_summary: Order Summary
+    coupon: Coupon
+    order_total: Order Total
+    checkout: Checkout
+  checkouts:
+    cart_is_empty: Cart is empty.
+    returning_customer: Returning Customer
+    new_customer: New Customer
+    or: or
+    forgot_password: Forgot password?
+    log_in_with_password: Log In with Password
+    you_will_be_able_to_create_password_later: You’ll be able to create password later
+    continue_checkout: Continue to Checkout
+    quick_register: Quik Register
+    save_and_continue: Save and Continue
+    checkout: Checkout
+    complete:
+      complete: Complete
+      thanks: Thank You for your Order!
+      confirmation_sent: "An order confirmation has been sent to %{email}"
+      order: "Order #%{order}"
+      back_to_store: Back to Store
+    addresses:
+      addresses: Addresses
+      billing_address: Billing Address
+      all_fields_are_required: all fields are required
+      shipping_address: Shipping Address
+      use_billing_address: Use Billing Address
+    delivery:
+      delivery: Delivery
+      method: Method
+      days: Days
+      from_to_days: "%{min_days} to %{max_days} days"
+      price: Price
+    payment:
+      payment: Payment
+      cvv_hint: 3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front.
+      credit_card: Credit Card
+    confirm:
+      confirm: Confirm
+      phone: "Phone %{phone}"
+      payment_information: Payment Information
+      hidden_card: "** ** ** %{digits}"
+      quantity: Quantity
+      total: Total
+      book: Book
+      order_summary: Order Summary
+      shipping: Shipping
+      place_order: Place Order
+  order_mailer:
+    subject: "Order #%{number} created successfuly!"
+    dear_customer: Dear Customer,
+  orders:
+    my_orders: My Orders
+    sort_by: Sort by
+    number: Number
+    completed_at: Completed at
+    status: Status
+    total: Total
+    date: Date
+    in_queue: Waiting for processing
+    in_delivery: In delivery
+    delivered: Delivered
+    canceled: Canceled
+    order_not_found: Order not found.

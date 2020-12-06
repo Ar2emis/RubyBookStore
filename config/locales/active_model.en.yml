@@ -1,0 +1,38 @@
+en:
+  activemodel:
+    errors:
+      models:
+        address_form:
+          attributes:
+            first_name:
+              invalid: must consist of only letters.
+            last_name:
+              invalid: must consist of only letters.
+            city:
+              invalid: must consist of only letters.
+            address:
+              invalid: must consist of only letters, numbers, spaces, commas, spaces and dashes.
+            zip:
+              invalid: must consist of only numbers and dashes.
+            phone:
+              invalid: must contain plus (+) at the beginning. After should contain country code of chosen country in Country drop down list. Consists of numbers only.
+            country:
+              invalid: must be listed from the above.
+        review_form:
+          attributes:
+            title:
+              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
+            body:
+              invalid: must consist of a-z, A-Z, 0-9, or one of !#$%&'*+-/=?^_`{|}~.
+            book_rate:
+              blank: must be selected
+        card_form:
+          attributes:
+            number:
+              invalid: must consist of only numbers.
+            name:
+              invalid: must consist of a-z, A-Z, no special symbols.
+            expiration_date:
+              invalid: must contains a month on the left of a slash /, the year on the right.
+            cvv:
+              invalid: must consist of only numbers.
