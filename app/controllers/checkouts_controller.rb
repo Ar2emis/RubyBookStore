@@ -17,7 +17,7 @@ class CheckoutsController < ApplicationController
 
   def update
     service_class = STATES_ORDERS[current_order.state.to_sym]
-    service = service_class.call(**order_params)
+    service = service_class.call(order: current_order, **order_params)
     flash[:error] = service.errors_message unless service.success?
     redirect_to(checkout_path)
   end
@@ -28,7 +28,7 @@ class CheckoutsController < ApplicationController
     params.require(:order).permit(
       :only_billing, :delivery_type_id,
       card: %i[number name expiration_date cvv], billing_address: address_params, shipping_address: address_params
-    ).to_h.symbolize_keys.merge(order: current_order)
+    ).to_h.symbolize_keys
   end
 
   def address_params
@@ -40,7 +40,7 @@ class CheckoutsController < ApplicationController
   end
 
   def complete_order
-    current_order.in_queue_step! if current_order.complete?
+    ChangeOrderStateService.call(order: current_order, state: current_order.state)
   end
 
   def check_preparations

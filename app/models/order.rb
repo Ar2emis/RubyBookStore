@@ -5,9 +5,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_one :order_coupon, dependent: :destroy
   has_one :coupon, through: :order_coupon
-  has_one :billing_address, -> { where(address_type: :billing) },
+  has_one :billing_address, -> { billing },
           inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
-  has_one :shipping_address, -> { where(address_type: :shipping) },
+  has_one :shipping_address, -> { shipping },
           inverse_of: :addressable, as: :addressable, class_name: 'Address', dependent: :destroy
   has_one :order_delivery_type, dependent: :destroy
   has_one :delivery_type, through: :order_delivery_type
