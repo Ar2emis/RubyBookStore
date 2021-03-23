@@ -47,6 +47,6 @@ RSpec.configure do |config|
   end
 end
 
-['spec/support/config/*.rb', 'spec/support/helpers/*.rb'].each do |directory|
+['spec/support/config/*.rb', 'spec/support/helpers/*.rb', 'spec/support/pages/**/*.rb'].each do |directory|
   Dir[Rails.root.join(directory)].sort.each { |file| require file }
 end
